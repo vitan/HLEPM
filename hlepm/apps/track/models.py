@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from django.db import models
+from django.conf import settings
 from django.utils.text import truncate_words
 from django.contrib.auth.models import User
 
@@ -17,7 +18,7 @@ __all__ = ('BrdStatus',
            'PrdAck',
            'Prd',
            'Version',
-           'Product', 
+           'Product',
            'ProjectStatus',
            'ProjectAck',
            'Project',
@@ -41,14 +42,14 @@ class Product(models.Model):
 
 class DocBase(models.Model):
     """ An abstract model for documents such as BRD/PRD/MRD"""
-    
+
     name = models.CharField(max_length=150)
     creater = models.ForeignKey(User)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField(
         verbose_name='deadline',
     )
-    docfile = models.FileField(upload_to='documents/%Y/%m/%d')
+    docfile = models.FileField(upload_to=settings.UPLOAD_TO)
 
     class Meta:
         abstract = True
@@ -68,10 +69,10 @@ class BrdAck(DictBase):
     def __str__(self):
         return u'BrdAck - %s' % truncate_words(self.name, 15)
     __unicode__ = __str__
-    
+
 
 class Brd(DocBase):
-    
+
     status = models.ForeignKey(BrdStatus)
     ack = models.ForeignKey(BrdAck)
 
@@ -97,7 +98,7 @@ class MrdAck(DictBase):
 
 
 class Mrd(DocBase):
-    
+
     brd = models.ManyToManyField(Brd, null=True, blank=True)
     product = models.ForeignKey(Product)
     status = models.ForeignKey(MrdStatus)
@@ -106,7 +107,7 @@ class Mrd(DocBase):
     def __str__(self):
         return u'MRD - %s' % self.pk
     __unicode__ = __str__
-    
+
 
 class Version(DictBase):
     """Save the version."""
@@ -133,7 +134,7 @@ class PrdAck(DictBase):
 
 
 class Prd(DocBase):
-    
+
     mrd = models.ForeignKey(Mrd)
     version = models.ForeignKey(Version)
     status = models.ForeignKey(PrdStatus)
