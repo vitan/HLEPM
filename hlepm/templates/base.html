@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>{% block title %}{% endblock %}</title>
+	<link href="{{ STATIC_URL }}css/ESO-Theme.css" rel="stylesheet" type="text/css" />
+	<link href="{{ STATIC_URL }}css/project.css" rel="stylesheet" type="text/css" />
+	<link href="{{ STATIC_URL }}css/ui-lightness/jquery-ui-1.8.20.custom.css" rel="stylesheet" type="text/css" />
+	<link href="{{ STATIC_URL }}css/jquery.treeview.css" rel="stylesheet" type="text/css" />
+	<link href="{{ STATIC_URL }}css/datatable.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="eso-inner">
+		{% include "header.html" %}
+		<div class="navbar">
+                    {% include "navigation.html" %}
+		</div>
+		{% block content %}{% endblock %}
+		{% include "footer.html" %}
+	</div>
+	
+
+<script type="text/javascript" src="{{ STATIC_URL }}js/chosen.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/dropdown.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/datatable.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.20.custom.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.treeview.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/modal.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/popover.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/scrollspy.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/tab.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/tabs.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/tooltip.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/typeahead.js"></script>
+
+</body>
+{% block extra_head %}{% endblock %}
+</html>
