@@ -8,17 +8,13 @@ from django.contrib.auth.models import User
 from apps.common.models import DictBase
 
 
-__all__ = ('BrdStatus',
-           'BrdAck',
-           'Brd',
-           'MrdStatus',
-           'MrdAck',
-           'Mrd',
-           'PrdStatus',
-           'PrdAck',
-           'Prd',
+__all__ = ('Product',
+           'RequirementContent',
+           'RequirementStatus',
+           'RequirementAck',
            'Version',
-           'Product',
+           'Requirement',
+           'ProjectType',
            'ProjectStatus',
            'ProjectAck',
            'Project',
@@ -28,6 +24,16 @@ __all__ = ('BrdStatus',
            'Stakeholder',
            'Department',
            'Section',
+           'Impact',
+           'Response',
+           'Priority',
+           'Probability',
+           'RiskStatus',
+           'Risk',
+           'IssueStatus',
+           'Issue',
+           'RequirementHistory',
+           'ProjectHistory',
           )
 
 
@@ -40,72 +46,31 @@ class Product(models.Model):
     __unicode__ = __str__
 
 
-class DocBase(models.Model):
-    """ An abstract model for documents such as BRD/PRD/MRD"""
-
-    name = models.CharField(max_length=150)
-    creater = models.ForeignKey(User)
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField(
-        verbose_name='deadline',
-    )
-    docfile = models.FileField(upload_to=settings.UPLOAD_TO)
-
-    class Meta:
-        abstract = True
-
-
-class BrdStatus(DictBase):
-    """ Save the status of BRD."""
+class RequirementContent(DictBase):
+    """ Save the content of Requirement."""
 
     def __str__(self):
-        return u'BrdStatus - %s' % truncate_words(self.name, 15)
+        return u'RequirementContent - %s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
-class BrdAck(DictBase):
-    """ Save the ACK of BRD."""
+class RequirementStatus(DictBase):
+    """ Save the status of Requirement."""
+
+    content = models.ForeignKey(RequirementContent)
 
     def __str__(self):
-        return u'BrdAck - %s' % truncate_words(self.name, 15)
+        return u'RequirementStatus - %s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
-class Brd(DocBase):
+class RequirementAck(DictBase):
+    """ Save the ACK of Requirement."""
 
-    status = models.ForeignKey(BrdStatus)
-    ack = models.ForeignKey(BrdAck)
-
-    def __str__(self):
-        return u'BRD - %s' % self.pk
-    __unicode__ = __str__
-
-
-class MrdStatus(DictBase):
-    """ Save the status of MRD."""
+    content = models.ForeignKey(RequirementContent)
 
     def __str__(self):
-        return u'MrdStatus - %s' % truncate_words(self.name, 15)
-    __unicode__ = __str__
-
-
-class MrdAck(DictBase):
-    """ Save the ack of MRD."""
-
-    def __str__(self):
-        return u'MrdAck - %s' % truncate_words(self.name, 15)
-    __unicode__ = __str__
-
-
-class Mrd(DocBase):
-
-    brd = models.ManyToManyField(Brd, null=True, blank=True)
-    product = models.ForeignKey(Product)
-    status = models.ForeignKey(MrdStatus)
-    ack = models.ForeignKey(MrdAck)
-
-    def __str__(self):
-        return u'MRD - %s' % self.pk
+        return u'RequirementAck - %s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -117,31 +82,29 @@ class Version(DictBase):
     __unicode__ = __str__
 
 
-class PrdStatus(DictBase):
-    """ Save the status of PRD."""
+class Requirement(models.Model):
+    """ An model for requirements record save."""
+
+    name = models.CharField(max_length=150)
+    author = models.ForeignKey(User)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField(
+        verbose_name='deadline',
+    )
+    docfile = models.FileField(upload_to=settings.UPLOAD_TO)
+    content = models.ForeignKey(RequirementContent)
+    status = models.ForeignKey(RequirementStatus)
+    ack = models.ForeignKey(RequirementAck)
+    requirement = models.ManyToManyField('Requirement',
+                                         null=True,
+                                         blank=True,
+                                        related_name='requirement_requirement')
+    product = models.ForeignKey(Product, null=True, blank=True)
+    version = models.ForeignKey(Version, null=True, blank=True)
+    update = models.DateTimeField(auto_now=True, auto_now_add=True)
 
     def __str__(self):
-        return u'PrdStatus - %s' % truncate_words(self.name, 15)
-    __unicode__ = __str__
-
-
-class PrdAck(DictBase):
-    """ Save the ack of PRD."""
-
-    def __str__(self):
-        return u'PrdAck - %s' % truncate_words(self.name, 15)
-    __unicode__ = __str__
-
-
-class Prd(DocBase):
-
-    mrd = models.ForeignKey(Mrd)
-    version = models.ForeignKey(Version)
-    status = models.ForeignKey(PrdStatus)
-    ack = models.ForeignKey(PrdAck)
-
-    def __str__(self):
-        return u'PRD - %s' % self.pk
+        return u'%s - %s' % (self.type.name, self.pk)
     __unicode__ = __str__
 
 
@@ -173,17 +136,17 @@ class Project(models.Model):
 
     description = models.CharField(max_length=1024, null=True, blank=True)
     product = models.ForeignKey(Product)
-    prd = models.ForeignKey(Prd)
+    requirement = models.ForeignKey(Requirement)
     version = models.ForeignKey(Version)
     status = models.ForeignKey(ProjectStatus)
     ack = models.ForeignKey(ProjectAck)
-    #TODO (weizhou) project manager be saved as text?
     project_manager = models.ForeignKey(User)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField(
         verbose_name='deadline',
     )
     type = models.ForeignKey(ProjectType)
+    update = models.DateTimeField(auto_now=True, auto_now_add=True)
 
 
 class MemberType(DictBase):
@@ -240,4 +203,109 @@ class Stakeholder(models.Model):
 
     def __str__(self):
         return u'Stakeholder - %s' % truncate_words(self.name, 15)
+    __unicode__ = __str__
+
+
+class Impact(DictBase):
+
+    def __str__(self):
+        return u'Impact - %s' % truncate_words(self.name, 15)
+    __unicode__ = __str__
+
+
+class Response(DictBase):
+
+    def __str__(self):
+        return u'Response - %s' % truncate_words(self.name, 15)
+    __unicode__ = __str__
+
+
+class Priority(DictBase):
+
+    def __str__(self):
+        return u'Priority - %s' % truncate_words(self.name, 15)
+    __unicode__ = __str__
+
+
+class Probability(DictBase):
+
+    def __str__(self):
+        return u'Probability - %s' % truncate_words(self.name, 15)
+    __unicode__ = __str__
+
+
+class RiskStatus(DictBase):
+    """Save the status of risk."""
+
+    def __str__(self):
+        return u'RiskStatus - %s' % truncate_words(self.name, 15)
+    __unicode__ = __str__
+
+
+class Risk(models.Model):
+    """Save the risk of Requirement&Project."""
+
+    reporter = models.ForeignKey(User)
+    impact = models.ForeignKey(Impact)
+    probability = models.ForeignKey(Probability)
+    response = models.ForeignKey(Response)
+    status = models.ForeignKey(RiskStatus)
+    start_date = models.DateTimeField()
+    due_date = models.DateTimeField()
+    description = models.CharField(max_length=1024)
+
+    def __str__(self):
+        return u'Risk - %s' % truncate_words(self.name, 15)
+    __unicode__ = __str__
+
+
+class IssueStatus(DictBase):
+    """Save the status of project."""
+
+    def __str__(self):
+        return u'IssueStatus - %s' % truncate_words(self.name, 15)
+    __unicode__ = __str__
+
+
+class Issue(models.Model):
+    """Save the issue of Reuqirement&Project."""
+
+    reporter = models.ForeignKey(User)
+    impact = models.ForeignKey(Impact)
+    priority = models.ForeignKey(Priority)
+    status = models.ForeignKey(IssueStatus)
+    start_date = models.DateTimeField()
+    dur_date = models.DateTimeField()
+    description = models.CharField(max_length=1024)
+
+    def __str__(self):
+        return u'Issue - %s' % truncate_words(self.name, 15)
+    __unicode__ = __str__
+
+
+class RequirementHistory(models.Model):
+    """Save the history of Reuqirement."""
+
+    editor = models.ForeignKey(User)
+    requirement = models.ForeignKey(Requirement)
+    ack = models.ForeignKey(RequirementAck)
+    start_date = models.DateTimeField(auto_now=True)
+    end_date = models.DateTimeField()
+
+    def __str__(self):
+        return u'RequirementHistory - %s' % truncate_words(self.name, 15)
+    __unicode__ = __str__
+
+
+class ProjectHistory(models.Model):
+    """Save the history of Project."""
+
+    editor = models.ForeignKey(User)
+    project = models.ForeignKey(Project)
+    type = models.ForeignKey(ProjectType)
+    start_date = models.DateTimeField(auto_now=True)
+    end_date = models.DateTimeField()
+
+    def __str__(self):
+        return u'ProjectHistory - %s' % truncate_words(self.name, 15)
     __unicode__ = __str__

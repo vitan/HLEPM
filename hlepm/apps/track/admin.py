@@ -2,23 +2,26 @@
 
 from django.contrib import admin
 
-from apps.track.models import BrdStatus, BrdAck
 from apps.track.models import Department, Section
-from apps.track.models import MrdStatus, MrdAck
+from apps.track.models import Impact
+from apps.track.models import Issue
+from apps.track.models import IssueStatus
 from apps.track.models import MemberType
-from apps.track.models import PrdStatus, PrdAck
 from apps.track.models import ProjectStatus, ProjectAck
+from apps.track.models import Priority
+from apps.track.models import Probability
 from apps.track.models import Product
+from apps.track.models import RequirementStatus, RequirementAck, RequirementContent
+from apps.track.models import Response
+from apps.track.models import Risk
+from apps.track.models import RiskStatus
 from apps.track.models import StakeholderType
 from apps.track.models import Version
 
 
-__all__ = ('BrdStatusAdmin',
-           'BrdAckAdmin',
-           'MrdStatusAdmin',
-           'MrdAckAdmin',
-           'PrdStatusAdmin',
-           'PrdAckAdmin',
+__all__ = ('RequirementStatusAdmin',
+           'RequirementAckAdmin',
+           'RequirementContentAdmin',
            'ProductAdmin',
            'ProjectStatusAdmin',
            'ProjectAckAdmin',
@@ -27,43 +30,40 @@ __all__ = ('BrdStatusAdmin',
            'DepartmentAdmin',
            'SectionAdmin',
            'VersionAdmin',
+           'ImpactAdmin',
+           'ResponseAdmin',
+           'PriorityAdmin',
+           'ProbabilityAdmin',
+           'RiskStatusAdmin',
+           'IssueStatusAdmin',
           )
 
 
-class BrdStatusAdmin(admin.ModelAdmin):
+class RequirementStatusAdmin(admin.ModelAdmin):
 
     list_display = ('name', 'order')
     search_fields  = ['name',]
     ordering = ['name',]
 
-admin.site.register(BrdStatus, BrdStatusAdmin)
+admin.site.register(RequirementStatus, RequirementStatusAdmin)
 
 
-class BrdAckAdmin(admin.ModelAdmin):
-
-    list_display = ('name', 'order')
-    search_fields  = ['name',]
-    ordering = ['name',]
-
-admin.site.register(BrdAck, BrdAckAdmin)
-
-
-class MrdStatusAdmin(admin.ModelAdmin):
+class RequirementAckAdmin(admin.ModelAdmin):
 
     list_display = ('name', 'order')
     search_fields  = ['name',]
     ordering = ['name',]
 
-admin.site.register(MrdStatus, MrdStatusAdmin)
+admin.site.register(RequirementAck, RequirementAckAdmin)
 
 
-class MrdAckAdmin(admin.ModelAdmin):
+class RequirementContentAdmin(admin.ModelAdmin):
 
     list_display = ('name', 'order')
     search_fields  = ['name',]
     ordering = ['name',]
 
-admin.site.register(MrdAck, MrdAckAdmin)
+admin.site.register(RequirementContent, RequirementContentAdmin)
 
 
 class VersionAdmin(admin.ModelAdmin):
@@ -73,24 +73,6 @@ class VersionAdmin(admin.ModelAdmin):
     ordering = ['name',]
 
 admin.site.register(Version, VersionAdmin)
-
-
-class PrdStatusAdmin(admin.ModelAdmin):
-
-    list_display = ('name', 'order')
-    search_fields  = ['name',]
-    ordering = ['name',]
-
-admin.site.register(PrdStatus, PrdStatusAdmin)
-
-
-class PrdAckAdmin(admin.ModelAdmin):
-
-    list_display = ('name', 'order')
-    search_fields  = ['name',]
-    ordering = ['name',]
-
-admin.site.register(PrdAck, PrdAckAdmin)
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -154,3 +136,57 @@ class SectionAdmin(admin.ModelAdmin):
     ordering = ['name',]
 
 admin.site.register(Section, SectionAdmin)
+
+
+class ImpactAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'order')
+    search_fields = ['name']
+    ordering = ['name']
+
+admin.site.register(Impact, ImpactAdmin)
+
+
+class ResponseAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'order')
+    search_fields = ['name']
+    ordering = ['name']
+
+admin.site.register(Response, ResponseAdmin)
+
+
+class PriorityAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'order')
+    search_fields = ['name']
+    ordering = ['name']
+
+admin.site.register(Priority, PriorityAdmin)
+
+
+class ProbabilityAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'order')
+    search_fields = ['name']
+    ordering = ['name']
+
+admin.site.register(Probability, ProbabilityAdmin)
+
+
+class RiskStatusAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'order')
+    search_fields = ['name']
+    ordering = ['name']
+
+admin.site.register(RiskStatus, RiskStatusAdmin)
+
+
+class IssueStatusAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'order')
+    search_fields = ['name']
+    ordering = ['name']
+
+admin.site.register(IssueStatus, IssueStatusAdmin)
