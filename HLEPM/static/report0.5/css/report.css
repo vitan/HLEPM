@@ -506,6 +506,10 @@ ul.comment li ul{ margin-left:20px;}
 .fl-none{ float:none;}
 .lin-height{ line-height:30px;}
 .brd-table a.download{ float:right!important;}
+.week-search{ margin-left:10px; margin-bottom:10px; cursor: pointer;}
+.new-brd-form form{ width:480px; float:left;}
+.new-brd{ background-color: ; border: solid 5px #999;}
+.small-text{ font-size:10px; margin-left:5px; color: #06C;}
 /*--datetable--*/
 .datatable{border-bottom: none;border-left: none;border-radius: 0 0 0 0;border-right:none;margin-bottom: 10px;max-width: 100%;width: 100%;}
 .datatable tr td:last-child,.datatable tr th:last-child{ border-right:none;}

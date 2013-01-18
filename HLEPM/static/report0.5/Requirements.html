@@ -91,236 +91,120 @@
                     <p><a href="#" class="btn btn-danger new-query">Status</a><a href="#" class="">On Track(20)</a><a href="#" class="classify-active">Suspend(10)</a><a href="#">   Delay(10)</a> <a href="#"> Cancel(5)</a></p>
                     <p><a href="#" class="btn btn-danger new-query">ACK</a><a href="#" class="">Open(22)</a><a href="#" class="classify-active">PM_ACK(10)</a><a href="#">EIP_ACK(18)</a> <a href="#">Close(25)</a></p>
               <div class="line"></div>
-                    <p class="lin-height"><a href="#myModal" data-toggle="modal" class="btn btn-danger  ">New Query</a><a href="#" id="q">xiaowang's query</a><span id="ed" class="display-none"><a  class="edit fl-none" href="#myModal" data-toggle="modal"></a><a href="#" class="delete fl-none" ></a></span><a href="#"> xiaoli's query</a></p>
-                    
-                                <div class="modal hide fade display-none" id="myModal">
-                                    <div class="modal-header">
-                                      <button data-dismiss="modal" class="close">×</button>
-                                      <h3>New Query </h3>
-                                    </div>
-                                        <form class="form-horizontal mg-bottom0 mg-top20">
-                                        <label class="control-label" for="input01">Query Name</label>
-                                            <div class="controls">
-                                              <input type="text" class="input-xlarge" id="input01">
-                                            </div>
-                                         </form>
-                                         <div class="modal-header"></div>
-                                    <div class="modal-body">
-                                        <form class="form-horizontal">
-                                                          <div class="control-group">
-                                                            <label class="control-label" for="input01">Author</label>
-                                                            <div class="controls">
-                                                                      <select data-placeholder="" style="width:100px;" class="chzn-select" tabindex="6">
-                                                                        <option>Contains</option>
-                                                                        <option>Doesn't Contain</option>
-                                                                      </select>
-                                                                       <input type="text" class="input-xlarge" id="input01" style="width:100px;">
-                                                            </div>
-                                                          </div>
-                                                          <div class="control-group">
-                                                          	 <label class="control-label">ACK</label>
-                                                             	  <div class="controls">
-                                                                      <select data-placeholder="" style="width:100px;" class="chzn-select" tabindex="6">
-                                                                        <option>is</option>
-                                                                        <option>is not</option>
-                                                                      </select>
-                                                                       <select data-placeholder="" style="width:100px;" class="chzn-select" tabindex="6">
-                                                                        <option></option>
-                                                                        <option></option>
-                                                                        <option></option>
-                                                                        <option></option>
-                                                                      </select>
-                                                                  </div>
-                                                           </div>
-                                                           <div class="control-group">
-                                                          	 <label class="control-label">Type</label>
-                                                             	  <div class="controls">
-                                                                      <select data-placeholder="" style="width:100px;" class="chzn-select" tabindex="6">
-                                                                        <option>is</option>
-                                                                        <option>is not</option>
-                                                                      </select>
-                                                                       <select data-placeholder="" style="width:100px;" class="chzn-select" tabindex="6">
-                                                                        <option>BRD</option>
-                                                                        <option>MRD</option>
-                                                                        <option>PRD</option>
-                                                                      </select>
-                                                                  </div>
-                                                           </div>
-                                                            <div class="control-group">
-                                                          	 <label class="control-label">Product</label>
-                                                             	  <div class="controls">
-                                                                      <select data-placeholder="" style="width:100px;" class="chzn-select" tabindex="6">
-                                                                        <option>is</option>
-                                                                        <option>is not</option>
-                                                                      </select>
-                                                                       <select data-placeholder="" style="width:100px;" class="chzn-select" tabindex="6">
-                                                                        <option>TCMS</option>
-                                                                        <option>Vault</option>
-                                                                        <option>P360</option>
-                                                                        <option></option>
-                                                                      </select>
-                                                                  </div>
-                                                           </div>
-                                                           <div class="control-group">
-                                                          	 <label class="control-label">Status</label>
-                                                             	  <div class="controls">
-                                                                      <select data-placeholder="" style="width:100px;" class="chzn-select" tabindex="6">
-                                                                        <option>is</option>
-                                                                        <option>is not</option>
-                                                                      </select>
-                                                                       <select data-placeholder="" style="width:100px;" class="chzn-select" tabindex="6">
-                                                                        <option>On Track</option>
-                                                                        <option>Suspend</option>
-                                                                        <option>Delay</option>
-                                                                        <option>Cancel</option>
-                                                                      </select>
-                                                                  </div>
-                                                           </div>
-                                                           <div class="control-group">
-                                                            <label class="control-label" for="input01">Name</label>
-                                                            <div class="controls">
-                                                            <select data-placeholder="" style="width:100px;" class="chzn-select" tabindex="6">
-                                                                        <option>Contains</option>
-                                                                        <option>Doesn't Contain</option>
-                                                                      </select>
-                                                                       <input type="text" class="input-xlarge" id="input01" style="width:100px;">
-                                                            </div>
-                                                          </div>
-                                                           <div class="control-group">
-                                                                  <label class="control-label">Start Date</label>
-                                                                  <div class="controls">
-                                                                      <select data-placeholder="" style="width:100px;" class="chzn-select" tabindex="6">
-                                                                        <option>Before</option>
-                                                                        <option>After</option>
-                                                                        <option>on</option>
-                                                                      </select>
-                                                                       <input class="Datepicker " type="text">
-                                                                  </div>
-                                                              </div>
-                                                              <div class="control-group">
-                                                                  <label class="control-label">Deadline</label>
-                                                                  <div class="controls">
-                                                                      <select data-placeholder="" style="width:100px;" class="chzn-select" tabindex="6">
-                                                                        <option>Before</option>
-                                                                        <option>After</option>
-                                                                        <option>on</option>
-                                                                      </select>
-                                                                       <input class="Datepicker " type="text">
-                                                                  </div>
-                                                              </div>
-                                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <a class="btn btn-primary" href="#">Save</a>
-                                      <a data-dismiss="modal" class="btn" href="#">Close</a>
-                                    </div>
-                              </div>
-               
                 </div>
                 <table class="eso-table product-status-report">
                   <thead>
                     <tr>
-                      <th colspan="10"> <div class="modal hide fade display-none" id="myModal2">
-                        <div class="modal-header">
-                          <button data-dismiss="modal" class="close">×</button>
-                          <h3>New BRD/MRD/PRD</h3>
-                        </div>
-                        <div class="modal-body max-height450">
-                          <p>                
-                          <form class="form-horizontal">
-                            <div class="control-group">
-                              <label class="control-label">Type<span class="red-brd"> *</span></label>
-                              <div class="controls">
-                                <select name="select" class="chzn-select" style="width:100px;" tabindex="6" data-placeholder="">
-                                  <option>BRD</option>
-                                  <option>MRD</option>
-                                  <option>PRD</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="control-group">
-                              <label class="control-label">Product<span class="red-brd"> *</span></label>
-                              <div class="controls">
-                                <select name="select" class="chzn-select" style="width:100px;" tabindex="6" data-placeholder="">
-                                  <option>TCMS </option>
-                                  <option>Vault </option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="control-group">
-                              <label class="control-label">Version<span class="red-brd"> *</span></label>
-                              <div class="controls">
-                                <select name="select" class="chzn-select" style="width:100px;" tabindex="6" data-placeholder="">
-                                  <option>V4.0</option>
-                                  <option>V3.0</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="control-group">
-                              <label class="control-label">Status<span class="red-brd"> *</span></label>
-                              <div class="controls">
-                                <select name="select" class="chzn-select" style="width:100px;" tabindex="6" data-placeholder="">
-                                  <option>On Track</option>
-                                  <option>Suspend</option>
-                                  <option>Delay</option>
-                                  <option>Cancel</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="control-group">
-                              <label class="control-label" for="input2">Author<span class="red-brd"> *</span></label>
-                              <div class="controls">
-                                <input type="text" class="input-xlarge" id="input2">
-                              </div>
-                            </div>
-                            <div class="control-group">
-                              <label class="control-label">ACK<span class="red-brd"> *</span></label>
-                              <div class="controls">
-                                <select name="select" class="chzn-select" style="width:100px;" tabindex="6" data-placeholder="">
-                                  <option>Open</option>
-                                  <option>PM_ACK</option>
-                                  <option>EIP_ACK</option>
-                                  <option>Close</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="control-group">
-                              <label class="control-label" for="input2">Parent</label>
-                              <div class="controls">
-                                <select name="select" class="chzn-select" style="width:130px;" tabindex="6" data-placeholder="">
-                                  <option>BRD</option>
-                                  <option>MRD</option>
-                                </select>
-                                <input type="text" class="input-xlarge" id="input2" style="width:130px;">
-                              </div>
-                            </div>
-                            <div class="control-group">
-                              <label class="control-label">Start Date</label>
-                              <div class="controls">
-                                <input class="Datepicker " type="text">
-                              </div>
-                            </div>
-                            <div class="control-group">
-                              <label class="control-label">Deadline</label>
-                              <div class="controls">
-                                <input class="Datepicker " type="text">
-                              </div>
-                            </div>
-                            <div class="control-group">
-                              <label for="input2" class="control-label">Document</label>
-                              <div class="controls">
-                                <input id="fileInput" class="input-file" type="file">
-                              </div>
-                            </div>
-                          </form>
-                          <p></p>
-                        </div>
-                        <div class="modal-footer"> <a class="btn btn-primary" href="#">Save</a> <a data-dismiss="modal" class="btn" href="#">Close</a> </div>
-                      </div>
-                        <a class=" btn fl-right" href="#myModal2" data-toggle="modal">+ Add</a> </th>
+                      <th colspan="10">
+                        <a class=" btn fl-right" href="#" id="add">+ Add</a>
+                      </th>
                     <tr>                
                   </thead>
                   <tbody>
+                  	<tr class="display-none" id="new">
+                    	<td>
+                      	<div class="new-brd ">
+                            <div class="modal-header">
+                              <button data-dismiss="modal" class="close" id="close2">×</button>
+                              <h3>New BRD/MRD/PRD</h3>
+                            </div>
+                            <div class="modal-body max-height450 new-brd-form">
+                              <p>                
+                              <form class="form-horizontal">
+                                <div class="control-group">
+                                  <label class="control-label">Type<span class="red-brd"> *</span></label>
+                                  <div class="controls">
+                                    <select name="select" class="chzn-select" style="width:100px;" tabindex="6" data-placeholder="">
+                                      <option>BRD</option>
+                                      <option>MRD</option>
+                                      <option>PRD</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="control-group">
+                                  <label class="control-label">Product<span class="red-brd"> *</span></label>
+                                  <div class="controls">
+                                    <select name="select" class="chzn-select" style="width:100px;" tabindex="6" data-placeholder="">
+                                      <option>TCMS </option>
+                                      <option>Vault </option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="control-group">
+                                  <label class="control-label">Version<span class="red-brd"> *</span></label>
+                                  <div class="controls">
+                                    <select name="select" class="chzn-select" style="width:100px;" tabindex="6" data-placeholder="">
+                                      <option>V4.0</option>
+                                      <option>V3.0</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="control-group">
+                                  <label class="control-label">Status<span class="red-brd"> *</span></label>
+                                  <div class="controls">
+                                    <select name="select" class="chzn-select" style="width:100px;" tabindex="6" data-placeholder="">
+                                      <option>On Track</option>
+                                      <option>Suspend</option>
+                                      <option>Delay</option>
+                                      <option>Cancel</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="control-group">
+                                  <label class="control-label" for="input2">Author<span class="red-brd"> *</span></label>
+                                  <div class="controls">
+                                    <input type="text" class="input-xlarge" id="input2">
+                                  </div>
+                                </div>
+                              </form>
+                              <form class="form-horizontal">
+                                <div class="control-group">
+                                  <label class="control-label">ACK<span class="red-brd"> *</span></label>
+                                  <div class="controls">
+                                    <select name="select" class="chzn-select" style="width:100px;" tabindex="6" data-placeholder="">
+                                      <option>Drafting</option>
+                                      <option>Preparation</option>
+                                      <option>Sign off</option>
+                                      <option>Pending</option>
+                                      <option>Delivered</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="control-group">
+                                  <label class="control-label" for="input2">Parent</label>
+                                  <div class="controls">
+                                    <select name="select" class="chzn-select" style="width:130px;" tabindex="6" data-placeholder="">
+                                      <option>BRD</option>
+                                      <option>MRD</option>
+                                    </select>
+                                    <input type="text" class="input-xlarge" id="input2" style="width:130px;">
+                                  </div>
+                                </div>
+                                <div class="control-group">
+                                  <label class="control-label">Start Date</label>
+                                  <div class="controls">
+                                    <input class="Datepicker " type="text">
+                                  </div>
+                                </div>
+                                <div class="control-group">
+                                  <label class="control-label">Deadline</label>
+                                  <div class="controls">
+                                    <input class="Datepicker " type="text">
+                                  </div>
+                                </div>
+                                <div class="control-group">
+                                  <label for="input2" class="control-label">Document</label>
+                                  <div class="controls">
+                                    <input id="fileInput" class="input-file" type="file">
+                                  </div>
+                                </div>
+                              </form>
+                              <p></p>
+                            </div>
+                            <div class="modal-footer"> <a class="btn btn-primary" href="#" id="save">Save</a> <a data-dismiss="modal" class="btn" href="#" id="close">Close</a> </div>
+                          </div>
+                      </td>
+                    </tr>
                     <tr>
                       <td colspan="10" class="pd0"><table id="example" class="eso-table table-striped datatable brd-table">
                         <thead>
@@ -330,9 +214,12 @@
                             <th>Name</th>
                             <th>Author</th>
                             <th>ACK </th>
+                            <th>Risk</th>
+                            <th>Issue</th>
                             <th>Start date</th>
-                            <th>Deadline</th>
-                            <th>Spend Time</th>
+                            <th>Target Date</th>
+                            <th>AFD</th>
+                            <th>Time Left</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -341,9 +228,12 @@
                             <td><a  href="#myModal2" data-toggle="modal">BRD-1</a></td>
                             <td><a href="#"  class="brd">Package Dependency Database</a><a href="#" class="download"></a></td>
                             <td>rousseau </td>
-                            <td>Open</td>
+                            <td>Drafting</td>
+                            <td>13</td>
+                            <td>16</td>
                             <td>05,30,2012</td>
                             <td>12,31,2012</td>
+                            <td>01,10,2013</td>
                             <td>80 <span class="gray"> (hour)</span></td>
                           </tr>
                           <tr>
@@ -351,9 +241,12 @@
                             <td><a  href="#myModal2" data-toggle="modal">BRD-1</a></td>
                             <td><a href="#" class="brd">Package Dependency Database</a><a href="#" class="download"></a></td>
                             <td>rousseau </td>
-                            <td>Open</td>
+                            <td>Preparation</td>
+                            <td>13</td>
+                            <td>16</td>
                             <td>05,30,2012</td>
                             <td>12,31,2012</td>
+                            <td>01,10,2013</td>
                             <td>80 <span class="gray"> (hour)</span></td>
                           </tr>
                           <tr>
@@ -362,8 +255,11 @@
                             <td><a href="#"class="mrd">Beaker Group Model</a><a href="#" class="download"></a></td>
                             <td>rousseau</td>
                             <td>Open</td>
+                            <td>13</td>
+                            <td>16</td>
                             <td>05,30,2012</td>
                             <td>12,31,2012</td>
+                            <td>01,10,2013</td>
                             <td>80 <span class="gray"> (hour)</span></td>
                           </tr>
                           <tr>
@@ -372,8 +268,11 @@
                             <td><a href="#" class="prd">TCMS_4.0_BRD</a><a href="#" class="download"></a></td>
                             <td>rousseau</td>
                             <td>Open</td>
+                            <td>13</td>
+                            <td>16</td>
                             <td>05,30,2012</td>
                             <td>12,31,2012</td>
+                            <td>01,10,2013</td>
                             <td>80 <span class="gray"> (hour)</span></td>
                           </tr>
                           <tr>
@@ -382,8 +281,11 @@
                             <td><a href="#" class="brd">Data Analytics</a><a href="#" class="download"></a></td>
                             <td> zeranski</td>
                             <td>Open</td>
+                            <td>13</td>
+                            <td>16</td>
                             <td>05,30,2012</td>
                             <td>12,31,2012</td>
+                            <td>01,10,2013</td>
                             <td>80 <span class="gray"> (hour)</span></td>
                           </tr>
                           <tr>
@@ -392,8 +294,11 @@
                             <td><a href="#" class="brd">Package List Process</a><a href="#" class="download"></a></td>
                             <td>sly </td>
                             <td>Open</td>
+                            <td>13</td>
+                            <td>16</td>
                             <td>05,30,2012</td>
                             <td>12,31,2012</td>
+                            <td>01,10,2013</td>
                             <td>80 <span class="gray"> (hour)</span></td>
                           </tr>
                           <tr>
@@ -402,8 +307,11 @@
                             <td><a href="#" class="brd">p360v1.3 BRD</a><a href="#" class="download"></a></td>
                             <td>zeranski </td>
                             <td>Open</td>
+                            <td>13</td>
+                            <td>16</td>
                             <td>05,30,2012</td>
                             <td>12,31,2012</td>
+                            <td>01,10,2013</td>
                             <td>80 <span class="gray"> (hour)</span></td>
                           </tr>
                           <tr>
@@ -412,8 +320,115 @@
                             <td><a href="#" class="brd">PnTBRD</a><a href="#" class="download"></a></td>
                             <td>zeranski </td>
                             <td>Open</td>
+                            <td>13</td>
+                            <td>16</td>
                             <td>05,30,2012</td>
                             <td>12,31,2012</td>
+                            <td>01,10,2013</td>
+                            <td>80 <span class="gray"> (hour)</span></td>
+                          </tr>
+                          <tr>
+                            <th><a href="detail.html" class="light-red">(Suspend)</a></th>
+                            <td><a  href="#myModal2" data-toggle="modal">BRD-1</a></td>
+                            <td><a href="#"  class="brd">Package Dependency Database</a><a href="#" class="download"></a></td>
+                            <td>rousseau </td>
+                            <td>Open</td>
+                            <td>13</td>
+                            <td>16</td>
+                            <td>05,30,2012</td>
+                            <td>12,31,2012</td>
+                            <td>01,10,2013</td>
+                            <td>80 <span class="gray"> (hour)</span></td>
+                          </tr>
+                          <tr>
+                            <th><a href="detail.html" class="light-red"> (Delay)</a> </th>
+                            <td><a  href="#myModal2" data-toggle="modal">BRD-1</a></td>
+                            <td><a href="#" class="brd">Package Dependency Database</a><a href="#" class="download"></a></td>
+                            <td>rousseau </td>
+                            <td>Open</td>
+                            <td>13</td>
+                            <td>16</td>
+                            <td>05,30,2012</td>
+                            <td>12,31,2012</td>
+                            <td>01,10,2013</td>
+                            <td>80 <span class="gray"> (hour)</span></td>
+                          </tr>
+                          <tr>
+                            <th><a href="detail.html" class="light-red">(Cancel)</a></th>
+                            <td><a  href="#myModal2" data-toggle="modal">MRD-2</a></td>
+                            <td><a href="#"class="mrd">Beaker Group Model</a><a href="#" class="download"></a></td>
+                            <td>rousseau</td>
+                            <td>Open</td>
+                            <td>13</td>
+                            <td>16</td>
+                            <td>05,30,2012</td>
+                            <td>12,31,2012</td>
+                            <td>01,10,2013</td>
+                            <td>80 <span class="gray"> (hour)</span></td>
+                          </tr>
+                          <tr>
+                            <th><a href="detail.html" class="light-green">(OnTrack)</a></th>
+                            <td><a  href="#myModal2" data-toggle="modal">PRD-3</a></td>
+                            <td><a href="#" class="prd">TCMS_4.0_BRD</a><a href="#" class="download"></a></td>
+                            <td>rousseau</td>
+                            <td>Open</td>
+                            <td>13</td>
+                            <td>16</td>
+                            <td>05,30,2012</td>
+                            <td>12,31,2012</td>
+                            <td>01,10,2013</td>
+                            <td>80 <span class="gray"> (hour)</span></td>
+                          </tr>
+                          <tr>
+                            <th><a href="detail.html" class="light-green">(OnTrack)</a></th>
+                            <td><a  href="#myModal2" data-toggle="modal">BRD-4</a></td>
+                            <td><a href="#" class="brd">Data Analytics</a><a href="#" class="download"></a></td>
+                            <td> zeranski</td>
+                            <td>Open</td>
+                            <td>13</td>
+                            <td>16</td>
+                            <td>05,30,2012</td>
+                            <td>12,31,2012</td>
+                            <td>01,10,2013</td>
+                            <td>80 <span class="gray"> (hour)</span></td>
+                          </tr>
+                          <tr>
+                            <th><a href="detail.html" class="light-green">(OnTrack)</a></th>
+                            <td><a  href="#myModal2" data-toggle="modal">BRD-5</a></td>
+                            <td><a href="#" class="brd">Package List Process</a><a href="#" class="download"></a></td>
+                            <td>sly </td>
+                            <td>Open</td>
+                            <td>13</td>
+                            <td>16</td>
+                            <td>05,30,2012</td>
+                            <td>12,31,2012</td>
+                            <td>01,10,2013</td>
+                            <td>80 <span class="gray"> (hour)</span></td>
+                          </tr>
+                          <tr>
+                            <th><a href="detail.html" class="light-green">(OnTrack)</a></th>
+                            <td><a  href="#myModal2" data-toggle="modal">BRD-6</a></td>
+                            <td><a href="#" class="brd">p360v1.3 BRD</a><a href="#" class="download"></a></td>
+                            <td>zeranski </td>
+                            <td>Open</td>
+                            <td>13</td>
+                            <td>16</td>
+                            <td>05,30,2012</td>
+                            <td>12,31,2012</td>
+                            <td>01,10,2013</td>
+                            <td>80 <span class="gray"> (hour)</span></td>
+                          </tr>
+                          <tr>
+                            <th><a href="detail.html" class="light-green">(OnTrack)</a></th>
+                            <td><a  href="#myModal2" data-toggle="modal">BRD-7</a></td>
+                            <td><a href="#" class="brd">PnTBRD</a><a href="#" class="download"></a></td>
+                            <td>zeranski </td>
+                            <td>Open</td>
+                            <td>13</td>
+                            <td>16</td>
+                            <td>05,30,2012</td>
+                            <td>12,31,2012</td>
+                            <td>01,10,2013</td>
                             <td>80 <span class="gray"> (hour)</span></td>
                           </tr>
                         </tbody>
@@ -1002,4 +1017,33 @@ $(document).ready(function() {
 		}
 	} );
 } );
+
+
+$(function(){
+		   $("#add").click(function(){
+									$("#new").show();
+								})
+		    $("#save,#close,#close2").click(function(){
+									$("#new").hide();
+								})
+		   })
+
+
+
+
+$(function(){
+			  
+			   $("#on").click(function(){
+										 $("#on").hide();
+										 $("#off").show();
+										 $("#comments-all").show();
+										 })
+			   $("#off").click(function(){
+										 $("#off").hide();
+										 $("#on").show();
+										 $("#comments-all").hide();
+										 })
+		})
+
+
 </script>

@@ -65,6 +65,7 @@
             <section>
 				<ul class="nav nav-tabs" id="myTab" data-tabs="tabs">
 					<li class="active"><a href="#BRD">Basic Information</a></li>
+                    <li class=""><a href="#week">Weekly Report</a></li>
                     <li class=""><a href="#risk"> Risk</a></li>
                     <li class=""><a href="#issue">Issue</a></li>
                     <li class=""><a href="#history">History </a></li>
@@ -211,6 +212,289 @@
                                 </div>
                             </div>
                         </section>	
+					</div>
+                    <div class="tab-pane " id="week">
+						<section>
+                            
+                        	<div class="control-group input-stakeholder fl-right" style="width:230px;">
+                                <label for="input01" class="control-label"></label>
+                                                                <div class="controls" >
+                                                                    <select class="span2" style="width:80px">
+                                                                        <option>2013</option>
+                                                                        <option>2012</option>
+                                                                        <option>2011</option>
+                                                                    </select>
+                                                                    	<input style="width:80px"  id="prependedInput" type="text" placeholder="Week">
+                                                                        <img src="images/view.png" class="week-search">
+                                                                </div>
+                             </div>
+                            <div class="page-header clear"></div>
+                            <div>
+                            	<a class=" fl-right edit-info" href="#myModal2" data-toggle="modal" id="edit1" style=" margin-top:5px; margin-left:10px;">Edit</a>
+                                <div class="clearfix">
+                                    <table cellpadding="0" cellspacing="0" border="0" class="product-basic-info" id="basic-input1">
+                                        <tr>
+                                            <th class="basic-th">Summary</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Treasury V1.0 is in deployment phase.Now Eng-Ops is working on bug fixing, will finish deployment to stage server on Jan.9th.</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="basic-th">Key milestones</th>
+                                        </tr>
+                                        <tr>
+                                        	<td>
+                                                <table class="eso-table product-status-report member-list">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="">Status</th>
+                                                            <th class="">Milestone</th>
+                                                            <th class="">Date completed</th>
+                                                            <th class="">Notes</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>*</td>
+                                                            <td>Testing phase</td>
+                                                            <td>Nov.5th~Dev.13rd</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>Development Code freeze</td>
+                                                            <td>Nov.5th</td>
+                                                            <td>Two days delayed as plan because the new changed requirements</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>Acceptance and Full testing</td>
+                                                            <td>Nov.28rd</td>
+                                                            <td>The first round acceptance testing fail, now Devel is working on bug fixing</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>Bug fixing and respin</td>
+                                                            <td>During test</td>
+                                                            <td>Will fix bugs when QE find any during the testing phase</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>Bug regression and full function testing</td>
+                                                            <td>Dec.12nd</td>
+                                                            <td>Depends on how many bugs we’ll get</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>Code freeze of testing phase</td>
+                                                            <td>Dec.30th</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>Release to Production</td>
+                                                            <td>Jan.9th</td>
+                                                            <td>Delayed because the testing on the stage server failed, IED had fixed the bug and QE had finished the testing, the result is conditional passed, will confirm with zdou when they can finish the stage server upgrading</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="basic-th">Focus</th>
+                                        </tr>
+                                        <tr>
+                                        	<td><i>In this section discuss tasks that are coming up for each Functional team. It should be used to sync Functional teams and alert readers of what will be happening in the next few weeks</i></td>
+                                        </tr>
+                                        <tr>
+                                        	<td>
+                                                <table class="eso-table product-status-report member-list">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th class="w150">EIP</th>
+                                                            <td>No report</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="w150">PA</th>
+                                                            <td>PM will work on the internal testing.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="w150">IED</th>
+                                                            <td>will fix bugs if there is any problem during the testing.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="w150">QE</th>
+                                                            <td>QE will testing on stage server.
+
+The second testing on the stage server will finish on the Jan.16th.
+
+
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="w150">RAP</th>
+                                                            <td>No report </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="w150">Eng-Ops</th>
+                                                            <td>Will deploy the product to the product server after the internal testing.</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <form class="form-horizontal display-none" id="basic-input2">
+                                    	<div class="control-group">
+                                            <label class="control-label" for="input01">Description</label>
+                                            <div class="controls">
+                                            <textarea id="textarea" class="input-xlarge" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    	<div class="control-group">
+                                                                <label for="input01" class="control-label">Team Member</label>
+                                                                <div class="controls">
+                                                                    <div class="input-prepend">
+                                                                      <span class="add-on">Business Analyst</span><input class="input-xlarge" id="prependedInput" type="text" placeholder="Username, Username, ...">
+                                                                    </div>
+                                                                    <div class="input-prepend">
+                                                                      <span class="add-on">Product Manager</span><input class="input-xlarge" id="prependedInput" type="text" placeholder="Username, Username, ...">
+                                                                    </div>
+                                                                    <div class="input-prepend">
+                                                                      <span class="add-on">Project Manager</span><input class="input-xlarge" id="prependedInput" type="text" placeholder="Username, Username, ...">
+                                                                    </div>
+                                                                    <div class="input-prepend">
+                                                                      <span class="add-on">Developer</span><input class="input-xlarge" id="prependedInput" type="text" placeholder="Username, Username, ...">
+                                                                    </div>
+                                                                    <div class="input-prepend">
+                                                                      <span class="add-on">Tester</span><input class="input-xlarge" id="prependedInput" type="text" placeholder="Username, Username, ...">
+                                                                    </div>
+                                                                </div>
+                                      </div>
+                                                          	<div class="control-group input-stakeholder">
+                                          <label for="input01" class="control-label">Stakeholder<br><a href="#" class="btn btn-small btn-success">Add</a></label>
+                                                                <div class="controls">
+                                                                    <select class="span2">
+                                                                        <option>Sponsor</option>
+                                                                        <option>Potential</option>
+                                                                        <option>Requirements</option>
+                                                                    </select>
+                                                                    <select class="span2">
+                                                                        <option>R&D</option>
+                                                                        <option>ESO</option>
+                                                                        <option>Marketing BU's</option>
+                                                                    </select>
+                                                                    <select class="span2">
+                                                                        <option>111111</option>
+                                                                        <option>222222</option>
+                                                                        <option>333333</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="controls">
+                                                                    <select class="span2">
+                                                                        <option>Sponsor</option>
+                                                                        <option>Potential</option>
+                                                                        <option>Requirements</option>
+                                                                    </select>
+                                                                    <select class="span2">
+                                                                        <option>R&D</option>
+                                                                        <option>ESO</option>
+                                                                        <option>Marketing BU's</option>
+                                                                    </select>
+                                                                    <select class="span2">
+                                                                        <option>111111</option>
+                                                                        <option>222222</option>
+                                                                        <option>333333</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                         <div class="control-group input-stakeholder">
+                                         <a href="#" class="btn mg-left40" id="edit2">Save</a>
+                                         <a href="#" class="btn mg-left40" id="edit3">Back</a>
+                                         </div>
+                                    </form>                        
+                                </div>
+                            </div>
+                        </section>	
+                        <section class="mg-bottom " id="comments-alls">
+                                            <fieldset class="fieldset-vault">
+                                            <legend class="legend-vault img1 display-none" id="turns">Turn Off Comments </legend>
+                                            <legend class="legend-vault img2 " id="turn2s" >Turn On Comments </legend>
+                                      <div class="comments display-none">
+                                        <div class="comments_list commentd ">
+                                          <strong class="ncolor">xiaowang :</strong><span class="time">2012-08-30 20:09</span> <span class="blu">Reply</span>
+                                          <div>The yellow-highlighted bugs are remarks and are internal only. These will not be visible to customers in the GA version of the document. Release Notes generally do not provide any links to Bugzilla. I did fix the version number to 3, thanks for catching that.</div>
+                                          <div class="comments_line"></div>
+                                          <div><textarea class="input-xlarge clear" id="textarea" rows="3"></textarea></br><button class="btn clear" >Submit</button></div>
+                                          <ul>
+                                            <li>
+                                              <strong>mprpic :</strong><span class="time">2012-08-30 20:09</span> <span class="blu">Reply</span>
+                                              <div>Thanks Keqin, this has been added to the Release Notes.</div>
+                                              <div class="comments_line">
+                                              </div>
+                                              <ul>
+                                                <li>
+                                                  <strong>mprpic :</strong><span class="time">2012-08-30 20:09</span> <span class="blu">Reply</span>
+                                                  <div>Thanks Keqin, this has been added to the Release Notes.</div>
+                                                  <div class="comments_line">
+                                                  </div>
+                                                  </li>
+                                                </ul>
+                                              </li>
+                                            </ul>
+                                          </div>
+                                        <div class="comments_list sinded">
+                                            <strong class="ncolor">xiaowang :</strong><span class="time">2012-08-30 20:09</span> <span class="blu">Reply</span>
+                                            <div>Signed</div>
+                                            <div class="comments_line"></div>
+                                        </div>
+                                        <div class="comments_list commentd">
+                                            <strong>jgalipea :</strong><span class="time">2012-08-30 20:09</span> <span class="blu">Reply</span>
+                                            <div>None of the fixes for IDM QE are even in the release notes, can not sign off</div>
+                                            <div class="comments_line">
+                                        </div>
+                                          <ul>
+                                            <li>
+                                              <strong>khong :</strong><span class="time">2012-08-30 20:09</span> <span class="blu">Reply</span>
+                                              <div>Okay, so after reaching out to the team ... the following bugzillas</br> a customer may encounter and they will not be fixed before beta and may not be fixed at all.
+                                                
+                                                https://bugzilla.redhat.com/show_bug.cgi?id=852746
+                                                https://bugzilla.redhat.com/show_bug.cgi?id=851318
+                                                
+                                                I have set the release note flag to "?" on both these bugs.
+                                                
+                                                Thanks!</div>
+                                              <div class="comments_line"></div>
+                                              </li>
+                                            </ul>
+                                          </div>
+                                        <div class="comments_list commentd">
+                                            <strong>jgalipea :</strong><span class="time">2012-08-30 20:09</span> <span class="blu">Reply</span>
+                                            <div>None of the fixes for IDM QE are even in the release notes, can not sign off</div>
+                                            <div class="comments_line">
+                                        </div>
+                                          <ul>
+                                            <li>
+                                              <strong>khong :</strong><span class="time">2012-08-30 20:09</span> <span class="blu">Reply</span>
+                                              <div>Okay, so after reaching out to the team ... the following bugzillas</br> a customer may encounter and they will not be fixed before beta and may not be fixed at all.
+                                                
+                                                https://bugzilla.redhat.com/show_bug.cgi?id=852746
+                                                https://bugzilla.redhat.com/show_bug.cgi?id=851318
+                                                
+                                                I have set the release note flag to "?" on both these bugs.
+                                                
+                                                Thanks!</div>
+                                              <div class="comments_line"></div>
+                                              </li>
+                                            </ul>
+                                          </div>
+                                        </div>
+                                        </fieldset>
+                                        <textarea name="comments"  id="comments"  class="comment-textarea"> </textarea>
+                                        <div id="comment-btns" class="display-none"><button class="btn btn-primary">Comment</button></div> 
+                                        </section>
+                                        
+                                        
 					</div>
 					<div class="tab-pane fade" id="risk">
                             <div class="risk-issue">

@@ -185,8 +185,8 @@ $(document).ready(function() {
             	
                 <section>
 				<ul class="nav nav-tabs" id="myTab" data-tabs="tabs">
-					<li class="active"><a href="#BRD">Risk (8)</a></li>
-                    <li class=""><a href="#issue"> Issue (8)</a></li>
+					<li class="active"><a href="#BRD">Risk (8)<span class="small-text">Open (5)</span><span class="small-text">High (3)</span></a></li>
+                    <li class=""><a href="#issue"> Issue (8) <span class="small-text">Open (2)</span><span class="small-text">High (1)</span></a></li>
                     <li class=""><a href="#history"> History</a></li>
 					<li class=""><a href="#product"> Related Document (5)</a></li>
                     
@@ -918,111 +918,182 @@ $(document).ready(function() {
                         <tbody>
                         	<tr>
                             	<td colspan="10" class="pd0">
-                                    <table id="example" class="eso-table table-striped datatable">
+                                    <table id="example" class="eso-table table-striped datatable brd-table">
                                         <thead>
-                                            <tr>
-                                                <th style="">Status</th>
-                                                <th>Number</th>
-                                                <th>Name</th>
-                                                <th>Author</th>
-                                                <th>ACK
-                                                </th><th>Start date</th>
-                                                <th>Deadline</th>
-                                                <th>Spend Time</th>
-                                                <th>Operation</th>
-                                            </tr>
+                                          <tr>
+                                            <th style="">Status</th>
+                                            <th>Number</th>
+                                            <th>Name</th>
+                                            <th>Author</th>
+                                            <th>ACK </th>
+                                            <th>Start date</th>
+                                            <th>Deadline</th>
+                                            <th>Time Left</th>
+                                          </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th><a href="#" class="light-red"></a>(Suspend)</th>
-                                                <td>BRD-1</td>
-                                                <td><a href="detail.html" class="brd">Package Dependency Database</a></td>
-                                                <td>rousseau </td>
-                                                <td>Open</td>
-                                                <td>05,30,2012</td>
-                                                <td>12,31,2012</td>
-                                                <td>80 <span class="gray"> (hour)</span></td>
-                                                <td><a href="#" class="view"></a><a  class="edit" href="#myModal2" data-toggle="modal"></a></td>
-                                            </tr>
-                                            <tr>
-                                                <th><a href="#" class="light-red"></a> (Delay) </th>
-                                                <td>BRD-2</td>
-                                                <td><a href="detail.html" class="brd"></a></td>
-                                                <td>rousseau </td>
-                                                <td>Open</td>
-                                                <td>05,30,2012</td>
-                                                <td>12,31,2012</td>
-                                                <td>80 <span class="gray"> (hour)</span></td>
-                                                <td><a href="#" class="view"></a><a  class="edit" href="#myModal2" data-toggle="modal"></td>
-                                            </tr>
-                                            <tr>
-                                                <th><a href="#" class="light-red"></a>(Cancel)</th>
-                                                <td>MRD-2</td>
-                                                <td><a href="detail.html"class="mrd">Beaker Group Model</a></td>
-                                                <td>rousseau</td>
-                                                <td>Open</td>
-                                                <td>05,30,2012</td>
-                                                <td>12,31,2012</td>
-                                                <td>80 <span class="gray"> (hour)</span></td>
-                                               <td><a href="#" class="view"></a><a href="#" class="edit"></a></td>
-                                            </tr>
-                                            <tr>
-                                                <th><a href="#" class="light-green"></a></th>
-                                                <td>PRD-3</td>
-                                                <td><a href="detail.html" class="prd">TCMS_4.0_BRD</a></td>
-                                                <td>rousseau</td>
-                                                <td>Open</td>
-                                                <td>05,30,2012</td>
-                                                <td>12,31,2012</td>
-                                                <td>80 <span class="gray"> (hour)</span></td>
-                                                <td><a href="#" class="view"></a><a href="#" class="edit"></a></td>
-                                            </tr>
-                                            <tr>
-                                                <th><a href="#" class="light-green"></a></th>
-                                                <td>BRD-4</td>
-                                                <td><a href="detail.html" class="brd">Data Analytics</a></td>
-                                                <td>	zeranski</td>
-                                                <td>Open</td>
-                                                <td>05,30,2012</td>
-                                                <td>12,31,2012</td>
-                                                <td>80 <span class="gray"> (hour)</span></td>
-                                                <td><a href="#" class="view"></a><a href="#" class="edit"></a></td>
-                                            </tr>
-                                            <tr>
-                                                <th><a href="#" class="light-green"></a></th>
-                                                <td>BRD-5</td>
-                                                <td><a href="detail.html" class="brd">Package List Process</a></td>
-                                                <td>sly </td>
-                                                <td>Open</td>
-                                                <td>05,30,2012</td>
-                                                <td>12,31,2012</td>
-                                                <td>80 <span class="gray"> (hour)</span></td>
-                                                <td><a href="#" class="view"></a><a href="#" class="edit"></a></td>
-                                            </tr>
-                                            <tr>
-                                                <th><a href="#" class="light-green"></a></th>
-                                                <td>BRD-6</td>
-                                                <td><a href="detail.html" class="brd">p360v1.3 BRD</a></td>
-                                                <td>zeranski </td>
-                                                <td>Open</td>
-                                                <td>05,30,2012</td>
-                                                <td>12,31,2012</td>
-                                                <td>80 <span class="gray"> (hour)</span></td>
-                                                <td><a href="#" class="view"></a><a href="#" class="edit"></a></td>
-                                            </tr>
-                                            <tr>
-                                                <th><a href="#" class="light-green"></a></th>
-                                                <td>BRD-7</td>
-                                                <td><a href="detail.html" class="brd">PnTBRD</a></td>
-                                                <td>zeranski </td>
-                                                <td>Open</td>
-                                                <td>05,30,2012</td>
-                                                <td>12,31,2012</td>
-                                                <td>80 <span class="gray"> (hour)</span></td>
-                                                <td><a href="#" class="view"></a><a href="#" class="edit"></a></td>
-                                            </tr>
+                                          <tr>
+                                            <th><a href="detail.html" class="light-red">(Suspend)</a></th>
+                                            <td><a  href="#myModal2" data-toggle="modal">BRD-1</a></td>
+                                            <td><a href="#"  class="brd">Package Dependency Database</a><a href="#" class="download"></a></td>
+                                            <td>rousseau </td>
+                                            <td>Open</td>
+                                            <td>05,30,2012</td>
+                                            <td>12,31,2012</td>
+                                            <td>80 <span class="gray"> (hour)</span></td>
+                                          </tr>
+                                          <tr>
+                                            <th><a href="detail.html" class="light-red"> (Delay)</a> </th>
+                                            <td><a  href="#myModal2" data-toggle="modal">BRD-1</a></td>
+                                            <td><a href="#" class="brd">Package Dependency Database</a><a href="#" class="download"></a></td>
+                                            <td>rousseau </td>
+                                            <td>Open</td>
+                                            <td>05,30,2012</td>
+                                            <td>12,31,2012</td>
+                                            <td>80 <span class="gray"> (hour)</span></td>
+                                          </tr>
+                                          <tr>
+                                            <th><a href="detail.html" class="light-red">(Cancel)</a></th>
+                                            <td><a  href="#myModal2" data-toggle="modal">MRD-2</a></td>
+                                            <td><a href="#"class="mrd">Beaker Group Model</a><a href="#" class="download"></a></td>
+                                            <td>rousseau</td>
+                                            <td>Open</td>
+                                            <td>05,30,2012</td>
+                                            <td>12,31,2012</td>
+                                            <td>80 <span class="gray"> (hour)</span></td>
+                                          </tr>
+                                          <tr>
+                                            <th><a href="detail.html" class="light-green">(OnTrack)</a></th>
+                                            <td><a  href="#myModal2" data-toggle="modal">PRD-3</a></td>
+                                            <td><a href="#" class="prd">TCMS_4.0_BRD</a><a href="#" class="download"></a></td>
+                                            <td>rousseau</td>
+                                            <td>Open</td>
+                                            <td>05,30,2012</td>
+                                            <td>12,31,2012</td>
+                                            <td>80 <span class="gray"> (hour)</span></td>
+                                          </tr>
+                                          <tr>
+                                            <th><a href="detail.html" class="light-green">(OnTrack)</a></th>
+                                            <td><a  href="#myModal2" data-toggle="modal">BRD-4</a></td>
+                                            <td><a href="#" class="brd">Data Analytics</a><a href="#" class="download"></a></td>
+                                            <td> zeranski</td>
+                                            <td>Open</td>
+                                            <td>05,30,2012</td>
+                                            <td>12,31,2012</td>
+                                            <td>80 <span class="gray"> (hour)</span></td>
+                                          </tr>
+                                          <tr>
+                                            <th><a href="detail.html" class="light-green">(OnTrack)</a></th>
+                                            <td><a  href="#myModal2" data-toggle="modal">BRD-5</a></td>
+                                            <td><a href="#" class="brd">Package List Process</a><a href="#" class="download"></a></td>
+                                            <td>sly </td>
+                                            <td>Open</td>
+                                            <td>05,30,2012</td>
+                                            <td>12,31,2012</td>
+                                            <td>80 <span class="gray"> (hour)</span></td>
+                                          </tr>
+                                          <tr>
+                                            <th><a href="detail.html" class="light-green">(OnTrack)</a></th>
+                                            <td><a  href="#myModal2" data-toggle="modal">BRD-6</a></td>
+                                            <td><a href="#" class="brd">p360v1.3 BRD</a><a href="#" class="download"></a></td>
+                                            <td>zeranski </td>
+                                            <td>Open</td>
+                                            <td>05,30,2012</td>
+                                            <td>12,31,2012</td>
+                                            <td>80 <span class="gray"> (hour)</span></td>
+                                          </tr>
+                                          <tr>
+                                            <th><a href="detail.html" class="light-green">(OnTrack)</a></th>
+                                            <td><a  href="#myModal2" data-toggle="modal">BRD-7</a></td>
+                                            <td><a href="#" class="brd">PnTBRD</a><a href="#" class="download"></a></td>
+                                            <td>zeranski </td>
+                                            <td>Open</td>
+                                            <td>05,30,2012</td>
+                                            <td>12,31,2012</td>
+                                            <td>80 <span class="gray"> (hour)</span></td>
+                                          </tr>
+                                          <tr>
+                                            <th><a href="detail.html" class="light-red">(Suspend)</a></th>
+                                            <td><a  href="#myModal2" data-toggle="modal">BRD-1</a></td>
+                                            <td><a href="#"  class="brd">Package Dependency Database</a><a href="#" class="download"></a></td>
+                                            <td>rousseau </td>
+                                            <td>Open</td>
+                                            <td>05,30,2012</td>
+                                            <td>12,31,2012</td>
+                                            <td>80 <span class="gray"> (hour)</span></td>
+                                          </tr>
+                                          <tr>
+                                            <th><a href="detail.html" class="light-red"> (Delay)</a> </th>
+                                            <td><a  href="#myModal2" data-toggle="modal">BRD-1</a></td>
+                                            <td><a href="#" class="brd">Package Dependency Database</a><a href="#" class="download"></a></td>
+                                            <td>rousseau </td>
+                                            <td>Open</td>
+                                            <td>05,30,2012</td>
+                                            <td>12,31,2012</td>
+                                            <td>80 <span class="gray"> (hour)</span></td>
+                                          </tr>
+                                          <tr>
+                                            <th><a href="detail.html" class="light-red">(Cancel)</a></th>
+                                            <td><a  href="#myModal2" data-toggle="modal">MRD-2</a></td>
+                                            <td><a href="#"class="mrd">Beaker Group Model</a><a href="#" class="download"></a></td>
+                                            <td>rousseau</td>
+                                            <td>Open</td>
+                                            <td>05,30,2012</td>
+                                            <td>12,31,2012</td>
+                                            <td>80 <span class="gray"> (hour)</span></td>
+                                          </tr>
+                                          <tr>
+                                            <th><a href="detail.html" class="light-green">(OnTrack)</a></th>
+                                            <td><a  href="#myModal2" data-toggle="modal">PRD-3</a></td>
+                                            <td><a href="#" class="prd">TCMS_4.0_BRD</a><a href="#" class="download"></a></td>
+                                            <td>rousseau</td>
+                                            <td>Open</td>
+                                            <td>05,30,2012</td>
+                                            <td>12,31,2012</td>
+                                            <td>80 <span class="gray"> (hour)</span></td>
+                                          </tr>
+                                          <tr>
+                                            <th><a href="detail.html" class="light-green">(OnTrack)</a></th>
+                                            <td><a  href="#myModal2" data-toggle="modal">BRD-4</a></td>
+                                            <td><a href="#" class="brd">Data Analytics</a><a href="#" class="download"></a></td>
+                                            <td> zeranski</td>
+                                            <td>Open</td>
+                                            <td>05,30,2012</td>
+                                            <td>12,31,2012</td>
+                                            <td>80 <span class="gray"> (hour)</span></td>
+                                          </tr>
+                                          <tr>
+                                            <th><a href="detail.html" class="light-green">(OnTrack)</a></th>
+                                            <td><a  href="#myModal2" data-toggle="modal">BRD-5</a></td>
+                                            <td><a href="#" class="brd">Package List Process</a><a href="#" class="download"></a></td>
+                                            <td>sly </td>
+                                            <td>Open</td>
+                                            <td>05,30,2012</td>
+                                            <td>12,31,2012</td>
+                                            <td>80 <span class="gray"> (hour)</span></td>
+                                          </tr>
+                                          <tr>
+                                            <th><a href="detail.html" class="light-green">(OnTrack)</a></th>
+                                            <td><a  href="#myModal2" data-toggle="modal">BRD-6</a></td>
+                                            <td><a href="#" class="brd">p360v1.3 BRD</a><a href="#" class="download"></a></td>
+                                            <td>zeranski </td>
+                                            <td>Open</td>
+                                            <td>05,30,2012</td>
+                                            <td>12,31,2012</td>
+                                            <td>80 <span class="gray"> (hour)</span></td>
+                                          </tr>
+                                          <tr>
+                                            <th><a href="detail.html" class="light-green">(OnTrack)</a></th>
+                                            <td><a  href="#myModal2" data-toggle="modal">BRD-7</a></td>
+                                            <td><a href="#" class="brd">PnTBRD</a><a href="#" class="download"></a></td>
+                                            <td>zeranski </td>
+                                            <td>Open</td>
+                                            <td>05,30,2012</td>
+                                            <td>12,31,2012</td>
+                                            <td>80 <span class="gray"> (hour)</span></td>
+                                          </tr>
                                         </tbody>
-                                        </table>
+                                      </table>
                                 </td>
                             </tr>
                         </tbody>
