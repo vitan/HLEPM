@@ -1,0 +1,38 @@
+body{ background:none}
+
+div.dataTables_length label {
+	width: 460px;
+	float: left;
+	text-align: left;
+	margin-bottom:0px;
+}
+
+div.dataTables_length select {
+	width: 75px;
+	display:inline
+}
+
+div.dataTables_filter label {
+	float: right;
+	display:inline;
+	margin-bottom:0px;
+}
+
+div.dataTables_filter label input{ display:inline; height:26px;}
+
+div.dataTables_info {
+	padding-top: 8px;
+}
+
+div.dataTables_paginate {
+	float: right;
+	margin: 0;
+}
+
+
+table.dataTable th:active {
+	outline: none;
+}
+
+.dataTable{ font-size:13px;}
+
