@@ -2,21 +2,21 @@
 
 from django.contrib import admin
 
-from apps.track.models import Department, Section
-from apps.track.models import Impact
-from apps.track.models import Issue
-from apps.track.models import IssueStatus
-from apps.track.models import MemberType
-from apps.track.models import ProjectStatus, ProjectAck
-from apps.track.models import Priority
-from apps.track.models import Probability
-from apps.track.models import Product
-from apps.track.models import RequirementStatus, RequirementAck, RequirementContent
-from apps.track.models import Response
-from apps.track.models import Risk
-from apps.track.models import RiskStatus
-from apps.track.models import StakeholderType
-from apps.track.models import Version
+from HLEPM.apps.track.models import Department, Section
+from HLEPM.apps.track.models import Impact
+from HLEPM.apps.track.models import Issue
+from HLEPM.apps.track.models import IssueStatus
+from HLEPM.apps.track.models import MemberType
+from HLEPM.apps.track.models import ProjectStatus, ProjectAck
+from HLEPM.apps.track.models import Priority
+from HLEPM.apps.track.models import Probability
+from HLEPM.apps.track.models import Product
+from HLEPM.apps.track.models import RequirementStatus, RequirementAck, RequirementContent
+from HLEPM.apps.track.models import Response
+from HLEPM.apps.track.models import Risk
+from HLEPM.apps.track.models import RiskStatus
+from HLEPM.apps.track.models import StakeholderType
+from HLEPM.apps.track.models import Version
 
 
 __all__ = ('RequirementStatusAdmin',

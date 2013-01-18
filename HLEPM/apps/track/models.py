@@ -5,7 +5,7 @@ from django.conf import settings
 from django.utils.text import truncate_words
 from django.contrib.auth.models import User
 
-from apps.common.models import DictBase
+from HLEPM.apps.common.models import DictBase
 
 
 __all__ = ('Product',

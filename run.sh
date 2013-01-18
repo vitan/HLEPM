@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-python hlepm/manage.py $* --settings=local_settings
+python manage.py $* --settings=HLEPM.local_settings
