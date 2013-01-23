@@ -128,6 +128,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'HLEPM.apps.common',
     'HLEPM.apps.track',
+    'HLEPM.apps.search',
 )
 
 # A sample logging configuration. The only tangible logging
