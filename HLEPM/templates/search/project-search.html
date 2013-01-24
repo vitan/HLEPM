@@ -1,0 +1,55 @@
+<div class="breadcrumb">
+    <ul class="pull-left">
+        <li><a href="#">{{}}</a> <span class="divider">/</span></li>
+    </ul>
+    <div class="clear"></div>
+</div>
+<div class="pd10">
+    <div class="classify">
+        {% for %}
+            <p class="clear">
+            <a href="#" class="btn btn-danger new-query">{{}}</a>
+            {% for %}
+                <a href="#" class="classify-active">{{}}</a>
+            {% endfor %}
+            <div class="line"></div>
+        {% endfor %}
+        <table class="eso-table product-status-report">
+            <thead>
+                <tr>
+                    <th colspan="10">
+                        <a class=" btn fl-right" href="#" id="add">+ Add</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr class="display-none" id="new">
+                <td>
+                    {% include ../track/new-project.html %}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" class="pd0">
+                    <table id="example" class="eso-table table-striped datatable brd-table">
+                        <thead>
+                          <tr>
+                              <th style="">{{}}</th>
+                              <th>{{}}</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                      {% for %}
+                      <tr>
+                          {% for %}
+                          <th><a href="#" class="light-yellow" title="Suspend"></a></th>
+                          {% endfor %}
+                      </tr>
+                      {% endfor %}
+                      </tbody>
+                  </table>
+              </td>
+          </tr>
+          </tbody>
+      </table>
+  </div>
+</div>

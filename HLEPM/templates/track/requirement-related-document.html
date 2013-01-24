@@ -1,0 +1,33 @@
+<div class="tab-pane fade" id="RelatedDocument">
+    <table class="eso-table product-status-report">
+        <tr>
+            <td><a href="#comments-alls" class="btn fl-right">Comment</a></td>
+        </tr>
+        <tbody>
+        <tr>
+            <td colspan="10" class="pd0">
+                <table id="example" class="eso-table table-striped datatable brd-table">
+                    <thead>
+                        <tr>
+                            {% for %}
+                            <th>{{}}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for %}
+                    <tr>
+                        {% for %}
+                        <td>
+                            {{}}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

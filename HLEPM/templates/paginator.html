@@ -1,0 +1,39 @@
+<div class="pagination fl-right">
+    <ul>
+    {% if pages.has_previous %}
+        <li>
+            <a href="{{ path }}page={{ pages.previous_page_number }}">«</a>
+        </li>
+    {% else %}
+        <li class="disabled">
+            <a href="#">«</a>
+        </li>
+    {% endif %}
+    {% for page_num in page_numbers %}
+    {% if page_num %}
+        {% ifequal current_page page_num %}
+        <li class="active">
+            <a href="#">{{ page_num }}</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="{{ path }}page={{ page_num }}">{{ page_num }}</a>
+        </li>
+        {% endifequal %}
+    {% else %}
+        <li class="disabled">
+            <a href="#">..</a>
+        </li>
+    {% endif %}
+    {% endfor %}
+    {% if pages.has_next %}
+        <li>
+            <a href="{{ path }}page={{ pages.next_page_number }}">»</a>
+        </li>
+    {% else %}
+        <li class="disabled">
+            <a href="#">»</a>
+        </li>
+    {% endif %}
+    <ul>
+</div>

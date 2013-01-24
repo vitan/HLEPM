@@ -1,0 +1,36 @@
+<div class="tab-pane fade" id="att">
+    <table class="eso-table product-status-report">
+        <tr>
+            <td colspan="7">
+                <input type="button" class="btn fl-right" value="Delete">
+                <input type="button" class="btn fl-right" value="Upload">
+            </td>
+        </tr>
+        <tbody>
+        <tr>
+            <td colspan="10" class="pd0">
+                <table id="example" class="eso-table table-striped datatable">
+                    <thead>
+                        <tr>
+                            {% for %}
+                            <th>{{}}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for %}
+                    <tr>
+                        {% for %}
+                        <td>
+                            {{}}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

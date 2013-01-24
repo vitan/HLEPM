@@ -1,0 +1,101 @@
+<div class="tab-pane active" id="BasicInfo">
+    <section>
+        <a class=" fl-right edit-info" href="#myModal2" data-toggle="modal" id="edit1">Edit</a>
+        <div class="page-header clear"></div>
+        <div>
+            <div class="clearfix">
+                <table cellpadding="0" cellspacing="0" border="0" class="product-basic-info" id="basic-input1">
+                    <tr>
+                        <th class="basic-th">{{}}</th>
+                    </tr>
+                    <tr>
+                        <td>{{}}</td>
+                    </tr>
+                    <tr>
+                        <th class="basic-th">Member</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table class="eso-table product-status-report member-list">
+                                <tbody>
+                                {% for %}
+                                <tr>
+                                    <th class="w150">{{}}</th>
+                                    <td>{{}}</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="basic-th">{{}}</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table class="eso-table product-status-report member-list">
+                                <tbody>
+                                {% for %}
+                                <tr>
+                                    <th class="w150">{{}}</th>
+                                    <td>{{}}</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <form class="form-horizontal display-none" id="basic-input2">
+                    <div class="control-group">
+                        <label class="control-label" for="input01">{{}}</label>
+                        <div class="controls">
+                            {{}}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="input01" class="control-label">Team Member</label>
+                        <div class="controls">
+                            <div class="input-prepend">
+                                <span class="add-on">{{}}</span>
+                                {{}}
+                            </div>
+                            <div class="input-prepend">
+                                <span class="add-on">{{}}</span>
+                                {{}}
+                            </div>
+                            <div class="input-prepend">
+                                <span class="add-on">{{}}</span>
+                                {{}}
+                            </div>
+                            <div class="input-prepend">
+                                <span class="add-on">{{}}</span>
+                                {{}}
+                            </div>
+                            <div class="input-prepend">
+                                <span class="add-on">{{}}</span>
+                                {{}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group input-stakeholder">
+                        <label for="input01" class="control-label">Stakeholder<br>
+                            <a href="#" class="btn btn-small btn-success">Add</a>
+                        </label>
+                        {% for %}
+                        <div class="controls">
+                            {{}}
+                            {{}}
+                            {{}}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="control-group">
+                        <a href="#" class="btn mg-left40" id="edit2">Save</a>
+                        <a href="#" class="btn mg-left40" id="edit3">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
