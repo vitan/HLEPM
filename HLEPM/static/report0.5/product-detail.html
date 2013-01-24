@@ -215,22 +215,82 @@
 					</div>
                     <div class="tab-pane " id="week">
 						<section>
-                            
-                        	<div class="control-group input-stakeholder fl-right" style="width:230px;">
+                            <div class="lxfscroll">
+                              <ul>
+                                <li>
+                                	<div class="weekly">
+                                    	<ul>
+                                        	<li>1</li>
+                                            <li>2</li>
+                                            <li>3</li>
+                                            <li>4</li>
+                                            <li>5</li>
+                                            <li>6</li>
+                                            <li>7</li>
+                                        </ul>
+                                     </div> 
+                                 </li>
+                                 <li>
+                                	<div class="weekly">
+                                    	<ul>
+                                        	<li>1</li>
+                                            <li>2</li>
+                                            <li>3</li>
+                                            <li>4</li>
+                                            <li>5</li>
+                                            <li>6</li>
+                                            <li>7</li>
+                                        </ul>
+                                     </div> 
+                                 </li>
+                                 <li>
+                                	<div class="weekly">
+                                    	<ul>
+                                        	<li>1</li>
+                                            <li>2</li>
+                                            <li>3</li>
+                                            <li>4</li>
+                                            <li>5</li>
+                                            <li>6</li>
+                                            <li>7</li>
+                                        </ul>
+                                     </div> 
+                                 </li>
+                                 <li>
+                                	<div class="weekly">
+                                    	<ul>
+                                        	<li>1</li>
+                                            <li>2</li>
+                                            <li>3</li>
+                                            <li>4</li>
+                                            <li>5</li>
+                                            <li>6</li>
+                                            <li>7</li>
+                                        </ul>
+                                     </div> 
+                                 </li>
+                              </ul>
+                            </div>
+                            <div class="button">
+                              <input name="a" type="button" onClick="lxfLast()" value="上一个" />
+                              <input name="a" type="button" onClick="lxfNext()" value="下一个" />
+                            </div>
+                            <div class="button">当前显示的是第 <i>1</i> 张图片</div>
+                        	<div class="control-group input-stakeholder fl-right w230">
                                 <label for="input01" class="control-label"></label>
                                                                 <div class="controls" >
-                                                                    <select class="span2" style="width:80px">
+                                                                    <select class="span2 w80">
                                                                         <option>2013</option>
                                                                         <option>2012</option>
                                                                         <option>2011</option>
                                                                     </select>
-                                                                    	<input style="width:80px"  id="prependedInput" type="text" placeholder="Week">
+                                                                    	<input  class="w80"  id="prependedInput" type="text" placeholder="Week">
                                                                         <img src="images/view.png" class="week-search">
                                                                 </div>
                              </div>
                             <div class="page-header clear"></div>
                             <div>
-                            	<a class=" fl-right edit-info" href="#myModal2" data-toggle="modal" id="edit1" style=" margin-top:5px; margin-left:10px;">Edit</a>
+                            	<a class=" fl-right edit-info edit-pj" href="#myModal2" data-toggle="modal" id="edit1" >Edit</a>
                                 <div class="clearfix">
                                     <table cellpadding="0" cellspacing="0" border="0" class="product-basic-info" id="basic-input1">
                                         <tr>
@@ -878,70 +938,6 @@ The second testing on the stage server will finish on the Jan.16th.
                                           </div>
                     	<div class="clear"><a class=" fl-right font-big" href="#myModal6" data-toggle="modal">+ Create</a></div>
                     	<h3 class="clear">Issue</h3>
-                    <!--
-					<table class="eso-table">
-						<thead>
-							<tr>
-								<th style="width:80px;">Reporter</th>
-								<th style="width:80px;">Start Date</th>
-								<th>Description</th>
-								<th style="width:80px;">Impact</th>
-								<th style="width:80px;">Resolution</th>
-								<th style="width:80px;">Priority</th>
-								<th style="width:80px;">Status</th>
-								<th style="width:80px;">Due Date</th>
-								<th style="width:80px">Comment</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>gawang</td>
-								<td>Oct-11-2012</td>
-								<td></td>
-								<td>Low</td>
-								<td>Fixed</td>
-								<td>Blocker</td>
-								<td>Open</td>
-								<td>Feb-11-2013</td>
-								<td>
-									<a href="#" class="ico-comment" title="Comment">&nbsp;</a>	
-									<a href="#" class="ico-show-all" title="Show all">&nbsp;</a>
-								</td>
-								
-							</tr>
-							<tr>
-								<td>gawang</td>
-								<td>Oct-11-2012</td>
-								<td></td>
-								<td>Low</td>
-								<td>Fixed</td>
-								<td>Blocker</td>
-								<td>Open</td>
-								<td>Feb-11-2013</td>
-								<td>
-									<a href="#" class="ico-comment" title="Comment">&nbsp;</a>	
-									<a href="#" class="ico-show-all" title="Show all">&nbsp;</a>
-								</td>
-								
-							</tr>
-							<tr>
-								<td>gawang</td>
-								<td>Oct-11-2012</td>
-								<td></td>
-								<td>Low</td>
-								<td>Fixed</td>
-								<td>Blocker</td>
-								<td>Open</td>
-								<td>Feb-11-2013</td>
-								<td>
-									<a href="#" class="ico-comment" title="Comment">&nbsp;</a>	
-									<a href="#" class="ico-show-all" title="Show all">&nbsp;</a>
-								</td>
-								
-							</tr>
-						</tbody>
-					</table>
-                 -->
                     <div class="risk-issue-list">
                     	<div class="line">
                     		<span>Reporter:</span> gawang
@@ -1444,4 +1440,31 @@ $(document).ready(function() {
 		}
 	} );
 } );
+</script>
+
+<script language="javascript">//picture roll
+$(function(){
+	var i=0;
+	var li = $(".lxfscroll li");
+	var n=li.length-1;
+	var speed = 300;
+	li.not(":first").css({left:"400px"});
+	li.eq(n).css({left:"-400px"});
+	lxfNext=function (){
+		if (!li.is(":animated")) {
+			if (i>=n){i=0;li.eq(n).animate({left:"-400px"},speed);li.eq(i).animate({left:"0px"},speed);
+			}else{i++;li.eq(i-1).animate({left:"-400px"},speed);li.eq(i).animate({left:"0px"},speed);};
+			li.not("eq(i)").css({left:"400px"});
+			$("i").text(i+1);
+		}else{};
+	};
+	lxfLast=function (){
+		if (!li.is(":animated")) {
+			if (i<=0){i=n;li.eq(0).animate({left:"400px"},speed);li.eq(n).animate({left:"0px"},speed);
+			}else{i--;li.eq(i+1).animate({left:"400px"},speed);li.eq(i).animate({left:"0px"},speed);}
+			li.not("eq(i)").css({left:"-400px"});
+			$("i").text(i+1);
+		};
+	};
+});
 </script>
