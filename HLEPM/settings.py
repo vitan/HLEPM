@@ -132,6 +132,7 @@ INSTALLED_APPS = (
     'HLEPM.apps.search',
     'HLEPM.apps.remind',
     'HLEPM.apps.attachment',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging
