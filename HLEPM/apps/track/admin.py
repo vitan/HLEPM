@@ -4,39 +4,45 @@ from django.contrib import admin
 
 from HLEPM.apps.track.models import Department, Section
 from HLEPM.apps.track.models import Impact
-from HLEPM.apps.track.models import Issue
-from HLEPM.apps.track.models import IssueStatus
-from HLEPM.apps.track.models import MemberType
-from HLEPM.apps.track.models import ProjectStatus, ProjectAck
+from HLEPM.apps.track.models import Issue, IssueStatus
+from HLEPM.apps.track.models import Member, MemberType
+from HLEPM.apps.track.models import Project, ProjectStatus, ProjectAck
 from HLEPM.apps.track.models import Priority
 from HLEPM.apps.track.models import Probability
 from HLEPM.apps.track.models import Product
-from HLEPM.apps.track.models import RequirementStatus, RequirementAck, RequirementContent
+from HLEPM.apps.track.models import Requirement,  RequirementContent
+from HLEPM.apps.track.models import RequirementStatus, RequirementAck
 from HLEPM.apps.track.models import Response
-from HLEPM.apps.track.models import Risk
-from HLEPM.apps.track.models import RiskStatus
-from HLEPM.apps.track.models import StakeholderType
+from HLEPM.apps.track.models import Risk, RiskStatus
+from HLEPM.apps.track.models import Stakeholder, StakeholderType
 from HLEPM.apps.track.models import Version
 
 
-__all__ = ('RequirementStatusAdmin',
-           'RequirementAckAdmin',
-           'RequirementContentAdmin',
-           'ProductAdmin',
-           'ProjectStatusAdmin',
-           'ProjectAckAdmin',
-           'MemberTypeAdmin',
-           'StakeholderTypeAdmin',
-           'DepartmentAdmin',
-           'SectionAdmin',
-           'VersionAdmin',
-           'ImpactAdmin',
-           'ResponseAdmin',
-           'PriorityAdmin',
-           'ProbabilityAdmin',
-           'RiskStatusAdmin',
-           'IssueStatusAdmin',
-          )
+__all__ = (
+    'DepartmentAdmin',
+    'ImpactAdmin',
+    'IssueAdmin',
+    'IssueStatusAdmin',
+    'MemberAdmin',
+    'MemberTypeAdmin',
+    'PriorityAdmin',
+    'ProbabilityAdmin',
+    'ProductAdmin',
+    'ProjectAdmin',
+    'ProjectAckAdmin',
+    'ProjectStatusAdmin',
+    'RiskAdmin',
+    'RiskStatusAdmin',
+    'RequirementAdmin',
+    'RequirementStatusAdmin',
+    'RequirementAckAdmin',
+    'RequirementContentAdmin',
+    'ResponseAdmin',
+    'SectionAdmin',
+    'StakeholderAdmin',
+    'StakeholderTypeAdmin',
+    'VersionAdmin',
+)
 
 
 class RequirementStatusAdmin(admin.ModelAdmin):
@@ -46,6 +52,24 @@ class RequirementStatusAdmin(admin.ModelAdmin):
     ordering = ['name',]
 
 admin.site.register(RequirementStatus, RequirementStatusAdmin)
+
+
+class RequirementAdmin(admin.ModelAdmin):
+
+    list_display = ('name',
+                    'author',
+                    'start_date',
+                    'end_date',
+                    'content',
+                    'status',
+                    'ack',
+                    'product',
+                    'version',
+                   )
+    search_fields  = ['name',]
+    ordering = ['name',]
+
+admin.site.register(Requirement, RequirementAdmin)
 
 
 class RequirementAckAdmin(admin.ModelAdmin):
@@ -84,6 +108,23 @@ class ProductAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 
 
+class ProjectAdmin(admin.ModelAdmin):
+
+    list_display = ('product',
+                    'requirement',
+                    'version',
+                    'status',
+                    'ack',
+                    'project_manager',
+                    'start_date',
+                    'end_date',
+                   )
+    search_fields  = ['product',]
+    ordering = ['product',]
+
+admin.site.register(Project, ProjectAdmin)
+
+
 class ProjectStatusAdmin(admin.ModelAdmin):
 
     list_display = ('name', 'order')
@@ -102,6 +143,15 @@ class ProjectAckAdmin(admin.ModelAdmin):
 admin.site.register(ProjectAck, ProjectAckAdmin)
 
 
+class MemberAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'type', 'project')
+    search_fields  = ['name',]
+    ordering = ['name',]
+
+admin.site.register(Member, MemberAdmin)
+
+
 class MemberTypeAdmin(admin.ModelAdmin):
 
     list_display = ('name', 'order')
@@ -109,6 +159,15 @@ class MemberTypeAdmin(admin.ModelAdmin):
     ordering = ['name',]
 
 admin.site.register(MemberType, MemberTypeAdmin)
+
+
+class StakeholderAdmin(admin.ModelAdmin):
+
+    list_display = ('type', 'project', 'section')
+    search_fields  = ['type',]
+    ordering = ['type',]
+
+admin.site.register(Stakeholder, StakeholderAdmin)
 
 
 class StakeholderTypeAdmin(admin.ModelAdmin):
@@ -174,6 +233,22 @@ class ProbabilityAdmin(admin.ModelAdmin):
 admin.site.register(Probability, ProbabilityAdmin)
 
 
+class RiskAdmin(admin.ModelAdmin):
+
+    list_display = ('reporter',
+                    'impact',
+                    'probability',
+                    'response',
+                    'status',
+                    'start_date',
+                    'due_date',
+                   )
+    search_fields = ['reporter']
+    ordering = ['reporter']
+
+admin.site.register(Risk, RiskAdmin)
+
+
 class RiskStatusAdmin(admin.ModelAdmin):
 
     list_display = ('name', 'order')
@@ -181,6 +256,21 @@ class RiskStatusAdmin(admin.ModelAdmin):
     ordering = ['name']
 
 admin.site.register(RiskStatus, RiskStatusAdmin)
+
+
+class IssueAdmin(admin.ModelAdmin):
+
+    list_display = ('reporter',
+                    'impact',
+                    'priority',
+                    'status',
+                    'start_date',
+                    'dur_date',
+                   )
+    search_fields = ['status']
+    ordering = ['status']
+
+admin.site.register(Issue, IssueAdmin)
 
 
 class IssueStatusAdmin(admin.ModelAdmin):
