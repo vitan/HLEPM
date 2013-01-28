@@ -1,19 +1,24 @@
-<div class="breadcrumb">
+{% extends "base.html" %}
+
+{% block title %} BRD/MRD/PRD {% endblock %}
+
+{% block content %}
+<div class="breadcrumb requirementHome">
     <ul class="pull-left">
-        <li><a href="#">{{}}</a> <span class="divider">/</span></li>
+        <li><a href="#">{{ subtitle }}</a> <span class="divider">/</span></li>
     </ul>
     <div class="clear"></div>
 </div>
 <div class="pd10">
     <div class="classify">
-        {% for %}
+        {##}
             <p class="clear">
-            <a href="#" class="btn btn-danger new-query">{{}}</a>
-            {% for %}
-                <a href="#" class="classify-active">{{}}</a>
-            {% endfor %}
+            <a href="#" class="btn btn-danger new-query">{##}</a>
+            {##}
+                <a href="#" class="classify-active">{##}</a>
+            {##}
             <div class="line"></div>
-        {% endfor %}
+        {##}
         <table class="eso-table product-status-report">
             <thead>
                 <tr>
@@ -25,7 +30,7 @@
             <tbody>
             <tr class="display-none" id="new">
                 <td>
-                    {% include ../track/new-requirement.html %}
+                    {% include "track/new-requirement.html" %}
                 </td>
             </tr>
             <tr>
@@ -33,19 +38,19 @@
                     <table id="example" class="eso-table table-striped datatable brd-table">
                         <thead>
                           <tr>
-                              <th style="">{{}}</th>
-                              <th><span title="Actually finished time">{{}}</span></th>
-                              <th>{{}}</th>
+                              <th style="">{##}</th>
+                              <th><span title="Actually finished time">{##}</span></th>
+                              <th>{##}</th>
                           </tr>
                       </thead>
                       <tbody>
-                      {% for %}
+                      {##}
                       <tr>
-                          {% for %}
+                          {##}
                           <th><a href="#" class="light-yellow" title="Suspend"></a></th>
-                          {% endfor %}
+                          {##}
                       </tr>
-                      {% endfor %}
+                      {##}
                       </tbody>
                   </table>
               </td>
@@ -54,3 +59,4 @@
       </table>
   </div>
 </div>
+{% endblock %}

@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'hlepm.views.home', name='home'),
     # url(r'^hlepm/', include('hlepm.foo.urls')),
+    url(r'^HLEPM/', include('HLEPM.apps.track.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

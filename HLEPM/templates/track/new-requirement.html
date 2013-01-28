@@ -3,79 +3,75 @@
         <button data-dismiss="modal" class="close">×</button>
         <h3>New BRD/MRD/PRD</h3>
     </div>
-    <div class="modal-body max-height450">
-        <p>
-        <form class="form-horizontal" action="" method="POST">
+    <form class="form-horizontal" action="" method="POST">
+        {% csrf_token %}
+        <div class="modal-body max-height450">
+            <p></p>
             <div class="control-group">
-                <label class="control-label">{{}}<span class="red-brd"> *</span></label>
+                <label class="control-label">{{ form.type.label }}<span class="red-brd"> *</span></label>
                 <div class="controls">
-                    {{}}
+                    {{ form.type }}
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">{{}}<span class="red-brd"> *</span></label>
+                <label class="control-label">{{ form.product.label }}<span class="red-brd"> *</span></label>
                 <div class="controls">
-                    {{}}
+                    {{ form.product }}
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">{{}}<span class="red-brd"> *</span></label>
+                <label class="control-label">{{ form.version.label }}<span class="red-brd"> *</span></label>
                 <div class="controls">
-                    {{}}
+                    {{ form.version }}
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">{{}}<span class="red-brd"> *</span></label>
+                <label class="control-label">{{ form.status.label }}<span class="red-brd"> *</span></label>
                 <div class="controls">
-                    {{}}
+                    {{ form.status }}
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">{{}}<span class="red-brd"> *</span></label>
+                <label class="control-label">{{ form.author.label }}<span class="red-brd"> *</span></label>
                 <div class="controls">
-                    {{}}
+                    {{ form.author }}
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="input2">{{}}<span class="red-brd"> *</span></label>
+                <label class="control-label" for="input2">{{ form.ack.label }}<span class="red-brd"> *</span></label>
                 <div class="controls">
-                    {{}}
+                    {{ form.ack }}
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">{{}}<span class="red-brd"> *</span></label>
+                <label class="control-label">{{ form.parent_type.label }}</label>
                 <div class="controls">
+                    {{ form.parent_type }}{{ form.parent_req }}
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="input2">{{}}</label>
+                <label class="control-label">{{ form.start_date.label }}</label>
                 <div class="controls">
-                    {{}}{{}}
+                    {{ form.start_date }}
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">{{}}</label>
+                <label class="control-label">{{ form.target_date.label }}</label>
                 <div class="controls">
-                    {{}}
+                    {{ form.target_date }}
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">{{}}</label>
+                <label for="input2" class="control-label">{{ form.file.label }}</label>
                 <div class="controls">
-                    {{}}
+                    {{ form.file }}
                 </div>
             </div>
-            <div class="control-group">
-                <label for="input2" class="control-label">{{}}</label>
-                <div class="controls">
-                    {{}}
-                </div>
-            </div>
-        </form>
-        <p></p>
-    </div>
-    <div class="modal-footer">
-        <a class="btn btn-primary" href="#">Save</a>
-        <a data-dismiss="modal" class="btn" href="#">Close</a>
-    </div>
+            <p></p>
+        </div>
+        <div class="modal-footer">
+            <a class="btn btn-primary" id="save">Save</a>
+            <a data-dismiss="modal" class="btn close2">Close</a>
+        </div>
+    </form>
 </div>
