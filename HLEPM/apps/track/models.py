@@ -42,7 +42,7 @@ class Product(models.Model):
     name = models.CharField(max_length=150)
 
     def __str__(self):
-        return u'Product - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -50,7 +50,7 @@ class RequirementContent(DictBase):
     """ Save the content of Requirement."""
 
     def __str__(self):
-        return u'RequirementContent - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -60,7 +60,7 @@ class RequirementStatus(DictBase):
     content = models.ForeignKey(RequirementContent)
 
     def __str__(self):
-        return u'RequirementStatus - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -70,7 +70,7 @@ class RequirementAck(DictBase):
     content = models.ForeignKey(RequirementContent)
 
     def __str__(self):
-        return u'RequirementAck - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -78,7 +78,7 @@ class Version(DictBase):
     """Save the version."""
 
     def __str__(self):
-        return u'Version - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -112,7 +112,7 @@ class ProjectType(DictBase):
     """Save the type of Project"""
 
     def __str__(self):
-        return u'ProjectType - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -120,7 +120,7 @@ class ProjectStatus(DictBase):
     """Save the status of project."""
 
     def __str__(self):
-        return u'ProjectStatus - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -128,7 +128,7 @@ class ProjectAck(DictBase):
     """Save the ack of project."""
 
     def __str__(self):
-        return u'ProjectAck - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -153,7 +153,7 @@ class MemberType(DictBase):
     """Save the type of member."""
 
     def __str__(self):
-        return u'MemberType - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -164,7 +164,7 @@ class Member(models.Model):
     project = models.ForeignKey(Project)
 
     def __str__(self):
-        return u'Member - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -172,7 +172,7 @@ class StakeholderType(DictBase):
     """Save the type of stakeholder."""
 
     def __str__(self):
-        return u'StakeholderType - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -181,7 +181,7 @@ class Department(models.Model):
     name = models.CharField(max_length=150)
 
     def __str__(self):
-        return u'Department - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -191,7 +191,7 @@ class Section(models.Model):
     department = models.ForeignKey(Department)
 
     def __str__(self):
-        return u'Section - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -202,35 +202,35 @@ class Stakeholder(models.Model):
     section = models.ForeignKey(Section)
 
     def __str__(self):
-        return u'Stakeholder - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
 class Impact(DictBase):
 
     def __str__(self):
-        return u'Impact - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
 class Response(DictBase):
 
     def __str__(self):
-        return u'Response - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
 class Priority(DictBase):
 
     def __str__(self):
-        return u'Priority - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
 class Probability(DictBase):
 
     def __str__(self):
-        return u'Probability - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -238,7 +238,7 @@ class RiskStatus(DictBase):
     """Save the status of risk."""
 
     def __str__(self):
-        return u'RiskStatus - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -255,7 +255,7 @@ class Risk(models.Model):
     description = models.CharField(max_length=1024)
 
     def __str__(self):
-        return u'Risk - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -263,7 +263,7 @@ class IssueStatus(DictBase):
     """Save the status of project."""
 
     def __str__(self):
-        return u'IssueStatus - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -279,7 +279,7 @@ class Issue(models.Model):
     description = models.CharField(max_length=1024)
 
     def __str__(self):
-        return u'Issue - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -293,7 +293,7 @@ class RequirementHistory(models.Model):
     end_date = models.DateTimeField()
 
     def __str__(self):
-        return u'RequirementHistory - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -307,5 +307,5 @@ class ProjectHistory(models.Model):
     end_date = models.DateTimeField()
 
     def __str__(self):
-        return u'ProjectHistory - %s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__

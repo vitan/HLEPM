@@ -46,7 +46,7 @@ class RequirementForm(forms.Form):
     #TODO (weizhou) How to develop auto-match
     parent_type = forms.ModelChoiceField(
         label=u"Parent",
-        queryset=RequirementContent.objects.all()[:],
+        queryset=RequirementContent.objects.exclude(name__iexact="prd"),
         empty_label=None,
     )
     parent_req = forms.CharField(

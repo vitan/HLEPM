@@ -8,6 +8,7 @@ HLEPM.init = {
     requirementHome:
         function() {
             HLEPM.bind.bindAddModal();
+            HLEPM.bind.bindDatePicker();
         },
 
 };
@@ -27,6 +28,11 @@ HLEPM.bind = {
             $(".close2").live('click', function() {
                 HLEPM.ui.hideModal("#new");
             });
+        },
+    bindDatePicker:
+        function() {
+            HLEPM.ui.pickingDate("#id_start_date");
+            HLEPM.ui.pickingDate("#id_target_date");
         }
 };
 
