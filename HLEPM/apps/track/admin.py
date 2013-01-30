@@ -6,7 +6,7 @@ from HLEPM.apps.track.models import Department, Section
 from HLEPM.apps.track.models import Impact
 from HLEPM.apps.track.models import Issue, IssueStatus
 from HLEPM.apps.track.models import Member, MemberType
-from HLEPM.apps.track.models import Project, ProjectStatus, ProjectAck
+from HLEPM.apps.track.models import Project, ProjectStatus, ProjectAck, ProjectType
 from HLEPM.apps.track.models import Priority
 from HLEPM.apps.track.models import Probability
 from HLEPM.apps.track.models import Product
@@ -31,6 +31,7 @@ __all__ = (
     'ProjectAdmin',
     'ProjectAckAdmin',
     'ProjectStatusAdmin',
+    'ProjectTypeAdmin',
     'RiskAdmin',
     'RiskStatusAdmin',
     'RequirementAdmin',
@@ -141,6 +142,15 @@ class ProjectAckAdmin(admin.ModelAdmin):
     ordering = ['name',]
 
 admin.site.register(ProjectAck, ProjectAckAdmin)
+
+
+class ProjectTypeAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'order')
+    search_fields  = ['name',]
+    ordering = ['name',]
+
+admin.site.register(ProjectType, ProjectTypeAdmin)
 
 
 class MemberAdmin(admin.ModelAdmin):
