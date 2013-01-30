@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 from django.db import models
-from django.conf import settings
 from django.utils.text import truncate_words
 from django.contrib.auth.models import User
 
@@ -14,18 +13,19 @@ __all__ = ('Department',
            'IssueStatus',
            'Member',
            'MemberType',
+           'Phase',
            'Priority',
            'Probability',
            'Product',
            'Project',
            'ProjectType',
            'ProjectStatus',
-           'ProjectAck',
+           'ProjectOwner',
            'ProjectHistory',
            'Risk',
            'RiskStatus',
            'Requirement',
-           'RequirementAck',
+           'RequirementOwner',
            'RequirementContent',
            'RequirementHistory',
            'RequirementStatus',
@@ -64,8 +64,8 @@ class RequirementStatus(DictBase):
     __unicode__ = __str__
 
 
-class RequirementAck(DictBase):
-    """ Save the ACK of Requirement."""
+class RequirementOwner(DictBase):
+    """ Save the Owner of Requirement."""
 
     content = models.ForeignKey(RequirementContent)
 
@@ -88,13 +88,10 @@ class Requirement(models.Model):
     name = models.CharField(max_length=150)
     author = models.ForeignKey(User)
     start_date = models.DateTimeField()
-    end_date = models.DateTimeField(
-        verbose_name='deadline',
-    )
-    docfile = models.FileField(upload_to=settings.UPLOAD_TO)
+    target_date = models.DateTimeField()
     content = models.ForeignKey(RequirementContent)
     status = models.ForeignKey(RequirementStatus)
-    ack = models.ForeignKey(RequirementAck)
+    owner = models.ForeignKey(RequirementOwner)
     requirement = models.ManyToManyField('Requirement',
                                          null=True,
                                          blank=True,
@@ -105,6 +102,14 @@ class Requirement(models.Model):
 
     def __str__(self):
         return u'%s - %s' % (self.type.name, self.pk)
+    __unicode__ = __str__
+
+
+class Phase(DictBase):
+    """Save the Phase of Project"""
+
+    def __str__(self):
+        return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
 
@@ -124,8 +129,8 @@ class ProjectStatus(DictBase):
     __unicode__ = __str__
 
 
-class ProjectAck(DictBase):
-    """Save the ack of project."""
+class ProjectOwner(DictBase):
+    """Save the owner of project."""
 
     def __str__(self):
         return u'%s' % truncate_words(self.name, 15)
@@ -139,7 +144,7 @@ class Project(models.Model):
     requirement = models.ForeignKey(Requirement)
     version = models.ForeignKey(Version)
     status = models.ForeignKey(ProjectStatus)
-    ack = models.ForeignKey(ProjectAck)
+    owner = models.ForeignKey(ProjectOwner)
     project_manager = models.ForeignKey(User)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField(
@@ -288,7 +293,7 @@ class RequirementHistory(models.Model):
 
     editor = models.ForeignKey(User)
     requirement = models.ForeignKey(Requirement)
-    ack = models.ForeignKey(RequirementAck)
+    owner = models.ForeignKey(RequirementOwner)
     start_date = models.DateTimeField(auto_now=True)
     end_date = models.DateTimeField()
 

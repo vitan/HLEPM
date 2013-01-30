@@ -6,12 +6,13 @@ from HLEPM.apps.track.models import Department, Section
 from HLEPM.apps.track.models import Impact
 from HLEPM.apps.track.models import Issue, IssueStatus
 from HLEPM.apps.track.models import Member, MemberType
-from HLEPM.apps.track.models import Project, ProjectStatus, ProjectAck, ProjectType
+from HLEPM.apps.track.models import Phase
+from HLEPM.apps.track.models import Project, ProjectStatus, ProjectOwner, ProjectType
 from HLEPM.apps.track.models import Priority
 from HLEPM.apps.track.models import Probability
 from HLEPM.apps.track.models import Product
 from HLEPM.apps.track.models import Requirement,  RequirementContent
-from HLEPM.apps.track.models import RequirementStatus, RequirementAck
+from HLEPM.apps.track.models import RequirementStatus, RequirementOwner
 from HLEPM.apps.track.models import Response
 from HLEPM.apps.track.models import Risk, RiskStatus
 from HLEPM.apps.track.models import Stakeholder, StakeholderType
@@ -25,18 +26,19 @@ __all__ = (
     'IssueStatusAdmin',
     'MemberAdmin',
     'MemberTypeAdmin',
+    'PhaseAdmin',
     'PriorityAdmin',
     'ProbabilityAdmin',
     'ProductAdmin',
     'ProjectAdmin',
-    'ProjectAckAdmin',
+    'ProjectOwnerAdmin',
     'ProjectStatusAdmin',
     'ProjectTypeAdmin',
     'RiskAdmin',
     'RiskStatusAdmin',
     'RequirementAdmin',
     'RequirementStatusAdmin',
-    'RequirementAckAdmin',
+    'RequirementOwnerAdmin',
     'RequirementContentAdmin',
     'ResponseAdmin',
     'SectionAdmin',
@@ -60,10 +62,10 @@ class RequirementAdmin(admin.ModelAdmin):
     list_display = ('name',
                     'author',
                     'start_date',
-                    'end_date',
+                    'target_date',
                     'content',
                     'status',
-                    'ack',
+                    'owner',
                     'product',
                     'version',
                    )
@@ -73,13 +75,13 @@ class RequirementAdmin(admin.ModelAdmin):
 admin.site.register(Requirement, RequirementAdmin)
 
 
-class RequirementAckAdmin(admin.ModelAdmin):
+class RequirementOwnerAdmin(admin.ModelAdmin):
 
     list_display = ('name', 'order')
     search_fields  = ['name',]
     ordering = ['name',]
 
-admin.site.register(RequirementAck, RequirementAckAdmin)
+admin.site.register(RequirementOwner, RequirementOwnerAdmin)
 
 
 class RequirementContentAdmin(admin.ModelAdmin):
@@ -109,13 +111,22 @@ class ProductAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 
 
+class PhaseAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'order')
+    search_fields  = ['name',]
+    ordering = ['name',]
+
+admin.site.register(Phase, PhaseAdmin)
+
+
 class ProjectAdmin(admin.ModelAdmin):
 
     list_display = ('product',
                     'requirement',
                     'version',
                     'status',
-                    'ack',
+                    'owner',
                     'project_manager',
                     'start_date',
                     'end_date',
@@ -135,13 +146,13 @@ class ProjectStatusAdmin(admin.ModelAdmin):
 admin.site.register(ProjectStatus, ProjectStatusAdmin)
 
 
-class ProjectAckAdmin(admin.ModelAdmin):
+class ProjectOwnerAdmin(admin.ModelAdmin):
 
     list_display = ('name', 'order')
     search_fields  = ['name',]
     ordering = ['name',]
 
-admin.site.register(ProjectAck, ProjectAckAdmin)
+admin.site.register(ProjectOwner, ProjectOwnerAdmin)
 
 
 class ProjectTypeAdmin(admin.ModelAdmin):
