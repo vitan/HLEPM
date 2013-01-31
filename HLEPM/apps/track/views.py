@@ -22,7 +22,6 @@ __all__ = {
 def requirement_add(request):
     """Add a new requirements(BRD/MRD/PRD)."""
 
-    response = AjaxResponseMixin()
     if request.method == 'POST':
         form = RequirementForm(request.POST)
         if form.is_valid():

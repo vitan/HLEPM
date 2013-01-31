@@ -7,8 +7,10 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 
-from HLEPM.apps.track.models import RequirementOwner, Product, RequirementContent, RequirementStatus
-from HLEPM.apps.track.forms import RequirementForm
+from HLEPM.apps.track.models import Product
+from HLEPM.apps.track.models import Requirement, RequirementContent
+from HLEPM.apps.track.models import RequirementStatus, RequirementOwner
+from HLEPM.apps.track.models import Version
 
 
 __all__ = (
@@ -23,9 +25,12 @@ def requirement_search(request, template_name='search/requirement-search.html'):
     if request.method == 'GET':
         pass
 
-    form = RequirementForm()
 
     return render_to_response(template_name, {
         'subtitle': 'BRD/MRD/PRD',
-        'form': form,
+        'types': RequirementContent.objects.all(),
+        'products': Product.objects.all(),
+        'versions': Version.objects.all(),
+        'statuss': RequirementStatus.objects.all(),
+        'owners': RequirementOwner.objects.all(),
         },context_instance=RequestContext(request))

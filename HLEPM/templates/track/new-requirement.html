@@ -7,66 +7,123 @@
         {% csrf_token %}
         <div class="modal-body max-height450">
             <p></p>
-            <div class="control-group">
-                <label class="control-label">{{ form.type.label }}<span class="red-brd"> *</span></label>
-                <div class="controls">
-                    {{ form.type }}
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">{{ form.product.label }}<span class="red-brd"> *</span></label>
-                <div class="controls">
-                    {{ form.product }}
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">{{ form.version.label }}<span class="red-brd"> *</span></label>
-                <div class="controls">
-                    {{ form.version }}
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">{{ form.status.label }}<span class="red-brd"> *</span></label>
-                <div class="controls">
-                    {{ form.status }}
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">{{ form.author.label }}<span class="red-brd"> *</span></label>
-                <div class="controls">
-                    {{ form.author }}
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="input2">{{ form.owner.label }}<span class="red-brd"> *</span></label>
-                <div class="controls">
-                    {{ form.owner }}
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">{{ form.parent_type.label }}</label>
-                <div class="controls">
-                    {{ form.parent_type }}{{ form.parent_req }}
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">{{ form.start_date.label }}</label>
-                <div class="controls">
-                    {{ form.start_date }}
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">{{ form.target_date.label }}</label>
-                <div class="controls">
-                    {{ form.target_date }}
-                </div>
-            </div>
-            <div class="control-group">
-                <label for="input2" class="control-label">{{ form.file.label }}</label>
-                <div class="controls">
-                    {{ form.file }}
-                </div>
-            </div>
+            <table>
+                <tbody>
+                <tr>
+                    <td>
+                        <div class="control-group">
+                            <label class="control-label">Type<span class="red-brd"> *</span></label>
+                            <div class="controls">
+                                <select name="type" class="chzn-select w100"  tabindex="6" data-placeholder="">
+                                    {% for type in types %}
+                                    {% ifequal type.order 1 %}
+                                    <option value="{{ type.pk }}" selected="selected">{{ type.name }}</option>
+                                    {% else %}
+                                    <option value="{{ type.pk }}">{{ type.name }}</option>
+                                    {% endifequal %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Product<span class="red-brd"> *</span></label>
+                            <div class="controls">
+                                <select name="product" class="chzn-select w100"  tabindex="6" data-placeholder="">
+                                    {% for product in products %}
+                                    <option value="{{ product.pk }}">{{ product.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Version<span class="red-brd"> *</span></label>
+                            <div class="controls">
+                                <select name="version" class="chzn-select w100"  tabindex="6" data-placeholder="">
+                                    {% for version in versions %}
+                                    {% ifequal version.order 1 %}
+                                    <option value="{{ version.pk }}" selected="selected">{{ version.name }}</option>
+                                    {% else %}
+                                    <option value="{{ version.pk }}">{{ version.name }}</option>
+                                    {% endifequal %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Status<span class="red-brd"> *</span></label>
+                            <div class="controls">
+                                <select name="status" class="chzn-select w100"  tabindex="6" data-placeholder="">
+                                    {% for status in statuss %}
+                                    {% ifequal status.order 1 %}
+                                    <option value="{{ status.pk }}" selected="selected">{{ status.name }}</option>
+                                    {% else %}
+                                    <option value="{{ status.pk }}">{{ status.name }}</option>
+                                    {% endifequal %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Author<span class="red-brd"> *</span></label>
+                            <div class="controls">
+                                <input type="text" name="author" class="input-xlarge w130" id="input2" >
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="control-group">
+                            <label class="control-label">Owner<span class="red-brd"> *</span></label>
+                            <div class="controls">
+                                <select name="owner" class="chzn-select w100"  tabindex="6" data-placeholder="">
+                                    {% for owner in owners %}
+                                    {% ifequal owner.order 1 %}
+                                    <option value="{{ owner.pk }}" selected="seleted">{{ owner.name }}</option>
+                                    {% else %}
+                                    <option value="{{ owner.pk }}">{{ owner.name }}</option>
+                                    {% endifequal %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Parent</label>
+                            <div class="controls">
+                                <select name="parent_type" class="chzn-select w100"  tabindex="6" data-placeholder="">
+                                    {% for type in types %}
+                                    {% if not forloop.last %}
+                                    {% ifequal type.order 1 %}
+                                    <option value="{{ type.pk }}" selected="selected">{{ type.name }}</option>
+                                    {% else %}
+                                    <option value="{{ type.pk }}">{{ type.name }}</option>
+                                    {% endifequal %}
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                                <input type="text" name="parent" class="input-xlarge w130" id="input2" >
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Start Date</label>
+                            <div class="controls">
+                                <input class="datePicker" type="text">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Target Date</label>
+                            <div class="controls">
+                                <input class="datePicker" type="text">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="input2" class="control-label">Document</label>
+                            <div class="controls">
+                                <input id="fileInput" class="input-file" type="file">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
             <p></p>
         </div>
         <div class="modal-footer">

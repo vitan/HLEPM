@@ -32,8 +32,7 @@ HLEPM.bind = {
         },
     bindDatePicker:
         function() {
-            HLEPM.ui.pickingDate("#id_start_date");
-            HLEPM.ui.pickingDate("#id_target_date");
+            HLEPM.ui.pickingDate(".datePicker");
         },
     submitNewRequirement:
         function() {

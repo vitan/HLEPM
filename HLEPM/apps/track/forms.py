@@ -4,12 +4,12 @@ from django import forms
 from django.contrib.auth.models import User
 from django.conf import settings
 
+from HLEPM.apps.track.fields import ProductField, VersionField
+from HLEPM.apps.track.fields import StartDateField, TargetDateField
 from HLEPM.apps.track.models import Issue, Risk
-from HLEPM.apps.track.models import Product
 from HLEPM.apps.track.models import Project
 from HLEPM.apps.track.models import Requirement, RequirementContent
 from HLEPM.apps.track.models import RequirementStatus, RequirementOwner
-from HLEPM.apps.track.models import Version
 
 
 __all__ = (
@@ -19,19 +19,13 @@ __all__ = (
 
 class RequirementForm(forms.Form):
 
+    product = ProductField
+    version = VersionField
+    start_date = StartDateField
+    target_date = TargetDateField
     type = forms.ModelChoiceField(
         label=u"Type",
         queryset=RequirementContent.objects.all(),
-        empty_label=None,
-    )
-    product = forms.ModelChoiceField(
-        label=u"Product",
-        queryset=Product.objects.all(),
-        empty_label=None,
-    )
-    version = forms.ModelChoiceField(
-        label=u"Version",
-        queryset=Version.objects.all(),
         empty_label=None,
     )
     status = forms.ModelChoiceField(
@@ -50,26 +44,11 @@ class RequirementForm(forms.Form):
         queryset=RequirementContent.objects.exclude(name__iexact="prd"),
         empty_label=None,
     )
-    parent_req = forms.CharField(
+    parent = forms.CharField(
         required=False,
     )
-    author = forms.ModelChoiceField(
-        label=u"Author",
-        queryset=User.objects.all(),
-        empty_label=None,
-    )
-    """
     author = forms.CharField(
         label=u"Author",
-    )
-    """
-    start_date = forms.DateTimeField(
-        label=u"Start Date",
-        required=False,
-    )
-    target_date = forms.DateTimeField(
-        label=u"Target Date",
-        required=False,
     )
     file = forms.FileField(
         label=u"Document",
@@ -84,7 +63,7 @@ class RequirementForm(forms.Form):
             'status': self.cleaned_data['status'],
             'owner': self.cleaned_data['owner'],
             'parent_type': self.cleaned_data['parent_type'],
-            'parent_req': self.cleaned_data['parent_req'],
+            'parent': self.cleaned_data['parent'],
             'author': self.cleaned_data['author'],
             'start_date': self.cleaned_data['start_date'],
             'target_date': self.cleaned_data['target_date'],
