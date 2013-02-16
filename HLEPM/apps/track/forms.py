@@ -54,17 +54,3 @@ class RequirementForm(forms.Form):
         label=u"Document",
         required=False,
     )
-
-    def get_cleaned_data(self):
-        return {
-            'type': self.cleaned_data['type'],
-            'product': self.cleaned_data['product'],
-            'version': self.cleaned_data['version'],
-            'status': self.cleaned_data['status'],
-            'owner': self.cleaned_data['owner'],
-            'parent_type': self.cleaned_data['parent_type'],
-            'parent': self.cleaned_data['parent'],
-            'author': self.cleaned_data['author'],
-            'start_date': self.cleaned_data['start_date'],
-            'target_date': self.cleaned_data['target_date'],
-        }
