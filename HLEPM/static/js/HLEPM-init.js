@@ -20,9 +20,6 @@ HLEPM.bind = {
             $("#add").live('click', function() {
                 HLEPM.ui.showModal("#new");
             });
-            $("#save").live('click', function() {
-                HLEPM.ui.hideModal("#new");
-            });
             $(".close").live('click', function() {
                 HLEPM.ui.hideModal("#new");
             });

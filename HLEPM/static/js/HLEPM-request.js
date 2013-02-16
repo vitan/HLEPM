@@ -7,7 +7,7 @@ HLEPM.editRequest = {
             var data = form.serialize();
             HLEPM.ajax.post(url, data, function(response) {
                 if ( HLEPM.ajax.isSuccessful(response.rc) ) {
-                    ;
+                    HLEPM.ui.hideModal("#new");
                 } else {
                     ;
                 }

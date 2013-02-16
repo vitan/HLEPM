@@ -11,7 +11,7 @@ from HLEPM.apps.track.models import Project, ProjectStatus, ProjectOwner, Projec
 from HLEPM.apps.track.models import Priority
 from HLEPM.apps.track.models import Probability
 from HLEPM.apps.track.models import Product
-from HLEPM.apps.track.models import Requirement,  RequirementContent
+from HLEPM.apps.track.models import Requirement,  RequirementType
 from HLEPM.apps.track.models import RequirementStatus, RequirementOwner
 from HLEPM.apps.track.models import Response
 from HLEPM.apps.track.models import Risk, RiskStatus
@@ -39,7 +39,7 @@ __all__ = (
     'RequirementAdmin',
     'RequirementStatusAdmin',
     'RequirementOwnerAdmin',
-    'RequirementContentAdmin',
+    'RequirementTypeAdmin',
     'ResponseAdmin',
     'SectionAdmin',
     'StakeholderAdmin',
@@ -58,19 +58,7 @@ admin.site.register(RequirementStatus, RequirementStatusAdmin)
 
 
 class RequirementAdmin(admin.ModelAdmin):
-
-    list_display = ('name',
-                    'author',
-                    'start_date',
-                    'target_date',
-                    'content',
-                    'status',
-                    'owner',
-                    'product',
-                    'version',
-                   )
-    search_fields  = ['name',]
-    ordering = ['name',]
+    pass
 
 admin.site.register(Requirement, RequirementAdmin)
 
@@ -84,13 +72,13 @@ class RequirementOwnerAdmin(admin.ModelAdmin):
 admin.site.register(RequirementOwner, RequirementOwnerAdmin)
 
 
-class RequirementContentAdmin(admin.ModelAdmin):
+class RequirementTypeAdmin(admin.ModelAdmin):
 
     list_display = ('name', 'order')
     search_fields  = ['name',]
     ordering = ['name',]
 
-admin.site.register(RequirementContent, RequirementContentAdmin)
+admin.site.register(RequirementType, RequirementTypeAdmin)
 
 
 class VersionAdmin(admin.ModelAdmin):
@@ -121,18 +109,7 @@ admin.site.register(Phase, PhaseAdmin)
 
 
 class ProjectAdmin(admin.ModelAdmin):
-
-    list_display = ('product',
-                    'requirement',
-                    'version',
-                    'status',
-                    'owner',
-                    'project_manager',
-                    'start_date',
-                    'end_date',
-                   )
-    search_fields  = ['product',]
-    ordering = ['product',]
+    pass
 
 admin.site.register(Project, ProjectAdmin)
 

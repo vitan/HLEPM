@@ -26,7 +26,7 @@ __all__ = ('Department',
            'RiskStatus',
            'Requirement',
            'RequirementOwner',
-           'RequirementContent',
+           'RequirementType',
            'RequirementHistory',
            'RequirementStatus',
            'Response',
@@ -46,8 +46,8 @@ class Product(models.Model):
     __unicode__ = __str__
 
 
-class RequirementContent(DictBase):
-    """ Save the content of Requirement."""
+class RequirementType(DictBase):
+    """ Save the type of Requirement."""
 
     def __str__(self):
         return u'%s' % truncate_words(self.name, 15)
@@ -57,7 +57,7 @@ class RequirementContent(DictBase):
 class RequirementStatus(DictBase):
     """ Save the status of Requirement."""
 
-    content = models.ForeignKey(RequirementContent)
+    type = models.ForeignKey(RequirementType)
 
     def __str__(self):
         return u'%s' % truncate_words(self.name, 15)
@@ -67,7 +67,7 @@ class RequirementStatus(DictBase):
 class RequirementOwner(DictBase):
     """ Save the Owner of Requirement."""
 
-    content = models.ForeignKey(RequirementContent)
+    type = models.ForeignKey(RequirementType)
 
     def __str__(self):
         return u'%s' % truncate_words(self.name, 15)
@@ -85,11 +85,12 @@ class Version(DictBase):
 class Requirement(models.Model):
     """ An model for requirements record save."""
 
-    name = models.CharField(max_length=150)
     author = models.ForeignKey(User)
-    start_date = models.DateTimeField()
-    target_date = models.DateTimeField()
-    content = models.ForeignKey(RequirementContent)
+    start_date = models.DateTimeField(null=True,
+                                     blank=True)
+    target_date = models.DateTimeField(null=True,
+                                      blank=True)
+    type = models.ForeignKey(RequirementType)
     status = models.ForeignKey(RequirementStatus)
     owner = models.ForeignKey(RequirementOwner)
     requirement = models.ManyToManyField('Requirement',

@@ -8,7 +8,7 @@ from HLEPM.apps.track.fields import ProductField, VersionField
 from HLEPM.apps.track.fields import StartDateField, TargetDateField
 from HLEPM.apps.track.models import Issue, Risk
 from HLEPM.apps.track.models import Project
-from HLEPM.apps.track.models import Requirement, RequirementContent
+from HLEPM.apps.track.models import Requirement, RequirementType
 from HLEPM.apps.track.models import RequirementStatus, RequirementOwner
 
 
@@ -25,7 +25,7 @@ class RequirementForm(forms.Form):
     target_date = TargetDateField
     type = forms.ModelChoiceField(
         label=u"Type",
-        queryset=RequirementContent.objects.all(),
+        queryset=RequirementType.objects.all(),
         empty_label=None,
     )
     status = forms.ModelChoiceField(
@@ -38,19 +38,14 @@ class RequirementForm(forms.Form):
         queryset=RequirementOwner.objects.all(),
         empty_label=None,
     )
-    #TODO (weizhou) How to develop auto-match
-    parent_type = forms.ModelChoiceField(
-        label=u"Parent",
-        queryset=RequirementContent.objects.exclude(name__iexact="prd"),
+    requirement = forms.ModelChoiceField(
+        label="Parent",
+        required=False,
+        queryset=Requirement.objects.all(),
         empty_label=None,
     )
-    parent = forms.CharField(
-        required=False,
-    )
-    author = forms.CharField(
+    author = forms.ModelChoiceField(
         label=u"Author",
-    )
-    file = forms.FileField(
-        label=u"Document",
-        required=False,
+        queryset=User.objects.all(),
+        empty_label=None,
     )

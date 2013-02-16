@@ -66,7 +66,15 @@
                         <div class="control-group">
                             <label class="control-label">Author<span class="red-brd"> *</span></label>
                             <div class="controls">
-                                <input type="text" name="author" class="input-xlarge w130" id="input2" >
+                                <select name="author" class="chzn-select w100"  tabindex="6" data-placeholder="">
+                                    {% for author in authors %}
+                                    {% ifequal author.order 1 %}
+                                    <option value="{{ author.pk }}" selected="selected">{{ author.username }}</option>
+                                    {% else %}
+                                    <option value="{{ author.pk }}">{{ author.username }}</option>
+                                    {% endifequal %}
+                                    {% endfor %}
+                                </select>
                             </div>
                         </div>
                     </td>
@@ -88,36 +96,35 @@
                         <div class="control-group">
                             <label class="control-label">Parent</label>
                             <div class="controls">
-                                <select name="parent_type" class="chzn-select w100"  tabindex="6" data-placeholder="">
-                                    {% for type in types %}
-                                    {% if not forloop.last %}
-                                    {% ifequal type.order 1 %}
-                                    <option value="{{ type.pk }}" selected="selected">{{ type.name }}</option>
+                                {% regroup requirements by type as type_list %}
+                                <select name="requirement_type" class="chzn-select w100"  tabindex="6" data-placeholder="">
+                                    {% for type in type_list %}
+                                    {% ifequal type.grouper.order 1 %}
+                                    <option value="{{ type.grouper.pk }}" selected="selected">{{ type.grouper }}</option>
                                     {% else %}
-                                    <option value="{{ type.pk }}">{{ type.name }}</option>
+                                    <option value="{{ type.grouper.pk }}">{{ type.grouper }}</option>
                                     {% endifequal %}
-                                    {% endif %}
                                     {% endfor %}
                                 </select>
-                                <input type="text" name="parent" class="input-xlarge w130" id="input2" >
+                                <input type="text" name="requirement" class="input-xlarge w130" id="input2" >
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label">Start Date</label>
                             <div class="controls">
-                                <input class="datePicker" type="text">
+                                <input class="datePicker" name="start_date" type="text">
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label">Target Date</label>
                             <div class="controls">
-                                <input class="datePicker" type="text">
+                                <input class="datePicker" name="target_date" type="text">
                             </div>
                         </div>
                         <div class="control-group">
                             <label for="input2" class="control-label">Document</label>
                             <div class="controls">
-                                <input id="fileInput" class="input-file" type="file">
+                                <input id="fileInput" class="input-file" type="file" name="docfile">
                             </div>
                         </div>
                     </td>
