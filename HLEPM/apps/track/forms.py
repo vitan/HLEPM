@@ -1,17 +1,18 @@
 #!/usr/bin/env python
 
 from django import forms
+from django.contrib.auth.models import User
 from django.conf import settings
 
 from HLEPM.apps.track.models import Issue, Risk
 from HLEPM.apps.track.models import Product
 from HLEPM.apps.track.models import Project
 from HLEPM.apps.track.models import Requirement, RequirementContent
-from HLEPM.apps.track.models import RequirementStatus, RequirementAck
+from HLEPM.apps.track.models import RequirementStatus, RequirementOwner
 from HLEPM.apps.track.models import Version
 
 
-__all__ = ("ProjectForm",
+__all__ = (
            "RequirementForm",
           )
 
@@ -38,9 +39,9 @@ class RequirementForm(forms.Form):
         queryset=RequirementStatus.objects.all(),
         empty_label=None,
     )
-    ack = forms.ModelChoiceField(
-        label=u"Ack",
-        queryset=RequirementAck.objects.all(),
+    owner = forms.ModelChoiceField(
+        label=u"Owner",
+        queryset=RequirementOwner.objects.all(),
         empty_label=None,
     )
     #TODO (weizhou) How to develop auto-match
@@ -50,16 +51,41 @@ class RequirementForm(forms.Form):
         empty_label=None,
     )
     parent_req = forms.CharField(
+        required=False,
     )
+    author = forms.ModelChoiceField(
+        label=u"Author",
+        queryset=User.objects.all(),
+        empty_label=None,
+    )
+    """
     author = forms.CharField(
         label=u"Author",
     )
+    """
     start_date = forms.DateTimeField(
         label=u"Start Date",
+        required=False,
     )
     target_date = forms.DateTimeField(
         label=u"Target Date",
+        required=False,
     )
     file = forms.FileField(
         label=u"Document",
+        required=False,
     )
+
+    def get_cleaned_data(self):
+        return {
+            'type': self.cleaned_data['type'],
+            'product': self.cleaned_data['product'],
+            'version': self.cleaned_data['version'],
+            'status': self.cleaned_data['status'],
+            'owner': self.cleaned_data['owner'],
+            'parent_type': self.cleaned_data['parent_type'],
+            'parent_req': self.cleaned_data['parent_req'],
+            'author': self.cleaned_data['author'],
+            'start_date': self.cleaned_data['start_date'],
+            'target_date': self.cleaned_data['target_date'],
+        }

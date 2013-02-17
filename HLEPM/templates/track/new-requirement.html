@@ -3,7 +3,7 @@
         <button data-dismiss="modal" class="close">×</button>
         <h3>New BRD/MRD/PRD</h3>
     </div>
-    <form class="form-horizontal" action="" method="POST">
+    <form class="form-horizontal" id="form-add-one-requirement" action="{% url requirement_add %}" method="POST">
         {% csrf_token %}
         <div class="modal-body max-height450">
             <p></p>
@@ -38,9 +38,9 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="input2">{{ form.ack.label }}<span class="red-brd"> *</span></label>
+                <label class="control-label" for="input2">{{ form.owner.label }}<span class="red-brd"> *</span></label>
                 <div class="controls">
-                    {{ form.ack }}
+                    {{ form.owner }}
                 </div>
             </div>
             <div class="control-group">
@@ -70,7 +70,7 @@
             <p></p>
         </div>
         <div class="modal-footer">
-            <a class="btn btn-primary" id="save">Save</a>
+            <a class="btn btn-primary" id="submit-new-requirement">Save</a>
             <a data-dismiss="modal" class="btn close2">Close</a>
         </div>
     </form>

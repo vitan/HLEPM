@@ -1,8 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
 
-from HLEPM.apps.search.views import requirement_search
 
-
-urlpatterns = patterns('',
-    url(r'^requirement/', requirement_search, name="requirement_search"),
+urlpatterns = patterns('HLEPM.apps.track.views',
+    url(r'^requirement/add/$', 'requirement_add', name="requirement_add"),
 )

@@ -7,13 +7,13 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 
-from HLEPM.apps.track.models import RequirementAck, Product, RequirementContent, RequirementStatus
+from HLEPM.apps.track.models import RequirementOwner, Product, RequirementContent, RequirementStatus
 from HLEPM.apps.track.forms import RequirementForm
 
 
-__all__ = {
+__all__ = (
     'requirement_search',
-}
+)
 
 
 @login_required

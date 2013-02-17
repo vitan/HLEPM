@@ -9,6 +9,7 @@ HLEPM.init = {
         function() {
             HLEPM.bind.bindAddModal();
             HLEPM.bind.bindDatePicker();
+            HLEPM.bind.submitNewRequirement();
         },
 
 };
@@ -33,6 +34,12 @@ HLEPM.bind = {
         function() {
             HLEPM.ui.pickingDate("#id_start_date");
             HLEPM.ui.pickingDate("#id_target_date");
+        },
+    submitNewRequirement:
+        function() {
+            $('#submit-new-requirement').live('click', function() {
+                HLEPM.editRequest.addOneRequirement();
+            });
         }
 };
 
