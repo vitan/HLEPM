@@ -132,7 +132,7 @@ INSTALLED_APPS = (
     'HLEPM.apps.track',
     'HLEPM.apps.search',
     'HLEPM.apps.remind',
-    'HLEPM.apps.attachment',
+    'HLEPM.apps.attachments',
     'south',
 )
 
