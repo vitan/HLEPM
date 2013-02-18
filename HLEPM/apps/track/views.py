@@ -6,7 +6,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
+from django.views.decorators.http import require_POST
 
+from HLEPM.apps.attachments.views import add_attachment
 from HLEPM.apps.common.views import AjaxResponseMixin
 from HLEPM.apps.track.models import Product
 from HLEPM.apps.track.models import Requirement
@@ -18,6 +20,7 @@ __all__ = {
 }
 
 
+@require_POST
 @login_required
 def requirement_add(request):
     """Add a new requirements(BRD/MRD/PRD)."""
@@ -30,6 +33,11 @@ def requirement_add(request):
             data.pop('requirement')
             requirement_obj = Requirement(**data)
             requirement_obj.save()
+
+            #Save attachment
+            if request.FILES:
+                add_attachment(request, 'track', 'Requirement',\
+                               requirement_obj.pk, response)
 
             return response.ajax_response()
         else:
