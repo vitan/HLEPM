@@ -6,8 +6,8 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required
-from attachments.models import Attachment
-from attachments.forms import AttachmentForm
+from HLEPM.apps.attachments.models import Attachment
+from HLEPM.apps.attachments.forms import AttachmentForm
 
 def add_url_for_obj(obj):
     return reverse('add_attachment', kwargs={
@@ -19,35 +19,26 @@ def add_url_for_obj(obj):
 @require_POST
 @login_required
 def add_attachment(request, app_label, module_name, pk,
-                   template_name='attachments/add.html', extra_context={}):
+                   ajax_response, template_name='attachments/add.html'):
 
-    next = request.POST.get('next', '/')
     model = get_model(app_label, module_name)
     if model is None:
-        return HttpResponseRedirect(next)
+        # TODO (weizhou) error warning!
+        pass
     obj = get_object_or_404(model, pk=pk)
     form = AttachmentForm(request.POST, request.FILES)
 
     if form.is_valid():
         form.save(request, obj)
-        request.user.message_set.create(message=ugettext('Your attachment was uploaded.'))
-        return HttpResponseRedirect(next)
     else:
-        template_context = {
-            'form': form,
-            'form_url': add_url_for_obj(obj),
-            'next': next,
-        }
-        template_context.update(extra_context)
-        return render_to_response(template_name, template_context,
-                                  RequestContext(request))
+        # TODO (weizhou) error warning!
+        pass
 
 @login_required
-def delete_attachment(request, attachment_pk):
+def delete_attachment(request, attachment_pk, ajax_response):
     g = get_object_or_404(Attachment, pk=attachment_pk)
     if request.user.has_perm('delete_foreign_attachments') \
        or request.user == g.creator:
         g.delete()
-        request.user.message_set.create(message=ugettext('Your attachment was deleted.'))
-    next = request.REQUEST.get('next') or '/'
-    return HttpResponseRedirect(next)
+    #TODO (weizhou) error warning!
+    pass
