@@ -36,8 +36,13 @@ def requirement_add(request):
 
             #Save attachment
             if request.FILES:
-                add_attachment(request, 'track', 'Requirement',\
-                               requirement_obj.pk, response)
+                add_attachment(
+                    request,
+                    requirement_obj._meta.app_label,
+                    requirement_obj._meta.module_name,
+                    requirement_obj.pk,
+                    response
+                )
 
             return response.ajax_response()
         else:
