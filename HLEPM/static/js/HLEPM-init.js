@@ -8,7 +8,9 @@ HLEPM.init = {
     requirementHome:
         function() {
             HLEPM.bind.bindAddModal();
+            HLEPM.bind.bindAutoComplete();
             HLEPM.bind.bindDatePicker();
+            HLEPM.bind.bindParentListener();
             HLEPM.bind.submitNewRequirement();
         },
 
@@ -27,9 +29,25 @@ HLEPM.bind = {
                 HLEPM.ui.hideModal("#new");
             });
         },
+    bindAutoComplete:
+        function() {
+            HLEPM.ui.autoComplete('.author');
+            HLEPM.ui.autoComplete('.parent');
+        },
     bindDatePicker:
         function() {
             HLEPM.ui.pickingDate(".datePicker");
+        },
+    bindParentListener:
+        function() {
+            $(".parent").focus(function() {
+                var value = $('.parent-type option:selected').val();
+                //TODO (weizhou) Here still have no good solution about type filter.
+                //Once solved, you can uncomment the following 2 lines.
+
+                //value = 'type#fpk=#' + value;
+                //$(this).attr('extra_filter', value);
+            });
         },
     submitNewRequirement:
         function() {
