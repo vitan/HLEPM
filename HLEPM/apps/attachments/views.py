@@ -35,6 +35,23 @@ def add_attachment(request, app_label, module_name, pk,
         pass
 
 @login_required
+def update_attachment(request, app_label, module_name, pk,
+                   ajax_response, template_name=''):
+
+    model = get_model(app_label, module_name)
+    if model is None:
+        # TODO (weizhou) error warning!
+        pass
+    obj = get_object_or_404(model, pk=pk)
+    form = AttachmentForm(request.POST, request.FILES)
+
+    if form.is_valid():
+        form.update(request, obj)
+    else:
+        # TODO (weizhou) error warning!
+        pass
+
+@login_required
 def delete_attachment(request, attachment_pk, ajax_response):
     g = get_object_or_404(Attachment, pk=attachment_pk)
     if request.user.has_perm('delete_foreign_attachments') \
