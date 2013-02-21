@@ -7,6 +7,10 @@ from django.contrib.contenttypes import generic
 from django.utils.translation import ugettext_lazy as _
 
 class AttachmentManager(models.Manager):
+
+    def get_query_set(self):
+        return super(AttachmentManager, self).get_query_set().filter(is_removed=False)
+
     def attachments_for_object(self, obj):
         object_type = ContentType.objects.get_for_model(obj)
         return self.filter(content_type__pk=object_type.id,
@@ -30,6 +34,7 @@ class Attachment(models.Model):
     attachment_file = models.FileField(_('attachment'), upload_to=attachment_upload)
     created = models.DateTimeField(_('created'), auto_now_add=True)
     modified = models.DateTimeField(_('modified'), auto_now=True)
+    is_removed = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created']
