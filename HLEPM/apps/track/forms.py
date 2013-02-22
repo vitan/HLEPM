@@ -38,14 +38,20 @@ class RequirementForm(forms.Form):
         queryset=RequirementOwner.objects.all(),
         empty_label=None,
     )
-    requirement = forms.ModelChoiceField(
+    author = forms.CharField(
+        label=u"Author",
+    )
+    parent = forms.CharField(
         label="Parent",
         required=False,
-        queryset=Requirement.objects.all(),
-        empty_label=None,
     )
-    author = forms.ModelChoiceField(
-        label=u"Author",
-        queryset=User.objects.all(),
-        empty_label=None,
-    )
+
+    def clean_author(self):
+        data = self.cleaned_data['author']
+        obj = User.objects.get(username=data)
+        return obj
+
+    def clean_parent(self):
+        data = self.cleaned_data['parent']
+        #TODO (weizhou) which model should be used for query."
+        pass

@@ -30,7 +30,7 @@ def requirement_add(request):
         form = RequirementForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            data.pop('requirement')
+            data.pop('parent')
             requirement_obj = Requirement(**data)
             requirement_obj.save()
 
