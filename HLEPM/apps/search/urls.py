@@ -2,5 +2,5 @@ from django.conf.urls.defaults import patterns, include, url
 
 
 urlpatterns = patterns('HLEPM.apps.search.views',
-    url(r'^requirement/', 'requirement_search', name="requirement_search"),
+    url(r'^search/(?P<app_label>[\w\-]+)/(?P<module_name>[\w\-]+)/', 'search', name="search"),
 )

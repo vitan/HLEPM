@@ -7,17 +7,44 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.views.decorators.http import require_POST
+from django.contrib.auth.models import User
 
 from HLEPM.apps.attachments.views import add_attachment
+from HLEPM.apps.search.views import add_search_url_for_model, search
+from HLEPM.apps.attachments.models import Attachment
 from HLEPM.apps.common.views import AjaxResponseMixin
 from HLEPM.apps.track.models import Product
-from HLEPM.apps.track.models import Requirement
+from HLEPM.apps.track.models import Requirement, RequirementType
+from HLEPM.apps.track.models import RequirementStatus, RequirementOwner
 from HLEPM.apps.track.forms import RequirementForm
+from HLEPM.apps.track.models import Version
 
 
-__all__ = {
+__all__ = (
+    'requirement',
     'requirement_add',
-}
+)
+
+
+@login_required
+def requirement(request, template_name='track/requirement.html'):
+
+    context_data = {
+        'subtitle': 'BRD/MRD/PRD',
+        'types': RequirementType.objects.all(),
+        'products': Product.objects.all(),
+        'versions': Version.objects.all(),
+        'statuss': RequirementStatus.objects.all(),
+        'owners': RequirementOwner.objects.all(),
+        'author_url': add_search_url_for_model(User),
+        'author_field': 'username',
+        'parent_types': RequirementType.objects.exclude(name__iexact='prd'),
+        'parent_url': add_search_url_for_model(Attachment),
+        #TODO (weizhou) Need to talk about parent input autocomplete.
+        'parent_field': 'attachment_file',
+    }
+
+    return render_to_response(template_name, context_data, context_instance=RequestContext(request))
 
 
 @require_POST

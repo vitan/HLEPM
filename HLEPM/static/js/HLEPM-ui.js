@@ -40,6 +40,7 @@ HLEPM.ui = {
                                 if ( HLEPM.ajax.isSuccessful(ajax_response.rc) ){
                                     var result = ajax_response.data.query_result;
                                     response( $.map(result, function(data) {
+                                        //TODO (weizhou) Maybe a callback function is better."
                                         return data[field];
                                     }));
                                 }
