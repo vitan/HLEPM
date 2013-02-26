@@ -30,7 +30,17 @@ class AjaxResponseMixin(object):
             self.errors = msg
 
     def dumps(self, data):
-        return simplejson.dumps(data)
+        return simplejson.dumps(data, default=self.json_handle)
+
+    def json_handle(self, obj):
+        #datetime handle
+        if hasattr(obj, 'isoformat'):
+            return obj.isoformat()
+        #uncomment the following 2 lines to add other object handles.
+        #elif isinstance(obj, ...):
+            #return ...
+        else:
+            return None
 
     def render_to_json(self, data):
         '''
