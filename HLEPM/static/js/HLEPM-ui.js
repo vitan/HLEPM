@@ -15,6 +15,19 @@ HLEPM.ui = {
         function(selector) {
             $(selector).datepicker();
         },
+    classifyActive:
+        function(selector) {
+        $(selector).closest('p').find(".filter").removeClass('classify-active');
+        $(selector).addClass('classify-active');
+    },
+    dateExtract:
+        function(selector) {
+            var dateString = $(selector).html();
+            if (dateString) {
+                var date = new Date(dateString);
+                $(selector).html((date.getMonth()+1) + '/' + date.getDate() + '/' + date.getFullYear());
+            }
+        },
     autoComplete:
         function(selector) {
             $(selector).autocomplete({
@@ -22,9 +35,7 @@ HLEPM.ui = {
                             var field = $(selector).attr('field');
                             var filter = field + '#like#' + request.term;
                             var extra_filter = $(selector).attr('extra_filter');
-                            if (extra_filter) {
-                                filter = filter + "," + extra_filter;
-                            }
+                            filter = (extra_filter? extra_filter+"," : "") + filter;
                             //data format:
                             //  {
                             //    select_fields: 'username,userid',

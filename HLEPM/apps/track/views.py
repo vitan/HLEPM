@@ -36,12 +36,11 @@ def requirement(request, template_name='track/requirement.html'):
         'versions': Version.objects.all(),
         'statuss': RequirementStatus.objects.all(),
         'owners': RequirementOwner.objects.all(),
-        'author_url': add_search_url_for_model(User),
-        'author_field': 'username',
         'parent_types': RequirementType.objects.exclude(name__iexact='prd'),
-        'parent_url': add_search_url_for_model(Attachment),
+        'filter_url': add_search_url_for_model(Requirement),
+        'author_url': add_search_url_for_model(User),
         #TODO (weizhou) Need to talk about parent input autocomplete.
-        'parent_field': 'attachment_file',
+        'parent_url': add_search_url_for_model(Attachment),
     }
 
     return render_to_response(template_name, context_data, context_instance=RequestContext(request))

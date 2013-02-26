@@ -11,14 +11,38 @@
 </div>
 <div class="pd10">
     <div class="classify">
-        {##}
-            <p class="clear">
-            <a href="#" class="btn btn-danger new-query">{##}</a>
-            {##}
-                <a href="#" class="classify-active">{##}</a>
-            {##}
-            <div class="line"></div>
-        {##}
+        <input class="display-none filter_url" value="{{ filter_url }}"/>
+        <input class="display-none current_filter" value=""/>
+        <p class="clear">
+        <a class="btn btn-danger new-query">Type</a>
+        <a class="filter" field="type__id">All</a>
+        {% for type in types %}
+        <a class="filter" value="{{ type.id }}" field="type__id">{{ type.name }} ({{ type.requirement_set.count }})</a>
+        {% endfor %}
+        </p>
+        <div class="line"></div>
+        <p class="clear">
+        <a class="btn btn-danger new-query">Product</a>
+        <a class="filter" field="product__id">All</a>
+        {% for product in products %}
+        <a class="filter" value="{{ product.id }}" field="product__id">{{ product.name }} ({{ product.requirement_set.count }})</a>
+        {% endfor %}
+        </p>
+        <div class="line"></div>
+        <p class="clear">
+        <a class="btn btn-danger new-query">Status</a>
+        {% for status in statuss %}
+        <a class="filter" value="{{ status.id }}" field="status__id">{{ status.name }} ({{ status.requirement_set.count }})</a>
+        {% endfor %}
+        </p>
+        <div class="line"></div>
+        <p class="clear">
+        <a class="btn btn-danger new-query">Owner</a>
+        {% for owner in owners %}
+        <a class="filter" value="{{ owner.id }}" field="owner__id">{{ owner.name }} ({{ owner.requirement_set.count }})</a>
+        {% endfor %}
+        </p>
+        <div class="line"></div>
         <table class="eso-table product-status-report">
             <thead>
                 <tr>
@@ -38,18 +62,45 @@
                     <table id="example" class="eso-table table-striped datatable brd-table">
                         <thead>
                           <tr>
-                              <th style="">{##}</th>
-                              <th><span title="Actually finished time">{##}</span></th>
-                              <th>{##}</th>
+                            <th>Number</th>
+                            <th>Type</th>
+                            <th>Name</th>
+                            <th>Author</th>
+                            <th>Status</th>
+                            <th>Risk</th>
+                            <th>Issue</th>
+                            <th>Owner</th>
+                            <th>Start Date</th>
+                            <th>Target Date</th>
+                            <th title="Actually finished time">AFD</th>
+                            <th>Time Left</th>
                           </tr>
-                      </thead>
-                      <tbody>
-                      {##}
-                      <tr>
-                          {##}
-                          {##}
-                      </tr>
-                      {##}
+                          <tr class="display-none template">
+                              <td class="id requirement_field" value="" field="id">
+                                  <a></a>
+                              </td>
+                              <td class="type requirement_field" field="type__name">
+                              </td>
+                              <td class="attachment">
+                                  <a></a>
+                              </td>
+                              <td class="author requirement_field" field="author__username"></td>
+                              <td class="status requirement_field" field="status__name">
+                                  <a></a>
+                              </td>
+                              <td class="risk">
+                                  <a></a>
+                              </td>
+                              <td class="issue">
+                                  <a></a>
+                              </td>
+                              <td class="owner requirement_field" field="owner__name"></td>
+                              <td class="start_date requirement_field" field="start_date"></td>
+                              <td class="target_date requirement_field" field="target_date"></td>
+                              <td class="AFD"></td>
+                              <td class="time_left"></td>
+                          </tr>
+                      <tbody class="contains">
                       </tbody>
                   </table>
               </td>
