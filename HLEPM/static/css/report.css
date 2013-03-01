@@ -141,8 +141,8 @@ ul.comment li ul{ margin-left:20px;}
 }
 .timeline .background {
     margin-left: 300px;
-	position: relative;
-	overflow:hidden;
+    position: relative;
+    overflow:hidden;
 }
 .timeline dl {
     display: inline-table;
@@ -162,15 +162,15 @@ ul.comment li ul{ margin-left:20px;}
     font-size: 14px;
     font-weight: bold;
     padding: 0 3px 0 15px;
-	display:inline-block;
+    display:inline-block;
 }
 .timeline address{
-	font-style:italic;
-	color:#999999;
+    font-style:italic;
+    color:#999999;
 }
 .timeline dt address{
-	font-weight:normal;
-	padding-left:15px;
+    font-weight:normal;
+    padding-left:15px;
 }
 .timeline dd {
     background: url("../images/line-dotted-blue.png") repeat-x scroll 0 7px transparent;
@@ -209,23 +209,22 @@ ul.comment li ul{ margin-left:20px;}
     padding: 0 6px;
     white-space: nowrap;
     z-index: 111;
-	font-weight:normal;
+    font-weight:normal;
 }
 .timeline .progress span.start {
     float: left;
-	color:#FFFFFF;
-	font-weight:bold;
+    color:#FFFFFF;
+    font-weight:bold;
 }
 .timeline .progress span.end {
     float: right;
-	color:#FFFFFF;
-	font-weight:bold;
-	
+    color:#FFFFFF;
+    font-weight:bold;
 }
 .timeline .progress span.new, .timeline .progress span.close, .timeline .progress span.assigned, .timeline .progress span.needinfo, .timeline .progress span.closed{
     position: absolute;
     top: -16px;
-	padding:0px;
+    padding:0px;
 }
 .timeline dd .progress {
     background-color: #61AE24;
@@ -241,8 +240,8 @@ ul.comment li ul{ margin-left:20px;}
     font-size: 13px;
     text-align: center;
     width: 8%;
-	list-style:none;
-	margin:0px;
+    list-style:none;
+    margin:0px;
 }
 .timeline .y-bar {
     background-color: #FFFFFF;
@@ -250,16 +249,15 @@ ul.comment li ul{ margin-left:20px;}
     height: 20px;
     padding-top: 3px;
     position: relative;
-	margin:0px;
-	
+    margin:0px;
 }
 .timeline .y-bar li {
     color: #454545;
     font-size: 13px;
     font-weight: bold;
     text-align: center;
-	list-style:none;
-	width:8%;
+    list-style:none;
+    width:8%;
 }
 .timeline-BG-table {
     height: 3000px;
@@ -320,7 +318,7 @@ ul.comment li ul{ margin-left:20px;}
     background-position: -456px -72px;
 }
 .product-basic-info{
-	float:left;
+    float:left;
 }
 .bs-docs-sidenav {
     background-color: #FFFFFF;
@@ -384,36 +382,36 @@ ul.comment li ul{ margin-left:20px;}
 }
 
 .product-basic-info th{
-	text-align:left;
-	vertical-align:top;
-	color:#999999;
-	padding:4px 0 3px 0;
+    text-align:left;
+    vertical-align:top;
+    color:#999999;
+    padding:4px 0 3px 0;
 }
 .product-basic-info td{
-	padding:4px 0 3px 0;
+    padding:4px 0 3px 0;
 }
 
 .page-header{
-	padding-bottom:5px;
+    padding-bottom:5px;
 }
 .modal{
-	width:570px;
+    width:570px;
 }
 .form-horizontal .control-label{
-	text-align:right;
-	width:100px;
-	font-weight:bold;
-	color:#666666;
+    text-align:right;
+    width:100px;
+    font-weight:bold;
+    color:#666666;
 }
 .form-horizontal .controls {
     margin-left: 120px;
 }
 .form-horizontal .input-prepend{
-	margin-bottom:9px;
-	display:block;
+    margin-bottom:9px;
+    display:block;
 }
 .form-horizontal .input-prepend .add-on{
-	width:110px;
+    width:110px;
 }
 .form-horizontal .btn-group {
     display: inline-block;
@@ -439,13 +437,13 @@ ul.comment li ul{ margin-left:20px;}
     border-radius: 0 4px 4px 0;
 }
 :-moz-placeholder{
-	color:#AAAAAA;
+    color:#AAAAAA;
 }
 .product-status-report{
-	background-color:#FAFAFA;
+    background-color:#FAFAFA;
 }
 .product-status-report td{
-	background-color:#FFFFFF!important;
+    background-color:#FFFFFF!important;
 }
 
 /*-----------comments----*/
@@ -523,40 +521,40 @@ ul.comment li ul{ margin-left:20px;}
 .weekly ul{ list-style:none; margin:0; padding:0;}
 .weekly ul li{ font-size:12px; display:block; background:#06F; float:left; margin:20px;}
 .lxfscroll {
-	width:400px;
-	margin-left:auto;
-	margin-right:auto;
-	margin-top: 20px;
-	overflow: hidden;
-	position: relative;
-	height: 50px;
-	border: 1px dashed #CCC;
+    width:400px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 20px;
+    overflow: hidden;
+    position: relative;
+    height: 50px;
+    border: 1px dashed #CCC;
 }
 .button {
-	margin-right:auto;
-	margin-left:auto;
-	width:400px;
-	text-align:center;
-	padding-top: 10px;
+    margin-right:auto;
+    margin-left:auto;
+    width:400px;
+    text-align:center;
+    padding-top: 10px;
 }
 i {
-	color:#F00;
-	font-weight:bold;
+    color:#F00;
+    font-weight:bold;
 }
 .button input {
-	padding-top: 4px;
-	padding-right: 12px;
-	padding-bottom: 4px;
-	padding-left: 12px;
+    padding-top: 4px;
+    padding-right: 12px;
+    padding-bottom: 4px;
+    padding-left: 12px;
 }
 .lxfscroll ul{ list-style:none!important; margin:0; padding:0;}
 .lxfscroll>ul>li {
-	height: 300px;
-	width: 400px;
-	text-align: center;
-	line-height: 300px;
-	position: absolute;
-	font-weight: bold;
+    height: 300px;
+    width: 400px;
+    text-align: center;
+    line-height: 300px;
+    position: absolute;
+    font-weight: bold;
 }
 /*--datetable--*/
 .datatable{border-bottom: none;border-left: none;border-radius: 0 0 0 0;border-right:none;margin-bottom: 10px;max-width: 100%;width: 100%;}
