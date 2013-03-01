@@ -505,8 +505,8 @@ ul.comment li ul{ margin-left:20px;}
 .lin-height{ line-height:30px;}
 .brd-table a.download{ float:right!important;}
 .week-search{ margin-left:10px; margin-bottom:10px; cursor: pointer;}
-.new-brd-form form{ width:480px; float:left;}
-.new-brd{ background-color: ; border: solid 5px #999;}
+.report-form .column{ width:480px; float:left;}
+.form-control{ background-color: ; border: solid 5px #999;}
 .small-text{ font-size:10px; margin-left:5px; color: #06C;}
 .edit-pj{ margin-top:5px; margin-left:10px;}
 .w100{ width:100px;}
