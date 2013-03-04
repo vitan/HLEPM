@@ -16,7 +16,12 @@ HLEPM.table = {
             $.each(data, function(index, value) {
                 var row = $('tr.template').clone();
                 $.each(value, function(key, val) {
-                    row.children('td[field="'+key+'"]').html(val);
+                    var td_child = row.children('td[field="'+key+'"]');
+                    if( td_child.children().length ) {
+                        td_child.children('a').html(val);
+                    } else {
+                        td_child.html(val);
+                    }
                 });
                 HLEPM.ui.dateExtract(row.children('.start_date'));
                 HLEPM.ui.dateExtract(row.children('.target_date'));

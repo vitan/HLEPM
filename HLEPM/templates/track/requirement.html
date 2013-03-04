@@ -5,7 +5,7 @@
 {% block content %}
 <div class="breadcrumb requirementHome">
     <ul class="pull-left">
-        <li><a href="#">{{ subtitle }}</a> <span class="divider">/</span></li>
+        <li><a>{{ subtitle }}</a> <span class="divider">/</span></li>
     </ul>
     <div class="clear"></div>
 </div>
@@ -47,7 +47,7 @@
             <thead>
                 <tr>
                     <th colspan="10">
-                        <a class=" btn fl-right" href="#" id="add">+ Add</a>
+                        <a class=" btn fl-right" id="add">+ Add</a>
                     </th>
                 </tr>
             </thead>
@@ -57,6 +57,11 @@
                     {% include "track/new-requirement.html" %}
                 </td>
             </tr>
+            <tr class="display-none" id="update">
+                <td>
+                    {% include "track/update-requirement.html" %}
+                </td>
+            </tr>
             <tr>
                 <td colspan="10" class="pd0">
                     <table id="example" class="eso-table table-striped datatable brd-table">
@@ -64,6 +69,8 @@
                           <tr>
                             <th>Number</th>
                             <th>Type</th>
+                            <th class="display-none">Product</th>
+                            <th class="display-none">Version</th>
                             <th>Name</th>
                             <th>Author</th>
                             <th>Status</th>
@@ -77,15 +84,16 @@
                           </tr>
                           <tr class="display-none template">
                               <td class="id requirement_field" value="" field="id">
-                                  <a></a>
+                                  <a class="requirement_number"></a>
                               </td>
-                              <td class="type requirement_field" field="type__name">
-                              </td>
+                              <td class="type requirement_field" field="type__name" name="type"></td>
+                              <td class="product requirement_field display-none" field="product__name" name="product"></td>
+                              <td class="version requirement_field display-none" field="version__name" name="version"></td>
                               <td class="attachment">
                                   <a></a>
                               </td>
-                              <td class="author requirement_field" field="author__username"></td>
-                              <td class="status requirement_field" field="status__name">
+                              <td class="author requirement_field" field="author__username" name="author"></td>
+                              <td class="status requirement_field" field="status__name" name="status">
                                   <a></a>
                               </td>
                               <td class="risk">
@@ -94,9 +102,9 @@
                               <td class="issue">
                                   <a></a>
                               </td>
-                              <td class="owner requirement_field" field="owner__name"></td>
-                              <td class="start_date requirement_field" field="start_date"></td>
-                              <td class="target_date requirement_field" field="target_date"></td>
+                              <td class="owner requirement_field" field="owner__name" name="owner"></td>
+                              <td class="start_date requirement_field" field="start_date" name="start_date"></td>
+                              <td class="target_date requirement_field" field="target_date" name="target_date"></td>
                               <td class="AFD"></td>
                               <td class="time_left"></td>
                           </tr>

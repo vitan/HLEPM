@@ -8,11 +8,13 @@ HLEPM.init = {
     requirementHome:
         function() {
             HLEPM.bind.bindAddModal();
+            HLEPM.bind.bindUpdateModal();
             HLEPM.bind.bindAutoComplete();
             HLEPM.bind.bindDatePicker();
             HLEPM.bind.bindRequirementFilter();
             HLEPM.bind.bindParentListener();
             HLEPM.bind.submitNewRequirement();
+            HLEPM.bind.submitUpdateRequirement();
         },
 
 };
@@ -21,6 +23,7 @@ HLEPM.bind = {
     bindAddModal:
         function() {
             $("#add").live('click', function() {
+                HLEPM.ui.hideModal("#update");
                 HLEPM.ui.showModal("#new");
             });
             $(".close").live('click', function() {
@@ -28,6 +31,21 @@ HLEPM.bind = {
             });
             $(".close2").live('click', function() {
                 HLEPM.ui.hideModal("#new");
+            });
+        },
+    bindUpdateModal:
+        function () {
+            $(".close").live('click', function() {
+                HLEPM.ui.hideModal("#update");
+            });
+            $(".close2").live('click', function() {
+                HLEPM.ui.hideModal("#update");
+            });
+
+            $(".requirement_number").live('click', function() {
+                HLEPM.ui.hideModal("#new");
+                HLEPM.ui.showModal("#update");
+                HLEPM.form.requirementFormFill($(this));
             });
         },
     bindAutoComplete:
@@ -91,6 +109,12 @@ HLEPM.bind = {
         function() {
             $('#submit-new-requirement').live('click', function() {
                 HLEPM.editRequest.addOneRequirement();
+            });
+        },
+    submitUpdateRequirement:
+        function() {
+            $('#submit-update-requirement').live('click', function() {
+                HLEPM.editRequest.updateOneRequirement();
             });
         }
 };
