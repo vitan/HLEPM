@@ -9,7 +9,7 @@ from django.template import RequestContext
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
 
-from HLEPM.apps.attachments.views import add_attachment
+from HLEPM.apps.attachments.views import add_attachment, update_attachment
 from HLEPM.apps.search.views import add_search_url_for_model, search
 from HLEPM.apps.attachments.models import Attachment
 from HLEPM.apps.common.views import AjaxResponseMixin
@@ -23,6 +23,7 @@ from HLEPM.apps.track.models import Version
 __all__ = (
     'requirement',
     'requirement_add',
+    'requirement_update',
 )
 
 
@@ -48,7 +49,7 @@ def requirement(request, template_name='track/requirement.html'):
 
 @require_POST
 @login_required
-def requirement_add(request):
+def requirement_add(request, template_name=''):
     """Add a new requirements(BRD/MRD/PRD)."""
 
     response = AjaxResponseMixin()
@@ -56,6 +57,7 @@ def requirement_add(request):
         form = RequirementForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
+            #TODO (weizhou) How to save the parent?
             data.pop('parent')
             requirement_obj = Requirement(**data)
             requirement_obj.save()
@@ -63,6 +65,36 @@ def requirement_add(request):
             #Save attachment
             if request.FILES:
                 add_attachment(
+                    request,
+                    requirement_obj._meta.app_label,
+                    requirement_obj._meta.module_name,
+                    requirement_obj.pk,
+                    response
+                )
+
+            return response.ajax_response()
+        else:
+            pass
+
+
+@require_POST
+@login_required
+def requirement_update(request, requirement_id, template_name=""):
+    """Update a requirements(BRD/MRD/PRD)."""
+
+    response = AjaxResponseMixin()
+    if request.method == 'POST':
+        form = RequirementForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            #TODO (weizhou) How to update the parent?
+            data.pop('parent')
+            requirement_obj = Requirement(pk=requirement_id, **data)
+            requirement_obj.save()
+
+            #Update attachment
+            if request.FILES:
+                update_attachment(
                     request,
                     requirement_obj._meta.app_label,
                     requirement_obj._meta.module_name,
