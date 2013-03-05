@@ -21,8 +21,8 @@ HLEPM.init = {
             HLEPM.bind.bindDatePicker();
             HLEPM.bind.bindRequirementFilter();
             HLEPM.bind.bindParentListener();
-            HLEPM.bind.submitNewRequirement();
-            HLEPM.bind.submitUpdateRequirement();
+            HLEPM.editRequest.addOneRequirement();
+            HLEPM.editRequest.updateOneRequirement();
         },
     riskHome:
         function(){
@@ -39,9 +39,11 @@ HLEPM.bind = {
         function() {
             $("#add").live('click', function() {
                 HLEPM.ui.hideModal("#update");
+                HLEPM.ui.resetForm("#add-requirement");
                 HLEPM.ui.showModal("#new");
             });
             $(".close").live('click', function() {
+                HLEPM.ui.resetForm("#add-requirement");
                 HLEPM.ui.hideModal("#new");
             });
             $(".close2").live('click', function() {
@@ -51,6 +53,7 @@ HLEPM.bind = {
     bindUpdateModal:
         function () {
             $(".close").live('click', function() {
+                HLEPM.ui.resetForm("#update-requirement");
                 HLEPM.ui.hideModal("#update");
             });
             $(".close2").live('click', function() {
@@ -122,22 +125,10 @@ HLEPM.bind = {
                 //$(this).attr('extra_filter', value);
             });
         },
-    submitNewRequirement:
-        function() {
-            $('#submit-new-requirement').live('click', function() {
-                HLEPM.editRequest.addOneRequirement();
-            });
-        },
     submitNewRisk:
         function() {
             $('#submit-new-risk').live('click', function(){
                 HLEPM.editRequest.addOneRisk();
-            });
-        },
-    submitUpdateRequirement:
-        function() {
-            $('#submit-update-requirement').live('click', function() {
-                HLEPM.editRequest.updateOneRequirement();
             });
         }
 };

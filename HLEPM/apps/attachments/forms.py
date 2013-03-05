@@ -20,7 +20,7 @@ class AttachmentForm(forms.ModelForm):
         type = ContentType.objects.get_for_model(obj)
         id = obj.id
 
-        query_set = Attachment().objects.filter(content_type=type, object_id=id)
+        query_set = Attachment.objects.filter(content_type=type, object_id=id)
         query_set.update(is_removed=True)
 
         self.instance.creator = request.user

@@ -1,15 +1,15 @@
 HLEPM.editRequest = {
     addOneRequirement:
         function() {
-            //TODO (weizhou) need to add form verify
-            var form = $("#add-requirement");
-            var url = form.attr('action');
-            var data = form.serialize();
-            HLEPM.ajax.post(url, data, function(response) {
-                if ( HLEPM.ajax.isSuccessful(response.rc) ) {
-                    HLEPM.ui.hideModal("#new");
-                } else {
-                    ;
+            //Pseudo ajax post for file uploading
+            $('#add-requirement').iframePostForm({
+                json: true,
+                complete: function(response) {
+                    if ( HLEPM.ajax.isSuccessful(response.rc) ) {
+                        HLEPM.ui.hideModal("#new");
+                    } else {
+                        ;
+                    }
                 }
             });
         },
@@ -28,15 +28,15 @@ HLEPM.editRequest = {
         },
     updateOneRequirement:
         function() {
-            //TODO (weizhou) need to add form verify
-            var form = $("#update-requirement");
-            var url = form.attr('action');
-            var data = form.serialize();
-            HLEPM.ajax.post(url, data, function(response) {
-                if ( HLEPM.ajax.isSuccessful(response.rc) ) {
-                    HLEPM.ui.hideModal("#update");
-                } else {
-                    ;
+            //Pseudo ajax post for file uploading
+            $('#update-requirement').iframePostForm({
+                json: true,
+                complete: function(response) {
+                    if ( HLEPM.ajax.isSuccessful(response.rc) ) {
+                        HLEPM.ui.hideModal("#update");
+                    } else {
+                        ;
+                    }
                 }
             });
         }

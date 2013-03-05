@@ -3,6 +3,10 @@ HLEPM.ui = {
         function(selector) {
             return ($(selector).length > 0);
         },
+    resetForm:
+        function(selector) {
+            $(selector)[0].reset();
+        },
     showModal:
         function(selector) {
             $(selector).show();

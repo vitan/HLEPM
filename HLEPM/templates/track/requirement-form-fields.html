@@ -1,0 +1,105 @@
+<div class="modal-body max-height450 report-form">
+    <p></p>
+    <div class="column">
+        <div class="control-group">
+            <label class="control-label">Type<span class="red-brd"> *</span></label>
+            <div class="controls">
+                <select name="type" class="chzn-select w100" tabindex="6" data-placeholder="">
+                    {% for type in types %}
+                    <option value="{{ type.pk }}" {% ifequal type.order 1 %}selected="selected"{% endifequal %}>
+                    {{ type.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Product<span class="red-brd"> *</span></label>
+            <div class="controls">
+                <select name="product" class="chzn-select w100"  tabindex="6" data-placeholder="">
+                    {% for product in products %}
+                    <option value="{{ product.pk }}" {% ifequal product.order 1 %}selected="selected"{% endifequal %}>
+                    {{ product.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Version<span class="red-brd"> *</span></label>
+            <div class="controls">
+                <select name="version" class="chzn-select w100"  tabindex="6" data-placeholder="">
+                    {% for version in versions %}
+                    <option value="{{ version.pk }}" {% ifequal version.order 1 %}selected="selected"{% endifequal %}>
+                    {{ version.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Status<span class="red-brd"> *</span></label>
+            <div class="controls">
+                <select name="status" class="chzn-select w100"  tabindex="6" data-placeholder="">
+                    {% for status in statuss %}
+                    <option value="{{ status.pk }}" {% ifequal status.order 1 %}selected="selected"{% endifequal %}>
+                    {{ status.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Author<span class="red-brd"> *</span></label>
+            <div class="controls">
+                <input type="text" name="author" class="input-xlarge w130 author" id="input2" url="{{ author_url }}" field="username">
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="control-group">
+            <label class="control-label">Owner<span class="red-brd"> *</span></label>
+            <div class="controls">
+                <select name="owner" class="chzn-select w100"  tabindex="6" data-placeholder="">
+                    {% for owner in owners %}
+                    <option value="{{ owner.pk }}" {% ifequal owner.order 1 %}selected="seleted"{% endifequal %}>
+                    {{ owner.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Parent</label>
+            <div class="controls">
+                <select name="parent_type" class="chzn-select w100 parent-type" tabindex="6" data-placeholder="">
+                    {% for type in parent_types %}
+                    <option value="{{ type.pk }}" {% ifequal type.order 1 %}selected="selected"{% endifequal %}>
+                    {{ type.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+                <input type="text" name="parent" class="input-xlarge w130 parent" id="input2" url="{{ parent_url }}" field="attachment_file">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Start Date</label>
+            <div class="controls">
+                <input class="datePicker" name="start_date" type="text">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Target Date</label>
+            <div class="controls">
+                <input class="datePicker" name="target_date" type="text">
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="input2" class="control-label">Document</label>
+            <div class="controls">
+                <input id="fileInput" class="input-file" type="file" name="attachment_file">
+            </div>
+        </div>
+    </div>
+    <p></p>
+</div>
