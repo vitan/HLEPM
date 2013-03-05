@@ -13,6 +13,19 @@ HLEPM.editRequest = {
                 }
             });
         },
+    addOneRisk:
+        function(){
+            var form = $("#add-risk");
+            var url = form.attr('action');
+            var data = form.serialize();
+            HLEPM.ajax.post(url, data, function(response){
+                 if ( HLEPM.ajax.isSuccessful(response.rc)){
+                     HLEPM.ui.hideModal("#new");
+                 } else {
+                     ;
+                 }
+            });
+        },
     updateOneRequirement:
         function() {
             //TODO (weizhou) need to add form verify

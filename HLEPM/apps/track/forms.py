@@ -10,6 +10,10 @@ from HLEPM.apps.track.models import Issue, Risk
 from HLEPM.apps.track.models import Project
 from HLEPM.apps.track.models import Requirement, RequirementType
 from HLEPM.apps.track.models import RequirementStatus, RequirementOwner
+from HLEPM.apps.track.models import Impact
+from HLEPM.apps.track.models import Response
+from HLEPM.apps.track.models import Probability
+from HLEPM.apps.track.models import RiskStatus
 
 
 __all__ = (
@@ -55,3 +59,39 @@ class RequirementForm(forms.Form):
         data = self.cleaned_data['parent']
         #TODO (weizhou) which model should be used for query."
         pass
+
+class RiskForm(forms.Form):
+    reporter = forms.CharField(
+        label=u"Reporter"
+    )
+    start_date = StartDateField
+    target_date = TargetDateField
+    description = forms.CharField(
+        label="Description",
+        required=False,
+    )
+    impact = forms.ModelChoiceField(
+        label=u"Impact",
+        queryset=Impact.objects.all(),
+        empty_label=None,
+    )
+    response = forms.ModelChoiceField(
+        label=u"Response",
+        queryset=Response.objects.all(),
+        empty_label=None,
+    )
+    probability = forms.ModelChoiceField(
+        label=u"Probability",
+        queryset=Probability.objects.all(),
+        empty_label=None,
+    )
+    status = forms.ModelChoiceField(
+        label=u"Status",
+        queryset=RiskStatus.objects.all(),
+        empty_label=None,
+    )
+
+    def clean_reporter(self):
+        data = self.cleaned_data['reporter']
+        obj = User.objects.get(username=data)
+        return obj

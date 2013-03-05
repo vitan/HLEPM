@@ -4,6 +4,14 @@ HLEPM.init = {
             if( HLEPM.ui.exists('.requirementHome') ) {
                 this.requirementHome();
             }
+
+            if( HLEPM.ui.exists('.projectHome')) {
+                this.projectHome();
+            }
+
+            if (HLEPM.ui.exists('.riskHome')){
+                this.riskHome();
+            }
         },
     requirementHome:
         function() {
@@ -15,6 +23,13 @@ HLEPM.init = {
             HLEPM.bind.bindParentListener();
             HLEPM.bind.submitNewRequirement();
             HLEPM.bind.submitUpdateRequirement();
+        },
+    riskHome:
+        function(){
+            HLEPM.bind.bindAddModal();
+            HLEPM.bind.bindDatePicker();
+            HLEPM.bind.bindAutoComplete();
+            HLEPM.bind.submitNewRisk();
         },
 
 };
@@ -52,6 +67,8 @@ HLEPM.bind = {
         function() {
             HLEPM.ui.autoComplete('.author');
             HLEPM.ui.autoComplete('.parent');
+            HLEPM.ui.autoComplete('.project-manager');
+            HLEPM.ui.autoComplete('.reporter')
         },
     bindDatePicker:
         function() {
@@ -109,6 +126,12 @@ HLEPM.bind = {
         function() {
             $('#submit-new-requirement').live('click', function() {
                 HLEPM.editRequest.addOneRequirement();
+            });
+        },
+    submitNewRisk:
+        function() {
+            $('#submit-new-risk').live('click', function(){
+                HLEPM.editRequest.addOneRisk();
             });
         },
     submitUpdateRequirement:

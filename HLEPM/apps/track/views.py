@@ -15,10 +15,15 @@ from HLEPM.apps.attachments.models import Attachment
 from HLEPM.apps.common.views import AjaxResponseMixin
 from HLEPM.apps.track.models import Product
 from HLEPM.apps.track.models import Requirement, RequirementType
+from HLEPM.apps.track.models import Risk
 from HLEPM.apps.track.models import RequirementStatus, RequirementOwner
 from HLEPM.apps.track.forms import RequirementForm
+from HLEPM.apps.track.forms import RiskForm
 from HLEPM.apps.track.models import Version
-
+from HLEPM.apps.track.models import Impact
+from HLEPM.apps.track.models import Response
+from HLEPM.apps.track.models import Probability
+from HLEPM.apps.track.models import RiskStatus
 
 __all__ = (
     'requirement',
@@ -102,6 +107,39 @@ def requirement_update(request, requirement_id, template_name=""):
                     response
                 )
 
+            return response.ajax_response()
+        else:
+            pass
+def project(request, template_name='track/project.html'):
+    context_data = {}
+    return render_to_response(template_name, context_data, context_instance=RequestContext(request))
+
+
+#The following is a test function now, will improve it later.
+@login_required
+def risk(request, template_name='track/risk.html'):
+    context_data = {
+        'subtitle': 'Risk',
+        'Impacts': Impact.objects.all(),
+        'Responses': Response.objects.all(),
+        'Probabilities': Probability.objects.all(),
+        'statuss': RiskStatus.objects.all(),
+        'reporter_url': add_search_url_for_model(User),
+        }
+
+    return render_to_response(template_name, context_data, context_instance=RequestContext(request))
+
+@require_POST
+@login_required
+def risk_add(request, template_name=''):
+
+    response = AjaxResponseMixin()
+    if request.method == 'POST':
+        form = RiskForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            risk_obj = Risk(**data)
+            risk_obj.save()
             return response.ajax_response()
         else:
             pass

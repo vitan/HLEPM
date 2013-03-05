@@ -1,0 +1,79 @@
+<div class="new-risk">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close">×</button>
+        <h3>Creat</h3>
+    </div>
+    <div class="modal-body max-height450">
+        <form class="form-horizontal" id="add-risk" action="{% url risk_add %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="control-group">
+                <label class="control-label" for="input01">Reporter</label>
+                <div class="controls">
+                    <input type="text"  name="reporter" class="input-xlarge reporter" id="input01" url="{{ reporter_url }}" field="username">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">Start Date</label>
+                <div class="controls">
+                    <input class="datePicker" name="start_date" type="text">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Impact</label>
+                <div class="controls">
+                    {% for impact in Impacts %}
+                    <label class="radio inline">
+                        <input type="radio" value="{{ impact.pk }}" id="inlineCheckbox1" name="impact"> {{ impact.name }}
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Response</label>
+                <div class="controls">
+                    {% for response in Responses %}
+                    <label class="radio inline">
+                        <input type="radio" value="{{ response.pk }}" id="inlineCheckbox1" name="response"> {{ response.name }}
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Probability</label>
+                <div class="controls">
+                    {% for probability in Probabilities %}
+                    <label class="radio inline">
+                        <input type="radio" value="{{ probability.pk }}" id="inlineCheckbox1" name="probability"> {{ probability.name }}
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Status</label>
+                <div class="controls">
+                    {% for status in statuss %}
+                    <label class="radio inline">
+                        <input type="radio" value="{{ status.pk }}" id="inlineCheckbox1" name="status"> {{ status.name }}
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">Target Date</label>
+                <div class="controls">
+                    <input class="datePicker" name="target_date" type="text">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">Description</label>
+                <div class="controls">
+                    <input type="text" name="description" id="id_description">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a class="btn btn-primary" id="submit-new-risk">Save</a>
+        <a data-dismiss="modal" class="btn close2" href="#">Close</a>
+    </div>
+</div>
