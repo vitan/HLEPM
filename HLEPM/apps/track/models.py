@@ -257,7 +257,7 @@ class Risk(models.Model):
     response = models.ForeignKey(Response)
     status = models.ForeignKey(RiskStatus)
     start_date = models.DateTimeField()
-    due_date = models.DateTimeField()
+    target_date = models.DateTimeField()
     description = models.CharField(max_length=1024)
 
     def __str__(self):

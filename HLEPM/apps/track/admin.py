@@ -239,7 +239,7 @@ class RiskAdmin(admin.ModelAdmin):
                     'response',
                     'status',
                     'start_date',
-                    'due_date',
+                    'target_date',
                    )
     search_fields = ['reporter']
     ordering = ['reporter']
