@@ -12,6 +12,7 @@
 <div class="pd10">
     <div class="classify">
         <input class="display-none filter_url" value="{{ filter_url }}"/>
+        <input class="display-none media_url" value="{{ media_url }}"/>
         <input class="display-none current_filter" value=""/>
         <p class="clear">
         <a class="btn btn-danger new-query">Type</a>
@@ -89,8 +90,8 @@
                               <td class="type requirement_field" field="type__name" name="type"></td>
                               <td class="product requirement_field display-none" field="product__name" name="product"></td>
                               <td class="version requirement_field display-none" field="version__name" name="version"></td>
-                              <td class="attachment">
-                                  <a></a>
+                              <td class="attachment requirement_field" field="attachment__attachment_file">
+                                  <a href="" name="attachment"></a>
                               </td>
                               <td class="author requirement_field" field="author__username" name="author"></td>
                               <td class="status requirement_field" field="status__name" name="status">

@@ -2,9 +2,11 @@
 
 from django.db import models
 from django.utils.text import truncate_words
+from django.contrib.contenttypes import generic
 from django.contrib.auth.models import User
 
 from HLEPM.apps.common.models import DictBase
+from HLEPM.apps.attachments.models import Attachment
 
 
 __all__ = ('Department',
@@ -100,6 +102,7 @@ class Requirement(models.Model):
     product = models.ForeignKey(Product, null=True, blank=True)
     version = models.ForeignKey(Version, null=True, blank=True)
     update = models.DateTimeField(auto_now=True, auto_now_add=True)
+    attachment = generic.GenericRelation(Attachment)
 
     def __str__(self):
         return u'%s - %s' % (self.type.name, self.pk)

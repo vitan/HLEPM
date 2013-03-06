@@ -7,6 +7,7 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.views.decorators.http import require_POST
+from django.conf import settings
 from django.contrib.auth.models import User
 
 from HLEPM.apps.attachments.views import add_attachment, update_attachment
@@ -45,8 +46,7 @@ def requirement(request, template_name='track/requirement.html'):
         'parent_types': RequirementType.objects.exclude(name__iexact='prd'),
         'filter_url': add_search_url_for_model(Requirement),
         'author_url': add_search_url_for_model(User),
-        #TODO (weizhou) Need to talk about parent input autocomplete.
-        'attachment_url': add_search_url_for_model(Attachment),
+        'media_url': settings.MEDIA_URL,
     }
 
     return render_to_response(template_name, context_data, context_instance=RequestContext(request))
@@ -110,14 +110,19 @@ def requirement_update(request, requirement_id, template_name=""):
             return response.ajax_response()
         else:
             pass
+
+
 def project(request, template_name='track/project.html'):
+
     context_data = {}
+
     return render_to_response(template_name, context_data, context_instance=RequestContext(request))
 
 
 #The following is a test function now, will improve it later.
 @login_required
 def risk(request, template_name='track/risk.html'):
+
     context_data = {
         'subtitle': 'Risk',
         'Impacts': Impact.objects.all(),
@@ -128,6 +133,7 @@ def risk(request, template_name='track/risk.html'):
         }
 
     return render_to_response(template_name, context_data, context_instance=RequestContext(request))
+
 
 @require_POST
 @login_required

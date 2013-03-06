@@ -19,6 +19,7 @@ HLEPM.table = {
                     var td_child = row.children('td[field="'+key+'"]');
                     if( td_child.children().length ) {
                         td_child.children('a').html(val);
+                        td_child.children('a[name="attachment"]').attr('href', $('.media_url').val()+val);
                     } else {
                         td_child.html(val);
                     }
