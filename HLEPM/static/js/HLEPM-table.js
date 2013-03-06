@@ -23,8 +23,8 @@ HLEPM.table = {
                         td_child.html(val);
                     }
                 });
-                HLEPM.ui.dateExtract(row.children('.start_date'));
-                HLEPM.ui.dateExtract(row.children('.target_date'));
+                HLEPM.ui.dateConvert(row.children('.start_date'));
+                HLEPM.ui.dateConvert(row.children('.target_date'));
                 $('tbody.contains').append('<tr>'+ row.html() + '</tr>');
             });
         }

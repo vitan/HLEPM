@@ -24,7 +24,7 @@ HLEPM.ui = {
         $(selector).closest('p').find(".filter").removeClass('classify-active');
         $(selector).addClass('classify-active');
     },
-    dateExtract:
+    dateConvert:
         function(selector) {
             var dateString = $(selector).html();
             if (dateString) {

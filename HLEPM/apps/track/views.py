@@ -46,7 +46,7 @@ def requirement(request, template_name='track/requirement.html'):
         'filter_url': add_search_url_for_model(Requirement),
         'author_url': add_search_url_for_model(User),
         #TODO (weizhou) Need to talk about parent input autocomplete.
-        'parent_url': add_search_url_for_model(Attachment),
+        'attachment_url': add_search_url_for_model(Attachment),
     }
 
     return render_to_response(template_name, context_data, context_instance=RequestContext(request))
