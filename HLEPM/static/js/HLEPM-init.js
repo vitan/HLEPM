@@ -39,12 +39,12 @@ HLEPM.bind = {
         function() {
             $("#add").live('click', function() {
                 HLEPM.ui.hideModal("#update");
-                HLEPM.ui.resetForm("#add-requirement");
                 HLEPM.ui.showModal("#new");
+                HLEPM.ui.resetForm("#add-requirement");
             });
             $(".close").live('click', function() {
-                HLEPM.ui.resetForm("#add-requirement");
                 HLEPM.ui.hideModal("#new");
+                HLEPM.ui.resetForm("#add-requirement");
             });
             $(".close2").live('click', function() {
                 HLEPM.ui.hideModal("#new");
