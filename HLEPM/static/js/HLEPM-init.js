@@ -17,7 +17,6 @@ HLEPM.init = {
         function() {
             HLEPM.bind.bindAddModal();
             HLEPM.bind.bindUpdateModal();
-            HLEPM.bind.bindAutoComplete();
             HLEPM.bind.bindDatePicker();
             HLEPM.bind.bindRequirementFilter();
             HLEPM.bind.bindParentListener();
@@ -40,7 +39,7 @@ HLEPM.bind = {
             $("#add").live('click', function() {
                 HLEPM.ui.hideModal("#update");
                 HLEPM.ui.showModal("#new");
-                HLEPM.ui.resetForm("#add-requirement");
+                HLEPM.editRequest.requirementAddFormRequest($(this));
             });
             $(".close").live('click', function() {
                 HLEPM.ui.hideModal("#new");
@@ -63,13 +62,11 @@ HLEPM.bind = {
             $(".requirement_number").live('click', function() {
                 HLEPM.ui.hideModal("#new");
                 HLEPM.ui.showModal("#update");
-                HLEPM.form.requirementFormFill($(this));
+                HLEPM.editRequest.requirementUpdateFormRequest($(this));
             });
         },
     bindAutoComplete:
         function() {
-            HLEPM.ui.autoComplete('.author');
-            HLEPM.ui.autoComplete('.parent');
             HLEPM.ui.autoComplete('.project-manager');
             HLEPM.ui.autoComplete('.reporter')
         },
@@ -86,17 +83,14 @@ HLEPM.bind = {
                 var field_value = $(this).attr('value');
                 HLEPM.bind.updateFilter(filter_field, field_value);
 
-                var select_fields = HLEPM.table.requirementModelSelectedFields();
-                var url = $('.filter_url').val();
-
                 var data = {
-                    select_fields: select_fields.join(','),
                     filters: $('.current_filter').val()
                 };
+                var url = $('.filter_url').val();
 
                 HLEPM.ajax.get(url, data, function(ajax_response){
                     if ( HLEPM.ajax.isSuccessful(ajax_response.rc) ){
-                        HLEPM.table.requirementTableFill(ajax_response.data.query_result);
+                        $('tbody.contains').html(ajax_response.data.query_result);
                     }
                 });
             });

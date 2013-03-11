@@ -26,8 +26,14 @@ VersionField = forms.ModelChoiceField(
 StartDateField = forms.DateTimeField(
     label=u"Start Date",
     required=False,
+    widget=forms.DateTimeInput(
+        format='%m/%d/%Y',
+    ),
 )
 TargetDateField = forms.DateTimeField(
     label=u"Target Date",
     required=False,
+    widget=forms.DateTimeInput(
+        format='%m/%d/%Y',
+    ),
 )

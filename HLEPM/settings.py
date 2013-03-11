@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     'HLEPM.apps.remind',
     'HLEPM.apps.attachments',
     'south',
+    'widget_tweaks',
 )
 
 # A sample logging configuration. The only tangible logging

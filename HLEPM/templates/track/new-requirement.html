@@ -5,7 +5,8 @@
     </div>
     <form class="form-horizontal" id="add-requirement" action="{% url requirement_add %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {% include "track/requirement-form-fields.html" %}
+        <div class="container">
+        </div>
         <div class="modal-footer">
             <input class="btn btn-primary" type="submit" value="Save"/>
             <input type="reset" data-dismiss="modal" class="btn close2" value="Close"/>

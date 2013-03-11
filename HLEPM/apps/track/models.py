@@ -108,6 +108,18 @@ class Requirement(models.Model):
         return u'%s - %s' % (self.type.name, self.pk)
     __unicode__ = __str__
 
+    def get_form_initial(self):
+        return {
+            'type': self.type,
+            'product': self.product,
+            'version': self.version,
+            'status': self.status,
+            'author': self.author,
+            'owner': self.owner,
+            'start_date': self.start_date,
+            'target_date': self.target_date,
+        }
+
 
 class Phase(DictBase):
     """Save the Phase of Project"""

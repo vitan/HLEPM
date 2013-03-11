@@ -6,9 +6,9 @@ from django.db.models.loading import get_model
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
-from django.template import RequestContext
+from django.template import loader, Context
 from django.views.decorators.http import require_GET
 
 from HLEPM.apps.common.views import AjaxResponseMixin
@@ -41,8 +41,8 @@ def add_search_url_for_model(model):
 
 @require_GET
 @login_required
-def search(request, app_label, module_name):
-    """Return a JSON data for frontend ajax search."""
+def search(request, app_label, module_name, template_name=''):
+    """Return a JSON data or a piece of HTML-wrapper data of that for frontend ajax search."""
 
     response = AjaxResponseMixin()
     if request.method == "GET":
@@ -52,19 +52,23 @@ def search(request, app_label, module_name):
 
         # TODO (weizhou) expected performance optimization. refer: memory_cache.
         filter = request.GET.get('filters', '')
-        select_fields = request.GET.get('select_fields', '')
-
         kwargs = generate_filter(filter)
-        select_fields = select_fields.split(',')
-
         data = model.objects.filter(**kwargs)
-        data = list(data.values(*select_fields))
+
+        if template_name:
+            template = loader.get_template(template_name)
+            data = template.render(Context({'object_list': data }))
+        else:
+            select_fields = request.GET.get('select_fields', '').split(',')
+            data = list(data.values(*select_fields))
+
 
         context = { 'query_result': data }
         return response.ajax_response(**context)
 
     else:
         pass
+
 
 def generate_filter(filter_str):
     """Cleaned up the frontend filter string to be django-readable data."""

@@ -1,0 +1,27 @@
+{% for obj in object_list %}
+<tr>
+    <td>
+        <a class="requirement_number" url="{% url requirement_update obj.id %}">{{ obj }}</a>
+    </td>
+    <td>
+        {% for attachment in obj.attachment.all %}
+        <a href="{{ attachment.attachment_file.url }}">{{ attachment.filename }}</a>
+        {% endfor %}
+    </td>
+    <td>{{ obj.author.username }}</td>
+    <td>
+        <a>{{ obj.status.name }}</a>
+    </td>
+    <td class="risk">
+        <a></a>
+    </td>
+    <td class="issue">
+        <a></a>
+    </td>
+    <td>{{ obj.owner.name }}</td>
+    <td>{% if obj.start_date %}{{ obj.start_date|date }}{% endif %}</td>
+    <td>{% if obj.target_date %}{{ obj.target_date|date }}{% endif %}</td>
+    <td class="AFD"></td>
+    <td class="time_left"></td>
+</tr>
+{% endfor %}

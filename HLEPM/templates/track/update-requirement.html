@@ -3,9 +3,10 @@
         <button data-dismiss="modal" class="close">×</button>
         <h3>Update BRD/MRD/PRD</h3>
     </div>
-    <form class="form-horizontal" id="update-requirement" action="/track/requirement/update/" method="POST" enctype="multipart/form-data">
+    <form class="form-horizontal" id="update-requirement" action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {% include "track/requirement-form-fields.html" %}
+        <div class="container">
+        </div>
         <div class="modal-footer">
             <input class="btn btn-primary" type="submit" value="Update"/>
             <input type="reset" data-dismiss="modal" class="btn close2" value="Close"/>

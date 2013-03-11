@@ -24,14 +24,6 @@ HLEPM.ui = {
         $(selector).closest('p').find(".filter").removeClass('classify-active');
         $(selector).addClass('classify-active');
     },
-    dateConvert:
-        function(selector) {
-            var dateString = $(selector).html();
-            if (dateString) {
-                var date = new Date(dateString);
-                $(selector).html((date.getMonth()+1) + '/' + date.getDate() + '/' + date.getFullYear());
-            }
-        },
     displayNewRisk:
         function(new_risk){
             var id = $('.line:first').attr('id')

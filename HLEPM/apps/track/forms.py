@@ -45,6 +45,11 @@ class RequirementForm(forms.Form):
     author = forms.CharField(
         label=u"Author",
     )
+    parent_type = forms.ModelChoiceField(
+        label=u"Parent Type",
+        queryset=RequirementType.objects.exclude(name__iexact='prd'),
+        empty_label=None,
+    )
     parent = forms.CharField(
         label="Parent",
         required=False,
