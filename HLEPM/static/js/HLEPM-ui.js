@@ -32,6 +32,15 @@ HLEPM.ui = {
                 $(selector).html((date.getMonth()+1) + '/' + date.getDate() + '/' + date.getFullYear());
             }
         },
+    displayNewRisk:
+        function(new_risk){
+            var id = $('.line:first').attr('id')
+            if(!id) {
+                $('#risk-issue-list').html(new_risk);
+            } else {
+            $(new_risk).insertBefore("#"+id);
+            }
+        },
     autoComplete:
         function(selector) {
             $(selector).autocomplete({

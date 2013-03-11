@@ -9,13 +9,13 @@
             <div class="control-group">
                 <label class="control-label" for="input01">Reporter</label>
                 <div class="controls">
-                    <input type="text"  name="reporter" class="input-xlarge reporter" id="input01" url="{{ reporter_url }}" field="username">
+                    <input type="text"  name="reporter" class="input-xlarge reporter" id="reporter" url="{{ reporter_url }}" field="username">
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="input01">Start Date</label>
+                <label class="control-label" for="input01" >Start Date</label>
                 <div class="controls">
-                    <input class="datePicker" name="start_date" type="text">
+                    <input class="datePicker" name="start_date" type="text" id="startDate">
                 </div>
             </div>
             <div class="control-group">
@@ -23,7 +23,7 @@
                 <div class="controls">
                     {% for impact in Impacts %}
                     <label class="radio inline">
-                        <input type="radio" value="{{ impact.pk }}" id="inlineCheckbox1" name="impact"> {{ impact.name }}
+                        <input type="radio" value="{{ impact.pk }}" id="impact" name="impact"> {{ impact.name }}
                     </label>
                     {% endfor %}
                 </div>
@@ -33,7 +33,7 @@
                 <div class="controls">
                     {% for response in Responses %}
                     <label class="radio inline">
-                        <input type="radio" value="{{ response.pk }}" id="inlineCheckbox1" name="response"> {{ response.name }}
+                        <input type="radio" value="{{ response.pk }}" id="response" name="response"> {{ response.name }}
                     </label>
                     {% endfor %}
                 </div>
@@ -43,7 +43,7 @@
                 <div class="controls">
                     {% for probability in Probabilities %}
                     <label class="radio inline">
-                        <input type="radio" value="{{ probability.pk }}" id="inlineCheckbox1" name="probability"> {{ probability.name }}
+                        <input type="radio" value="{{ probability.pk }}" id="probability" name="probability"> {{ probability.name }}
                     </label>
                     {% endfor %}
                 </div>
@@ -53,7 +53,7 @@
                 <div class="controls">
                     {% for status in statuss %}
                     <label class="radio inline">
-                        <input type="radio" value="{{ status.pk }}" id="inlineCheckbox1" name="status"> {{ status.name }}
+                        <input type="radio" value="{{ status.pk }}" id="status" name="status"> {{ status.name }}
                     </label>
                     {% endfor %}
                 </div>
@@ -61,7 +61,7 @@
             <div class="control-group">
                 <label class="control-label" for="input01">Target Date</label>
                 <div class="controls">
-                    <input class="datePicker" name="target_date" type="text">
+                    <input class="datePicker" name="target_date" type="text" id="targetDate">
                 </div>
             </div>
             <div class="control-group">

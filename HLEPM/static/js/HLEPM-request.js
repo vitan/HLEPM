@@ -21,6 +21,7 @@ HLEPM.editRequest = {
             HLEPM.ajax.post(url, data, function(response){
                  if ( HLEPM.ajax.isSuccessful(response.rc)){
                      HLEPM.ui.hideModal("#new");
+                     HLEPM.ui.displayNewRisk(response.data['new_risk']);
                  } else {
                      ;
                  }

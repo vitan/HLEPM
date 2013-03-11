@@ -1,0 +1,13 @@
+<div class="line" id="{{ latest_risk.pk }}">
+    <span>Reporter:</span> {{latest_risk.reporter}}
+    <span>Start Date:</span> {{ latest_risk.start_date|date:"m/d/Y" }}
+    <span>Target Date:</span> {{ latest_risk.target_date|date:"m/d/Y" }}
+    <span>impact:</span> {{ latest_risk.impact }}
+    <span>probability:</span> {{ latest_risk.probability }}
+    <span>Response:</span> {{ latest_risk.response }}
+    <span>Status:</span> {{ latest_risk.status }}
+    <a href="#" class="ico-show-all comments-btn" title="Show all" id="on">Comment</a>
+    <a href="#" class="ico-show-all comments-btn display-none" title="Show all" id="off">Comment</a>
+    <a href="#myModal2" data-toggle="modal" class="btn btn-mini btn-success fl-right">Edit</a>
+    <p>{{ latest_risk.description }}</p>
+</div>

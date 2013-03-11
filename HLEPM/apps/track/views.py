@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render_to_response, get_object_or_404
+from django.template.loader import render_to_string
 from django.template import RequestContext
 from django.views.decorators.http import require_POST
 from django.conf import settings
@@ -130,6 +131,7 @@ def risk(request, template_name='track/risk.html'):
         'Probabilities': Probability.objects.all(),
         'statuss': RiskStatus.objects.all(),
         'reporter_url': add_search_url_for_model(User),
+        'risks':Risk.objects.all(),
         }
 
     return render_to_response(template_name, context_data, context_instance=RequestContext(request))
@@ -137,8 +139,7 @@ def risk(request, template_name='track/risk.html'):
 
 @require_POST
 @login_required
-def risk_add(request, template_name=''):
-
+def risk_add(request, template_name='track/display-new-risk.html'):
     response = AjaxResponseMixin()
     if request.method == 'POST':
         form = RiskForm(request.POST)
@@ -146,6 +147,8 @@ def risk_add(request, template_name=''):
             data = form.cleaned_data
             risk_obj = Risk(**data)
             risk_obj.save()
-            return response.ajax_response()
+            new_risk_html = render_to_string(template_name, {'latest_risk': risk_obj})
+            new_risk_data = {'new_risk': new_risk_html}
+            return response.ajax_response(new_risk_data)
         else:
             pass
