@@ -65,5 +65,17 @@ HLEPM.editRequest = {
                     }
                 }
             });
+        },
+    paginatorEvent:
+        function() {
+            $("div.pagination a").live('click', function(event) {
+                event.preventDefault();
+                var url = $(this).attr('href');
+                HLEPM.ajax.get(url, "", function(ajax_response){
+                    if ( HLEPM.ajax.isSuccessful(ajax_response.rc) ){
+                        $('td.contains').html(ajax_response.data.query_result);
+                    }
+                });
+            });
         }
 }

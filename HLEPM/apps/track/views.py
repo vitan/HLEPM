@@ -2,8 +2,8 @@
 
 from django.http import HttpResponse, Http404
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import ObjectDoesNotExist
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext, loader, Context
 from django.template.loader import render_to_string

@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 
+from django.db.models.loading import get_model
+from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, Http404
 from django.contrib.auth.decorators import login_required
-from django.db.models.loading import get_model
-from django.contrib.auth.models import User
-from django.core.exceptions import ObjectDoesNotExist
-from django.core.exceptions import PermissionDenied
-from django.shortcuts import get_object_or_404
+from django.template import loader, RequestContext
+from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.core.urlresolvers import reverse
-from django.template import loader, Context
 from django.views.decorators.http import require_GET
+from django.contrib.auth.models import User
 
 from HLEPM.apps.common.views import AjaxResponseMixin
 
@@ -56,8 +56,20 @@ def search(request, app_label, module_name, template_name=''):
         data = model.objects.filter(**kwargs)
 
         if template_name:
+            paginator = Paginator(data, 20)
+            try:
+                page = int(request.GET.get('page', '1'))
+            except ValueError:
+                page = 1
+
+            try:
+                reports = paginator.page(page)
+            except (EmptyPage, InvalidPage):
+                reports = paginator.page(paginator.num_pages)
+
             template = loader.get_template(template_name)
-            data = template.render(Context({'object_list': data }))
+            request_context = RequestContext(request, {'reports': reports })
+            data = template.render(request_context)
         else:
             select_fields = request.GET.get('select_fields', '').split(',')
             data = list(data.values(*select_fields))

@@ -90,7 +90,8 @@ HLEPM.bind = {
 
                 HLEPM.ajax.get(url, data, function(ajax_response){
                     if ( HLEPM.ajax.isSuccessful(ajax_response.rc) ){
-                        $('tbody.contains').html(ajax_response.data.query_result);
+                        $('td.contains').html(ajax_response.data.query_result);
+                        HLEPM.editRequest.paginatorEvent();
                     }
                 });
             });
