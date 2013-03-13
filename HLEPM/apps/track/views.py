@@ -35,7 +35,7 @@ __all__ = (
 
 
 @login_required
-def requirement(request, template_name='track/requirement.html'):
+def requirement(request, template_name='track/requirement/requirement.html'):
 
     form = RequirementForm()
     context_data = {
@@ -55,7 +55,7 @@ def requirement(request, template_name='track/requirement.html'):
 
 @require_http_methods(['GET', 'POST'])
 @login_required
-def requirement_add(request, template_name='track/requirement-form-fields.html'):
+def requirement_add(request, template_name='track/requirement/requirement-form-fields.html'):
     """Add a new requirements(BRD/MRD/PRD)."""
 
     response = AjaxResponseMixin()
@@ -96,7 +96,7 @@ def requirement_add(request, template_name='track/requirement-form-fields.html')
 
 @require_http_methods(['GET', 'POST'])
 @login_required
-def requirement_update(request, requirement_id, template_name="track/requirement-form-fields.html"):
+def requirement_update(request, requirement_id, template_name="track/requirement/requirement-form-fields.html"):
     """Update a requirements(BRD/MRD/PRD)."""
 
     response = AjaxResponseMixin()
@@ -136,7 +136,7 @@ def requirement_update(request, requirement_id, template_name="track/requirement
         return response.ajax_response(**context)
 
 
-def project(request, template_name='track/project.html'):
+def project(request, template_name='track/project/project.html'):
 
     context_data = {}
 
@@ -145,7 +145,7 @@ def project(request, template_name='track/project.html'):
 
 #The following is a test function now, will improve it later.
 @login_required
-def risk(request, template_name='track/risk.html'):
+def risk(request, template_name='track/risk/risk.html'):
 
     context_data = {
         'subtitle': 'Risk',
@@ -162,7 +162,7 @@ def risk(request, template_name='track/risk.html'):
 
 @require_POST
 @login_required
-def risk_add(request, template_name='track/display-new-risk.html'):
+def risk_add(request, template_name='track/risk/display-new-risk.html'):
     response = AjaxResponseMixin()
     if request.method == 'POST':
         form = RiskForm(request.POST)
