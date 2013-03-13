@@ -1,0 +1,18 @@
+<div class="line" id="{{ risk.pk }}">
+    <span>Reporter:</span> {{risk.reporter}}
+    <span>Start Date:</span> {{ risk.start_date|date:"m/d/Y" }}
+    <span>Target Date:</span> {{ risk.target_date|date:"m/d/Y" }}
+    <span>impact:</span> {{ risk.impact }}
+    <span>probability:</span> {{ risk.probability }}
+    <span>Response:</span> {{ risk.response }}
+    <span>Status:</span> {{ risk.status }}
+    <a href="#" class="ico-show-all comments-btn" title="Show all" id="on">Comment</a>
+    <a href="#" class="ico-show-all comments-btn display-none" title="Show all" id="off">Comment</a>
+    <a id="edit-risk-{{ risk.pk }}" data-toggle="modal" class="btn btn-mini btn-success fl-right edit-risk" url ="{% url risk_update risk.pk%}">Edit</a>
+    <p>{{ risk.description }}</p>
+    <table class="eso-table product-status-report">
+        <td class="display-none update-risk" id="update-{{ risk.pk }}">
+            {% include "track/risk/update-risk.html" %}
+        </td>
+    </table>
+</div>

@@ -30,6 +30,7 @@ HLEPM.init = {
             HLEPM.bind.bindDatePicker();
             HLEPM.bind.bindAutoComplete();
             HLEPM.bind.submitNewRisk();
+            HLEPM.bind.updateRisk();
         },
 
 };
@@ -57,7 +58,13 @@ HLEPM.bind = {
                 HLEPM.ui.hideModal("#update");
             });
             $(".close2").live('click', function() {
-                HLEPM.ui.hideModal("#update");
+                var id = $(this).attr('id');
+                if ( id ){
+                    var id_num = id.split('-')[1];
+                    HLEPM.ui.hideModal("#update-"+id_num);
+                } else{
+                    HLEPM.ui.hideModal("#update");
+                }
             });
 
             $(".requirement_number").live('click', function() {
@@ -69,7 +76,7 @@ HLEPM.bind = {
     bindAutoComplete:
         function() {
             HLEPM.ui.autoComplete('.project-manager');
-            HLEPM.ui.autoComplete('.reporter')
+            HLEPM.ui.autoComplete('.reporter');
         },
     bindDatePicker:
         function() {
@@ -133,7 +140,23 @@ HLEPM.bind = {
             $('#submit-new-risk').live('click', function(){
                 HLEPM.editRequest.addOneRisk();
             });
-        }
+        },
+    updateRisk:
+        function() {
+            $('.edit-risk').live('click', function(){
+                HLEPM.editRequest.updateRiskFormRequest($(this));
+            });
+            $(".close2").live('click', function() {
+                var id = $(this).attr('id');
+                var id_num = id.split('-')[1];
+                HLEPM.ui.hideModal("#update-"+id_num);
+            });
+            $('.update-one-risk').live('click', function(){
+                var id = $(this).attr('id');
+                var id_num = id.split('-')[2];
+                HLEPM.editRequest.updateOneRisk(id_num);
+            });
+        },
 };
 
 $(document).ready(function() {

@@ -135,15 +135,6 @@ def requirement_update(request, requirement_id, template_name="track/requirement
         context = { 'update_form_html': data }
         return response.ajax_response(**context)
 
-
-def project(request, template_name='track/project/project.html'):
-
-    context_data = {}
-
-    return render_to_response(template_name, context_data, context_instance=RequestContext(request))
-
-
-#The following is a test function now, will improve it later.
 @login_required
 def risk(request, template_name='track/risk/risk.html'):
 
@@ -162,7 +153,7 @@ def risk(request, template_name='track/risk/risk.html'):
 
 @require_POST
 @login_required
-def risk_add(request, template_name='track/risk/display-new-risk.html'):
+def risk_add(request, template_name='track/risk/one-risk.html'):
     response = AjaxResponseMixin()
     if request.method == 'POST':
         form = RiskForm(request.POST)
@@ -170,8 +161,41 @@ def risk_add(request, template_name='track/risk/display-new-risk.html'):
             data = form.cleaned_data
             risk_obj = Risk(**data)
             risk_obj.save()
-            new_risk_html = render_to_string(template_name, {'latest_risk': risk_obj})
+            new_risk_html = render_to_string(template_name, {'risk': risk_obj})
             new_risk_data = {'new_risk': new_risk_html}
             return response.ajax_response(new_risk_data)
         else:
             pass
+
+@require_http_methods(['GET', 'POST'])
+@login_required
+def risk_update(request, risk_id, template_name='track/risk/update-risk.html'):
+    if request.method == 'GET':
+        response = AjaxResponseMixin()
+        risk_obj = get_object_or_404(Risk, pk=risk_id)
+        form = RiskForm(initial=risk_obj.get_form_initial())
+        old_risk_html = render_to_string(template_name,{'risk': risk_obj,
+                                         'form': form,
+                                         'statuss': RiskStatus.objects.all(),
+                                         'Impacts': Impact.objects.all(),
+                                         'Responses': Response.objects.all(),
+                                         'Probabilities': Probability.objects.all(),
+                                         'reporter_url': add_search_url_for_model(User),
+                                        },context_instance=RequestContext(request))
+
+        old_risk_data = {'old_risk': old_risk_html}
+        return response.ajax_response(old_risk_data)
+
+    elif request.method == 'POST':
+        response = AjaxResponseMixin()
+        form = RiskForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            risk_obj = Risk(pk=risk_id, **data)
+            risk_obj.save()
+            new_template_name = 'track/risk/one-risk.html'
+            new_risk_html = render_to_string(new_template_name, {'risk': risk_obj})
+            new_risk_data = {'update_risk': new_risk_html}
+        return response.ajax_response(new_risk_data)
+
+

@@ -33,6 +33,10 @@ HLEPM.ui = {
             $(new_risk).insertBefore("#"+id);
             }
         },
+    displayUpdateRisk:
+        function(id_num, update_risk){
+            $('#'+id_num).replaceWith(update_risk);
+        },
     autoComplete:
         function(selector) {
             $(selector).autocomplete({

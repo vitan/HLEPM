@@ -1,0 +1,63 @@
+{% load widget_tweaks %}
+<div class="update-risk">
+    <div class="modal-header">
+        <h3>Update</h3>
+    </div>
+    <div class="modal-body max-height450">
+        <form class="form-horizontal" id="update-risk-{{ risk.pk }}" action="{% url risk_update risk.pk %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="control-group">
+                <label class="control-label" for="input01">Reporter</label>
+                <div class="controls">
+                    {% render_field form.reporter class="input-xlarge reporter2" url=reporter_url field="username" %}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01" >Start Date</label>
+                <div class="controls">
+                    {% render_field form.start_date class="datePicker2" %}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Impact</label>
+                <div class="controls">
+                        {% render_field form.impact %}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Response</label>
+                <div class="controls">
+                        {% render_field form.response %}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Probability</label>
+                <div class="controls">
+                    {% render_field form.probability %}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Status</label>
+                <div class="controls">
+                    {% render_field form.status %}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">Target Date</label>
+                <div class="controls">
+                    {% render_field form.target_date class="datePicker2" %}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">Description</label>
+                <div class="controls">
+                    {% render_field form.description %}
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a class="btn btn-primary update-one-risk" id="update-risk-{{ risk.pk }}">Save</a>
+        <a data-dismiss="modal" class="btn close2" id="close2-{{ risk.pk }}">Close</a>
+    </div>
+</div>

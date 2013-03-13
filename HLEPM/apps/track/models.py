@@ -275,6 +275,18 @@ class Risk(models.Model):
     target_date = models.DateTimeField()
     description = models.CharField(max_length=1024)
 
+    def get_form_initial(self):
+        return {
+            'reporter': self.reporter,
+            'impact': self.impact,
+            'probability': self.probability,
+            'response': self.response,
+            'status': self.status,
+            'target_date': self.target_date,
+            'start_date': self.start_date,
+            'description': self.description,
+            }
+
     def __str__(self):
         return u'%s' % truncate_words(self.reporter.username, 15)
     __unicode__ = __str__

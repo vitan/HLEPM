@@ -19,12 +19,37 @@ HLEPM.editRequest = {
             var url = form.attr('action');
             var data = form.serialize();
             HLEPM.ajax.post(url, data, function(response){
-                 if ( HLEPM.ajax.isSuccessful(response.rc)){
+                if ( HLEPM.ajax.isSuccessful(response.rc)){
                      HLEPM.ui.hideModal("#new");
                      HLEPM.ui.displayNewRisk(response.data['new_risk']);
-                 } else {
+                } else {
                      ;
-                 }
+                }
+            });
+        },
+    updateOneRisk:
+        function(id_num){
+            var form = $("#update-risk-"+id_num);
+            var url = form.attr('action');
+            var data = form.serialize();
+            HLEPM.ajax.post(url, data, function(response){
+                if ( HLEPM.ajax.isSuccessful(response.rc)){
+                     HLEPM.ui.hideModal("#update-"+id_num);
+                     HLEPM.ui.displayUpdateRisk(id_num, response.data['update_risk'])
+                }
+            });
+        },
+    updateRiskFormRequest:
+        function(selector){
+            var url = selector.attr('url');
+            var id_num = selector.attr('id').split('-')[2]
+            HLEPM.ajax.get(url, '', function(response){
+                if ( HLEPM.ajax.isSuccessful(response.rc)){
+                    $('#update-'+id_num).html(response.data['old_risk']);
+                    HLEPM.ui.showModal('#update-'+id_num);
+                    HLEPM.ui.autoComplete('.reporter2');
+                    HLEPM.ui.pickingDate(".datePicker2");
+                }
             });
         },
     requirementAddFormRequest:
