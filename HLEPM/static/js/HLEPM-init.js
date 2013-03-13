@@ -19,6 +19,7 @@ HLEPM.init = {
             HLEPM.bind.bindUpdateModal();
             HLEPM.bind.bindDatePicker();
             HLEPM.bind.bindRequirementFilter();
+            HLEPM.bind.bindRequirementOrder();
             HLEPM.bind.bindParentListener();
             HLEPM.editRequest.addOneRequirement();
             HLEPM.editRequest.updateOneRequirement();
@@ -86,14 +87,7 @@ HLEPM.bind = {
                 var data = {
                     filters: $('.current_filter').val()
                 };
-                var url = $('.filter_url').val();
-
-                HLEPM.ajax.get(url, data, function(ajax_response){
-                    if ( HLEPM.ajax.isSuccessful(ajax_response.rc) ){
-                        $('td.contains').html(ajax_response.data.query_result);
-                        HLEPM.editRequest.paginatorEvent();
-                    }
-                });
+                HLEPM.editRequest.dataTableRequest(data);
             });
         },
     updateFilter:
@@ -108,6 +102,20 @@ HLEPM.bind = {
 
                 //update current filter
                 $('.current_filter').val(filter);
+        },
+    bindRequirementOrder:
+        function() {
+            $('.order').live('click', function() {
+                //HLEPM.ui.orderToggle($(this));
+                var order = $(this).attr('field');
+                order = (order.indexOf('-')==0 ? order.substring(1) : '-' + order);
+                $(this).attr('field', order);
+                var data = {
+                    filters: $('.current_filter').val(),
+                    orders: order
+                };
+                HLEPM.editRequest.dataTableRequest(data);
+            });
         },
     bindParentListener:
         function() {

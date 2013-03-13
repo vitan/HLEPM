@@ -52,8 +52,11 @@ def search(request, app_label, module_name, template_name=''):
 
         # TODO (weizhou) expected performance optimization. refer: memory_cache.
         filter = request.GET.get('filters', '')
-        kwargs = generate_filter(filter)
-        data = model.objects.filter(**kwargs)
+        order_fields = request.GET.get('orders', '')
+        if order_fields:
+            order_fields = order_fields.split(',')
+        filter_kwargs = generate_filter(filter)
+        data = model.objects.filter(**filter_kwargs).order_by(*order_fields)
 
         if template_name:
             paginator = Paginator(data, 20)

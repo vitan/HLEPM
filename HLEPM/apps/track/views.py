@@ -45,7 +45,7 @@ def requirement(request, template_name='track/requirement.html'):
         'statuss': RequirementStatus.objects.all(),
         'owners': RequirementOwner.objects.all(),
         'form': form,
-        'filter_url': add_search_url_for_model(Requirement),
+        'search_url': add_search_url_for_model(Requirement),
         'parent_url': add_search_url_for_model(Attachment),
         'author_url': add_search_url_for_model(User),
     }

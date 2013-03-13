@@ -66,6 +66,16 @@ HLEPM.editRequest = {
                 }
             });
         },
+    dataTableRequest:
+        function(data) {
+            var url = $('.search_url').val();
+            HLEPM.ajax.get(url, data, function(ajax_response){
+                if ( HLEPM.ajax.isSuccessful(ajax_response.rc) ){
+                    $('tbody.container').html(ajax_response.data.query_result);
+                    HLEPM.editRequest.paginatorEvent();
+                }
+            });
+        },
     paginatorEvent:
         function() {
             $("div.pagination a").live('click', function(event) {
@@ -73,7 +83,7 @@ HLEPM.editRequest = {
                 var url = $(this).attr('href');
                 HLEPM.ajax.get(url, "", function(ajax_response){
                     if ( HLEPM.ajax.isSuccessful(ajax_response.rc) ){
-                        $('td.contains').html(ajax_response.data.query_result);
+                        $('tbody.container').html(ajax_response.data.query_result);
                     }
                 });
             });
