@@ -15,7 +15,7 @@
         <input class="display-none current_filter" value=""/>
         <p class="clear">
         <a class="btn btn-danger new-query">Type</a>
-        <a class="filter" field="type__id">All</a>
+        <a class="filter click-trigger" field="type__id">All</a>
         {% for type in types %}
         <a class="filter" value="{{ type.id }}" field="type__id">{{ type.name }} ({{ type.requirement_set.count }})</a>
         {% endfor %}
@@ -23,7 +23,7 @@
         <div class="line"></div>
         <p class="clear">
         <a class="btn btn-danger new-query">Product</a>
-        <a class="filter" field="product__id">All</a>
+        <a class="filter classify-active" field="product__id">All</a>
         {% for product in products %}
         <a class="filter" value="{{ product.id }}" field="product__id">{{ product.name }} ({{ product.requirement_set.count }})</a>
         {% endfor %}
@@ -31,6 +31,7 @@
         <div class="line"></div>
         <p class="clear">
         <a class="btn btn-danger new-query">Status</a>
+        <a class="filter classify-active" field="status__id">All</a>
         {% for status in statuss %}
         <a class="filter" value="{{ status.id }}" field="status__id">{{ status.name }} ({{ status.requirement_set.count }})</a>
         {% endfor %}
@@ -38,6 +39,7 @@
         <div class="line"></div>
         <p class="clear">
         <a class="btn btn-danger new-query">Owner</a>
+        <a class="filter classify-active" field="owner__id">All</a>
         {% for owner in owners %}
         <a class="filter" value="{{ owner.id }}" field="owner__id">{{ owner.name }} ({{ owner.requirement_set.count }})</a>
         {% endfor %}

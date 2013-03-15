@@ -23,6 +23,7 @@ HLEPM.init = {
             HLEPM.bind.bindParentListener();
             HLEPM.editRequest.addOneRequirement();
             HLEPM.editRequest.updateOneRequirement();
+            HLEPM.bind.initialTrigger();
         },
     riskHome:
         function(){
@@ -81,6 +82,10 @@ HLEPM.bind = {
     bindDatePicker:
         function() {
             HLEPM.ui.pickingDate(".datePicker");
+        },
+    initialTrigger:
+        function() {
+            $('a.click-trigger').trigger('click');
         },
     bindRequirementFilter:
         function() {
