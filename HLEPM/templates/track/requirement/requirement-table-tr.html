@@ -1,0 +1,24 @@
+<tr>
+    <td>
+        <a class="requirement_number" url="{% url requirement_update report.id %}">{{ report }}</a>
+    </td>
+    <td>
+        {% for attachment in report.attachment.all %}
+        <a href="{{ attachment.attachment_file.url }}" class="{{ report.type.name|lower }}">{{ attachment.filename }}</a>
+        {% endfor %}
+    </td>
+    <td>{{ report.author.username }}</td>
+    <td>
+        <a title="{{ report.status }}">{{ report.status.name }}</a>
+    </td>
+    <td class="risk">
+        <a></a>
+    </td>
+    <td class="issue">
+        <a></a>
+    </td>
+    <td>{{ report.owner.name }}</td>
+    <td>{% if report.start_date %}{{ report.start_date|date }}{% endif %}</td>
+    <td>{% if report.target_date %}{{ report.target_date|date }}{% endif %}</td>
+    <td class="AFD"></td>
+</tr>

@@ -7,6 +7,7 @@ HLEPM.editRequest = {
                 complete: function(response) {
                     if ( HLEPM.ajax.isSuccessful(response.rc) ) {
                         HLEPM.ui.hideModal("#new");
+                        $('tbody.container').prepend(response.data.latest_added);
                     } else {
                         ;
                     }

@@ -47,7 +47,9 @@ def requirement(request, template_name='track/requirement/requirement.html'):
 
 @require_http_methods(['GET', 'POST'])
 @login_required
-def requirement_add(request, template_name='track/requirement/requirement-form-fields.html'):
+def requirement_add(request,
+                    template_form='track/requirement/requirement-form-fields.html',
+                    template_tr='track/requirement/requirement-table-tr.html'):
     """Add a new requirements(BRD/MRD/PRD)."""
 
     response = AjaxResponseMixin()
@@ -71,12 +73,17 @@ def requirement_add(request, template_name='track/requirement/requirement-form-f
                     response
                 )
 
-            return response.ajax_response()
+            template = loader.get_template(template_tr)
+            request_context = RequestContext(request, {'report': requirement_obj })
+            data = template.render(request_context)
+            context = { 'latest_added': data }
+            return response.ajax_response(**context)
         else:
             pass
+
     elif request.method == 'GET':
         form = RequirementForm()
-        template = loader.get_template(template_name)
+        template = loader.get_template(template_form)
         data = template.render(Context({
             'form': form,
             'parent_url': add_search_url_for_model(Attachment),

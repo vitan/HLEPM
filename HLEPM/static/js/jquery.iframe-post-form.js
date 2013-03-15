@@ -61,8 +61,8 @@
 
                     if (options.json)
                     {
-                        //TODO (weizhou) I don't know why I got the <pre ...>{I am desired json data}</pre> from server.
-                        returnReponse = $.parseJSON(response.children('pre').html());
+                        //TODO (weizhou) I don't know why I got the <pre ...>{desired json data}</pre> from server.
+                        returnReponse = $.parseJSON(response.children('pre').text());
                     }
 
                     else
