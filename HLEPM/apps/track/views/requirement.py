@@ -95,7 +95,10 @@ def requirement_add(request,
 
 @require_http_methods(['GET', 'POST'])
 @login_required
-def requirement_update(request, requirement_id, template_name="track/requirement/requirement-form-fields.html"):
+def requirement_update(request,
+                       requirement_id,
+                       template_name="track/requirement/requirement-form-fields.html",
+                       template_tr='track/requirement/requirement-table-tr.html'):
     """Update a requirements(BRD/MRD/PRD)."""
 
     response = AjaxResponseMixin()
@@ -119,7 +122,11 @@ def requirement_update(request, requirement_id, template_name="track/requirement
                     response
                 )
 
-            return response.ajax_response()
+            template = loader.get_template(template_tr)
+            request_context = RequestContext(request, {'report': requirement_obj })
+            data = template.render(request_context)
+            context = { 'latest_updated': data }
+            return response.ajax_response(**context)
         else:
             pass
     elif request.method == 'GET':

@@ -86,6 +86,9 @@ HLEPM.editRequest = {
                 complete: function(response) {
                     if ( HLEPM.ajax.isSuccessful(response.rc) ) {
                         HLEPM.ui.hideModal("#update");
+                        var id = $(response.data.latest_updated).attr('id');
+                        var update_html = $(response.data.latest_updated).html();
+                        $('tbody.container #'+id).html(update_html);
                     } else {
                         ;
                     }
