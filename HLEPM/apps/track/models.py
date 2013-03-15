@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.utils.text import truncate_words
+from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.contrib.auth.models import User
 
@@ -103,6 +104,8 @@ class Requirement(models.Model):
     version = models.ForeignKey(Version, null=True, blank=True)
     update = models.DateTimeField(auto_now=True, auto_now_add=True)
     attachment = generic.GenericRelation(Attachment)
+    risk = generic.GenericRelation('Risk')
+    issue = generic.GenericRelation('Issue')
 
     def __str__(self):
         return u'%s - %s' % (self.type.name, self.pk)
@@ -266,6 +269,9 @@ class RiskStatus(DictBase):
 class Risk(models.Model):
     """Save the risk of Requirement&Project."""
 
+    content_type = models.ForeignKey(ContentType)
+    object_id = models.PositiveIntegerField()
+    content_object = generic.GenericForeignKey('content_type', 'object_id')
     reporter = models.ForeignKey(User)
     impact = models.ForeignKey(Impact)
     probability = models.ForeignKey(Probability)
@@ -303,6 +309,9 @@ class IssueStatus(DictBase):
 class Issue(models.Model):
     """Save the issue of Reuqirement&Project."""
 
+    content_type = models.ForeignKey(ContentType)
+    object_id = models.PositiveIntegerField()
+    content_object = generic.GenericForeignKey('content_type', 'object_id')
     reporter = models.ForeignKey(User)
     impact = models.ForeignKey(Impact)
     priority = models.ForeignKey(Priority)
