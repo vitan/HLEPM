@@ -13,6 +13,7 @@
     <div class="classify">
         <input class="display-none search_url" value="{{ search_url }}"/>
         <input class="display-none current_filter" value=""/>
+        <input class="display-none current_order" value=""/>
         <p class="clear">
         <a class="btn btn-danger new-query">Type</a>
         <a class="filter click-trigger" field="type__id">All</a>
@@ -62,6 +63,17 @@
             <tr class="display-none" id="update">
                 <td>
                     {% include "track/requirement/update-requirement.html" %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <select class="chzn-select w100 num-per-page" tabindex="6">
+                        <option value="10" selected="selected">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                        records per page
                 </td>
             </tr>
             <tr>

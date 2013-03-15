@@ -59,7 +59,8 @@ def search(request, app_label, module_name, template_name=''):
         data = model.objects.filter(**filter_kwargs).order_by(*order_fields)
 
         if template_name:
-            paginator = Paginator(data, 20)
+            num_per_page = request.GET.get('num_per_page', 20)
+            paginator = Paginator(data, num_per_page)
             try:
                 page = int(request.GET.get('page', '1'))
             except ValueError:

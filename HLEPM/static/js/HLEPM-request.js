@@ -96,7 +96,13 @@ HLEPM.editRequest = {
             });
         },
     dataTableRequest:
-        function(data) {
+        function(extra_data) {
+            var data = {
+                filters: $('.current_filter').val(),
+                orders: $('.current_order').val(),
+                num_per_page: $('.num-per-page').val()
+            };
+            $.extend(data, extra_data);
             var url = $('.search_url').val();
             HLEPM.ajax.get(url, data, function(ajax_response){
                 if ( HLEPM.ajax.isSuccessful(ajax_response.rc) ){

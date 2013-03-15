@@ -21,6 +21,7 @@ HLEPM.init = {
             HLEPM.bind.bindRequirementFilter();
             HLEPM.bind.bindRequirementOrder();
             HLEPM.bind.bindParentListener();
+            HLEPM.bind.bindNumPerPageSetting();
             HLEPM.editRequest.addOneRequirement();
             HLEPM.editRequest.updateOneRequirement();
             HLEPM.bind.initialTrigger();
@@ -95,11 +96,7 @@ HLEPM.bind = {
                 var filter_field = $(this).attr('field');
                 var field_value = $(this).attr('value');
                 HLEPM.bind.updateFilter(filter_field, field_value);
-
-                var data = {
-                    filters: $('.current_filter').val()
-                };
-                HLEPM.editRequest.dataTableRequest(data);
+                HLEPM.editRequest.dataTableRequest();
             });
         },
     updateFilter:
@@ -118,15 +115,17 @@ HLEPM.bind = {
     bindRequirementOrder:
         function() {
             $('.order').live('click', function() {
-                //HLEPM.ui.orderToggle($(this));
                 var order = $(this).attr('field');
                 order = (order.indexOf('-')==0 ? order.substring(1) : '-' + order);
                 $(this).attr('field', order);
-                var data = {
-                    filters: $('.current_filter').val(),
-                    orders: order
-                };
-                HLEPM.editRequest.dataTableRequest(data);
+                $('.current_order').val(order);
+                HLEPM.editRequest.dataTableRequest();
+            });
+        },
+    bindNumPerPageSetting:
+        function() {
+            $('.num-per-page').live('change', function() {
+                HLEPM.editRequest.dataTableRequest();
             });
         },
     bindParentListener:
