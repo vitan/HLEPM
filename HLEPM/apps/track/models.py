@@ -107,6 +107,10 @@ class Requirement(models.Model):
     risk = generic.GenericRelation('Risk')
     issue = generic.GenericRelation('Issue')
 
+    @property
+    def high_probability_risk(self):
+        return self.risk.filter(probability__order=1)
+
     def __str__(self):
         return u'%s - %s' % (self.type.name, self.pk)
     __unicode__ = __str__
