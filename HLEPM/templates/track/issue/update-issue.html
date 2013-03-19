@@ -1,10 +1,10 @@
 {% load widget_tweaks %}
-<div class="update-risk">
+<div class="update-issue">
     <div class="modal-header">
         <h3>Update</h3>
     </div>
     <div class="modal-body max-height450">
-        <form class="form-horizontal" id="update-risk-{{ risk.pk }}" action="{% url risk_update risk.pk %}" method="POST" enctype="multipart/form-data">
+        <form class="form-horizontal" id="update-issue-{{ issue.pk }}" action="{% url issue_update issue.pk %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="control-group">
                 <label class="control-label" for="input01">Reporter<h class="risk-issue-red"> *</h></label>
@@ -29,9 +29,9 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">Response<h class="risk-issue-red"> *</h></label>
+                <label class="control-label">Mitigation<h class="risk-issue-red"> *</h></label>
                 <div class="controls">
-                    {% for radio in form.response %}
+                    {% for radio in form.mitigation %}
                         <label class="radio inline">
                             {{ radio.tag }}{{ radio.choice_label }}
                         </label>
@@ -39,9 +39,9 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">Probability<h class="risk-issue-red"> *</h></label>
+                <label class="control-label">Priority<h class="risk-issue-red"> *</h></label>
                 <div class="controls">
-                    {% for radio in form.probability %}
+                    {% for radio in form.priority %}
                         <label class="radio inline">
                             {{ radio.tag }}{{ radio.choice_label }}
                         </label>
@@ -73,7 +73,7 @@
         </form>
     </div>
     <div class="modal-footer">
-        <a class="btn btn-primary update-one-risk" id="update-risk-{{ risk.pk }}">Save</a>
-        <a data-dismiss="modal" class="btn close2" id="close2-{{ risk.pk }}">Close</a>
+        <a class="btn btn-primary update-one-issue" id="update-issue-{{ issue.pk }}">Save</a>
+        <a data-dismiss="modal" class="btn close2" id="close2-{{ issue.pk }}">Close</a>
     </div>
 </div>

@@ -16,6 +16,7 @@ __all__ = ('Department',
            'IssueStatus',
            'Member',
            'MemberType',
+           'Mitigation',
            'Phase',
            'Priority',
            'Probability',
@@ -240,6 +241,11 @@ class Impact(DictBase):
         return u'%s' % truncate_words(self.name, 15)
     __unicode__ = __str__
 
+class Mitigation(DictBase):
+
+    def __str__(self):
+        return u'%s' % truncate_words(self.name, 15)
+    __unicode__ = __str__
 
 class Response(DictBase):
 
@@ -318,14 +324,27 @@ class Issue(models.Model):
     content_object = generic.GenericForeignKey('content_type', 'object_id')
     reporter = models.ForeignKey(User)
     impact = models.ForeignKey(Impact)
+    mitigation = models.ForeignKey(Mitigation)
     priority = models.ForeignKey(Priority)
     status = models.ForeignKey(IssueStatus)
     start_date = models.DateTimeField()
-    dur_date = models.DateTimeField()
+    target_date = models.DateTimeField()
     description = models.CharField(max_length=1024)
 
+    def get_form_initial(self):
+        return {
+            'reporter': self.reporter,
+            'impact': self.impact,
+            'mitigation': self.mitigation,
+            'priority': self.priority,
+            'status': self.status,
+            'target_date': self.target_date,
+            'start_date': self.start_date,
+            'description': self.description,
+            }
+
     def __str__(self):
-        return u'%s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.reporter.username, 15)
     __unicode__ = __str__
 
 

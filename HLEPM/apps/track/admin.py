@@ -6,6 +6,7 @@ from HLEPM.apps.track.models import Department, Section
 from HLEPM.apps.track.models import Impact
 from HLEPM.apps.track.models import Issue, IssueStatus
 from HLEPM.apps.track.models import Member, MemberType
+from HLEPM.apps.track.models import Mitigation
 from HLEPM.apps.track.models import Phase
 from HLEPM.apps.track.models import Project, ProjectStatus, ProjectOwner, ProjectType
 from HLEPM.apps.track.models import Priority
@@ -26,6 +27,7 @@ __all__ = (
     'IssueStatusAdmin',
     'MemberAdmin',
     'MemberTypeAdmin',
+    'MitigationAdmin',
     'PhaseAdmin',
     'PriorityAdmin',
     'ProbabilityAdmin',
@@ -158,6 +160,13 @@ class MemberTypeAdmin(admin.ModelAdmin):
 
 admin.site.register(MemberType, MemberTypeAdmin)
 
+class MitigationAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'order')
+    search_fields = ['name',]
+    ordering = ['name',]
+
+admin.site.register(Mitigation,MitigationAdmin)
 
 class StakeholderAdmin(admin.ModelAdmin):
 
@@ -263,7 +272,7 @@ class IssueAdmin(admin.ModelAdmin):
                     'priority',
                     'status',
                     'start_date',
-                    'dur_date',
+                    'target_date',
                    )
     search_fields = ['status']
     ordering = ['status']

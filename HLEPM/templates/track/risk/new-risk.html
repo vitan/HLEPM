@@ -7,19 +7,19 @@
         <form class="form-horizontal" id="add-risk" action="{% url risk_add app_label module_name pk %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="control-group">
-                <label class="control-label" for="input01">Reporter</label>
+                <label class="control-label" for="input01">Reporter<span class="risk-issue-red"> *</span></label>
                 <div class="controls">
                     <input type="text"  name="reporter" class="input-xlarge reporter" id="reporter" url="{{ reporter_url }}" field="username">
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="input01" >Start Date</label>
+                <label class="control-label" for="input01" >Start Date<span class="risk-issue-red"> *</span></label>
                 <div class="controls">
                     <input class="datePicker" name="start_date" type="text" id="startDate">
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">Impact</label>
+                <label class="control-label">Impact<span class="risk-issue-red"> *</span></label>
                 <div class="controls">
                     {% for impact in Impacts %}
                     <label class="radio inline">
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">Response</label>
+                <label class="control-label">Response<span class="risk-issue-red"> *</span></label>
                 <div class="controls">
                     {% for response in Responses %}
                     <label class="radio inline">
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">Probability</label>
+                <label class="control-label">Probability<span class="risk-issue-red"> *</span></label>
                 <div class="controls">
                     {% for probability in Probabilities %}
                     <label class="radio inline">
@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">Status</label>
+                <label class="control-label">Status<span class="risk-issue-red"> *</span></label>
                 <div class="controls">
                     {% for status in statuss %}
                     <label class="radio inline">
@@ -59,15 +59,15 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="input01">Target Date</label>
+                <label class="control-label" for="input01">Target Date<span class="risk-issue-red"> *</span></label>
                 <div class="controls">
                     <input class="datePicker" name="target_date" type="text" id="targetDate">
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="input01">Description</label>
+                <label class="control-label" for="input01">Description<span class="risk-issue-red"> *</span></label>
                 <div class="controls">
-                    <input type="text" name="description" id="id_description">
+                    <textarea name="description" id="id_description" cols="1" rows="1"></textarea>
                 </div>
             </div>
         </form>

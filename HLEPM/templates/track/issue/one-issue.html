@@ -1,0 +1,18 @@
+<div class="line" id="{{ issue.pk }}">
+    <span>Reporter:</span> {{issue.reporter}}
+    <span>Start Date:</span> {{ issue.start_date|date:"m/d/Y" }}
+    <span>Target Date:</span> {{ issue.target_date|date:"m/d/Y" }}
+    <span>impact:</span> {{ issue.impact }}
+    <span>Priority:</span> {{ issue.priority }}
+    <span>Mitigation:</span> {{ issue.mitigation }}
+    <span>Status:</span> {{ issue.status }}
+    <a href="#" class="ico-show-all comments-btn" title="Show all" id="on">Comment</a>
+    <a href="#" class="ico-show-all comments-btn display-none" title="Show all" id="off">Comment</a>
+    <a id="edit-issue-{{ issue.pk }}" data-toggle="modal" class="btn btn-mini btn-success fl-right edit-issue" url ="{% url issue_update issue.pk%}">Edit</a>
+    <p>{{ issue.description }}</p>
+    <table class="eso-table product-status-report">
+        <td class="display-none update-risk" id="update-{{ issue.pk }}">
+            {% include "track/issue/update-issue.html" %}
+        </td>
+    </table>
+</div>

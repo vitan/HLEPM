@@ -1,90 +1,40 @@
-<div class="tab-pane active" id="issue">
-    <div class="risk-issue">
-        <div class="modal hide fade display-none" id="myModal5">
-            <div class="modal-header">
-                <button data-dismiss="modal" class="close">×</button>
-                <h3>Creat</h3>
-            </div>
-            <div class="modal-body max-height450">
-                <p>
-                <form class="form-horizontal" action="" method="POST">
-                    <div class="control-group">
-                        <label class="control-label" for="input01">{{}}</label>
-                        <div class="controls">
-                            {{}}
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="input01">{{}}</label>
-                        <div class="controls">
-                            {{}}
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">{{}}</label>
-                        <div class="controls">
-                            {{}}
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">{{}}</label>
-                        <div class="controls">
-                            {{}}
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">{{}}</label>
-                        <div class="controls">
-                            {{}}
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">{{}}</label>
-                        <div class="controls">
-                            {{}}
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="input01">{{}}</label>
-                        <div class="controls">
-                            {{}}
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="input01">{{}}</label>
-                        <div class="controls">
-                            {{}}
-                        </div>
-                    </div>
-                </form>
-                </p>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-primary" href="#">Save</a>
-                <a data-dismiss="modal" class="btn" href="#">Close</a>
-            </div>
+{% extends "base.html" %}
+
+{% block title %} Issue {% endblock %}
+
+{% block content %}
+    <body>
+    <div class="content">
+        <div class="breadcrumb issueHome">
+            <ul class="pull-left">
+                <li><a href="#">BRD/MRD/PRD</a> <span class="divider">/</span>{{ subtitle }}</li>
+            </ul>
+            <div class="clear"></div>
         </div>
-        <div class="clear"><a class=" fl-right font-big" href="#myModal2" data-toggle="modal">+ Create</a></div>
-        <h3 class="clear">Issue</h3>
-        {% for %}
-        <div class="risk-issue-list">
-            <div class="line">
-                <span>{{}}</span>{{}}
-                <span>{{}}</span>{{}}
-                <span>{{}}</span>{{}}
-                <span>{{}}</span>{{}}
-                <span>{{}}</span>{{}}
-                <span>{{}}</span>{{}}
-                <span>{{}}</span>{{}}
-                <a href="#" class="ico-show-all comments-btn" title="Show all" id="on">Comment</a>
-                <a href="#" class="ico-show-all comments-btn display-none" title="Show all" id="off">Comment</a>
-                <a href="#myModal2" data-toggle="modal" class="btn btn-mini btn-success fl-right">Edit</a>
-            </div>
-            <p>{{}}</p>
+        <div class="pd10">
+
+            <section>
+                <ul class="nav nav-tabs" id="myTab" data-tabs="tabs">
+                    <li class=""><a href="#BRD">Risk<span class="small-text"></span></a></li>
+                    <li class="active"><a href="#issue"> Issue<span class="small-text"></span></a></li>
+                    <li class=""><a href="#history"> History</a></li>
+                    <li class=""><a href="#product"> Related Document</a></li>
+                </ul>
+                <div class="tab-pane active" id="issue">
+                    <div class="clear">
+                        <table class="eso-table product-status-report">
+                            <a class=" btn fl-right" href="#" id="add">+ Create</a>
+                            <td class="display-none" id="new">
+                                {% include "track/issue/new-issue.html" %}
+                            </td>
+                        </table>
+                        <td>
+                            {% include "track/issue/issue-list.html" %}
+                        </td>
+                    </div>
+                </div>
+            </section>
         </div>
-        <form class="" action="" method="POST">
-            {{}}
-        </form>
-        {% endfor %}
     </div>
-</div>
+    </body>
+{% endblock %}

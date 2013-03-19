@@ -478,6 +478,7 @@ ul.comment li ul{ margin-left:20px;}
 .light-red a{ margin-right:0px;}
 .light-green a{ margin-right:0px;}
 .red-brd{ color:#C00;}
+.risk-issue-red{ color:#C00; }
 .row-fluid{ margin-top:10px; margin-bottom:10px;}
 .dataTables_filter {}
 .dataTables_length select{ margin:0;}

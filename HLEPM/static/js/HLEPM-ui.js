@@ -30,16 +30,29 @@ HLEPM.ui = {
     },
     displayNewRisk:
         function(new_risk){
-            var id = $('.line:first').attr('id')
+            var id = $('.line:first').attr('id');
             if(!id) {
                 $('#risk-issue-list').html(new_risk);
             } else {
-            $(new_risk).insertBefore("#"+id);
+                $(new_risk).insertBefore("#"+id);
+            }
+        },
+    displayNewIssue:
+        function(new_issue){
+            var id = $('.line:first').attr('id');
+            if(!id) {
+                $('#issue-list').html(new_issue);
+            } else {
+                $(new_issue).insertBefore("#"+id);
             }
         },
     displayUpdateRisk:
         function(id_num, update_risk){
             $('#'+id_num).replaceWith(update_risk);
+        },
+    displayUpdateIssue:
+        function(id_num, update_issue){
+            $('#'+id_num).replaceWith(update_issue);
         },
     autoComplete:
         function(selector) {
