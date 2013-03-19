@@ -33,6 +33,8 @@ HLEPM.init = {
             HLEPM.bind.bindAutoComplete();
             HLEPM.bind.submitNewRisk();
             HLEPM.bind.updateRisk();
+            comments_initial();
+            HLEPM.bind.bindCommentButton();
         },
 
 };
@@ -137,6 +139,12 @@ HLEPM.bind = {
 
                 //value = 'type#fpk=#' + value;
                 //$(this).attr('extra_filter', value);
+            });
+        },
+    bindCommentButton:
+        function() {
+            $('a.comments-btn').live('click', function() {
+                HLEPM.ui.toggleModal($(this).siblings("#comments-all"));
             });
         },
     submitNewRisk:

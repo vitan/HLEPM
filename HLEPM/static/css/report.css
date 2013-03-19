@@ -446,24 +446,8 @@ ul.comment li ul{ margin-left:20px;}
     background-color:#FFFFFF!important;
 }
 
-/*-----------comments----*/
-.fieldset-vault{ border-width:1px 0 0 ; border-top:1px solid #ccc; padding:10px; padding-bottom:0px;}
-.legend-vault{ cursor:pointer;width:auto; border-style:none; font-size:13px; margin-bottom:auto;  padding-left:16px;}
-.img1{background: url("../images/arrow_expanded.png") no-repeat scroll 0 40% transparent;}
-.img2{background: url("../images/arrow_collapsed.png") no-repeat scroll 0 40% transparent;}
-.display-none{ display:none;}
-.comments div:last-child{ border-bottom:none;}
-.comments_list{ padding:10px; padding-left:20px; border-bottom: 1px solid #999; margin-bottom:10px; }
-.commentd{background:url("../images/ico_comment.png") no-repeat scroll 0 10px transparent;}
-.time{margin:0 10px; color:#999;}
-.blu{ color:#006699; cursor:pointer;}
-.comments_line{ padding-bottom:10px;   color: #999;}
-.input-xlarge{ margin-bottom:0px;}
-.clear{clear:both;}
-.comments_list ul li:first-child{border-top:1px dotted #CCC;padding-top:10px;}
-.comments_list ul li{ list-style:none;}
-.comment-textarea{ width:99%;}
 
+.display-none{ display:none;}
 
 .delete{background:url(../images/btn-delete.png) no-repeat 0px 2px; width:16px!important; line-height:18px; height:18px; display: inline-block; float:left; margin-left:5px;}
 .download{background:url(../images/downloads.png) no-repeat 0px 2px; width:16px!important; line-height:18px; height:18px; display: inline-block; float:left; margin-left:5px;}

@@ -1,0 +1,25 @@
+{% load widget_tweaks %}
+
+<div id="wrap_write_comment">
+    <div id="form-comment">
+        <form action="/comments/post/" method="post" class="comment-form">
+            {% csrf_token %}
+            <div class="display-none">
+                {% render_field form.name value=request.user %}
+                {% render_field form.email value=request.user.email %}
+                {% render_field form.url value=request.user.url %}
+                {{ form.honeypot }}
+                {{ form.content_type }}
+                {{ form.object_pk }}
+                {{ form.timestamp }}
+                {{ form.security_hash }}
+                {{ form.parent }}
+            </div>
+            {% render_field form.comment rows="3" %}
+            <p>
+                <input class="btn btn-primary comment-submit" type="submit" value="Comment"/>
+                <a href="#c0" class="btn cancel_reply">cancel reply</a>
+            </p>
+        </form>
+    </div>
+</div>

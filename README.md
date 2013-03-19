@@ -8,6 +8,7 @@ requirements
 ------------
 - South
 - django-widget-tweaks
+- django-threadedcomments
 
 
 development environment

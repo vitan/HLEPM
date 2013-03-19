@@ -15,6 +15,10 @@ HLEPM.ui = {
         function(selector) {
             $(selector).hide();
         },
+    toggleModal:
+        function(selector) {
+            $(selector).toggle();
+        },
     pickingDate:
         function(selector) {
             $(selector).datepicker();

@@ -138,15 +138,18 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'django.contrib.comments',
     'HLEPM.apps.common',
     'HLEPM.apps.track',
     'HLEPM.apps.search',
     'HLEPM.apps.remind',
     'HLEPM.apps.attachments',
+    'threadedcomments',
+    'django.contrib.comments',
     'south',
     'widget_tweaks',
 )
+
+COMMENTS_APP = 'threadedcomments'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
