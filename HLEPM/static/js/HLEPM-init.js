@@ -158,6 +158,17 @@ HLEPM.bind = {
                 HLEPM.ui.toggleModal($(this).siblings("#comments-all"));
             });
         },
+    bindDisabledToggle:
+        function() {
+            $('#id_type').change(function() {
+                if($(this).val() == 1) {
+                    HLEPM.ui.disableElement('.disabled-toggle');
+                }
+                else {
+                    HLEPM.ui.enbleElement('.disabled-toggle');
+                }
+            });
+        },
     submitNewRisk:
         function() {
             $('#submit-new-risk').live('click', function(){

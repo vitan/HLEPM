@@ -19,6 +19,14 @@ HLEPM.ui = {
         function(selector) {
             $(selector).toggle();
         },
+    disableElement:
+        function(selector) {
+            $(selector).attr('disabled', 'disabled');
+        },
+    enbleElement:
+        function(selector) {
+            $(selector).removeAttr('disabled');
+        },
     pickingDate:
         function(selector) {
             $(selector).datepicker();

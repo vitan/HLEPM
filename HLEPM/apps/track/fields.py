@@ -16,7 +16,8 @@ __all__ = (
 ProductField = forms.ModelChoiceField(
     label=u"Product",
     queryset=Product.objects.all(),
-    empty_label=None,
+    empty_label='-'*7,
+    required=False,
 )
 VersionField = forms.ModelChoiceField(
     label=u"Version",

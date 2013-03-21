@@ -35,7 +35,7 @@ class RequirementForm(forms.Form):
     type = forms.ModelChoiceField(
         label=u"Type",
         queryset=RequirementType.objects.all(),
-        empty_label=None,
+        empty_label='-'*7,
     )
     status = forms.ModelChoiceField(
         label=u"Status",
@@ -53,7 +53,8 @@ class RequirementForm(forms.Form):
     parent_type = forms.ModelChoiceField(
         label=u"Parent Type",
         queryset=RequirementType.objects.exclude(name__iexact='prd'),
-        empty_label=None,
+        empty_label='-'*7,
+        required=False,
     )
     parent = forms.CharField(
         label="Parent",

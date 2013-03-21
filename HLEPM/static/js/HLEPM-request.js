@@ -101,6 +101,7 @@ HLEPM.editRequest = {
                     HLEPM.ui.autoComplete('.author');
                     HLEPM.ui.autoComplete('.parent');
                     HLEPM.bind.bindDatePicker();
+                    HLEPM.bind.bindDisabledToggle();
                 }
             });
         },
@@ -114,6 +115,8 @@ HLEPM.editRequest = {
                     HLEPM.ui.autoComplete('.author');
                     HLEPM.ui.autoComplete('.parent');
                     HLEPM.bind.bindDatePicker();
+                    HLEPM.bind.bindDisabledToggle();
+                    $('#id_type').trigger('change');
                 }
             });
         },
