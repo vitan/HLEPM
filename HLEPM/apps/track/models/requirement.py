@@ -82,6 +82,10 @@ class Requirement(models.Model):
     def high_probability_risk(self):
         return self.risk.filter(probability__order=1)
 
+    @property
+    def high_impact_issue(self):
+        return self.issue.filter(impact__order=1)
+
     def __str__(self):
         return u'%s - %s' % (self.type.name, self.pk)
     __unicode__ = __str__

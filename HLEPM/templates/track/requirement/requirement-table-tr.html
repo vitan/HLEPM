@@ -19,7 +19,9 @@
         </a>
     </td>
     <td class="issue">
-        <a></a>
+        <a href="{% url issue report|app_label report|module_name report.pk %}">
+            {{ report.issue.count }}({{ report.high_impact_issue.0.impact }}{{ report.high_impact_issue.count }})
+        </a>
     </td>
     <td>{{ report.owner.name }}</td>
     <td>{% if report.start_date %}{{ report.start_date|date }}{% endif %}</td>
