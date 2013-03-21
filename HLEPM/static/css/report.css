@@ -546,3 +546,5 @@ i {
 .datatable tr td:last-child,.datatable tr th:last-child{ border-right:none;}
 .pd0{ padding:0px!important; padding-top:5px;}
 .datatable input,.datatable select{ padding:0px!important; margin-bottom:0px!important;}
+.datatable th{width: 9%;}
+.datatable th.name{width: 18%;}
