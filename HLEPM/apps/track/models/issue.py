@@ -65,7 +65,7 @@ class Issue(models.Model):
     description = models.CharField(max_length=1024)
 
     def __str__(self):
-        return u'%s' % truncate_words(self.name, 15)
+        return u'%s' % truncate_words(self.reporter.username, 15)
     __unicode__ = __str__
 
     class Meta:
