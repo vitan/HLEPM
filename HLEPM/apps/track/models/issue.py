@@ -68,5 +68,17 @@ class Issue(models.Model):
         return u'%s' % truncate_words(self.reporter.username, 15)
     __unicode__ = __str__
 
+    def get_form_initial(self):
+        return {
+            'reporter': self.reporter,
+            'impact': self.impact,
+            'mitigation': self.mitigation,
+            'priority': self.priority,
+            'status': self.status,
+            'target_date': self.target_date,
+            'start_date': self.start_date,
+            'description': self.description,
+            }
+
     class Meta:
         app_label = "track"
