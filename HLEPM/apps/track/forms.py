@@ -28,15 +28,13 @@ __all__ = (
 
 class RequirementForm(forms.Form):
 
-    product = ProductField
-    version = VersionField
-    start_date = StartDateField
-    target_date = TargetDateField
     type = forms.ModelChoiceField(
         label=u"Type",
         queryset=RequirementType.objects.all(),
         empty_label='-'*7,
     )
+    product = ProductField
+    version = VersionField
     status = forms.ModelChoiceField(
         label=u"Status",
         queryset=RequirementStatus.objects.all(),
@@ -60,6 +58,8 @@ class RequirementForm(forms.Form):
         label="Parent",
         required=False,
     )
+    start_date = StartDateField
+    target_date = TargetDateField
 
     def clean_author(self):
         data = self.cleaned_data['author']
@@ -70,6 +70,20 @@ class RequirementForm(forms.Form):
         data = self.cleaned_data['parent']
         #TODO (weizhou) which model should be used for query."
         pass
+
+    def clean(self):
+        cleaned_data = super(RequirementForm, self).clean()
+        type = cleaned_data.get("type")
+        product = cleaned_data.get("product")
+
+        if type.order != 1 and product is None:
+            msg = u"Invalid select(product must be required when type is not BRD."
+            self._errors["product"] = self.error_class([msg])
+
+            del cleaned_data['product']
+
+        return cleaned_data
+
 
 class RiskForm(forms.Form):
     reporter = forms.CharField(

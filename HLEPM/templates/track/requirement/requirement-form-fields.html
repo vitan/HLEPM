@@ -5,30 +5,45 @@
         <div class="control-group">
             <label class="control-label">{{ form.type.label }}<span class="red-brd"> *</span></label>
             <div class="controls">
-                {% render_field form.type class="chzn-select w100" tabindex="6" %}
+                <span class="red-brd">
+                    {{ form.type.errors }}
+                </span>
+                {% render_field form.type class="chzn-select w100 change-event" tabindex="6" %}
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">{{ form.product.label }}<span class="red-brd"> *</span></label>
+            <label class="control-label">{{ form.product.label }}<span class="red-brd product-label"> *</span></label>
             <div class="controls">
+                <span class="red-brd">
+                    {{ form.product.errors }}
+                </span>
                 {% render_field form.product class="chzn-select w100 disabled-toggle" tabindex="6" %}
             </div>
         </div>
         <div class="control-group">
             <label class="control-label">{{ form.version.label }}<span class="red-brd"> *</span></label>
             <div class="controls">
+                <span class="red-brd">
+                    {{ form.version.errors }}
+                </span>
                 {% render_field form.version class="chzn-select w100" tabindex="6" %}
             </div>
         </div>
         <div class="control-group">
             <label class="control-label">{{ form.status.label }}<span class="red-brd"> *</span></label>
             <div class="controls">
+                <span class="red-brd">
+                    {{ form.status.errors }}
+                </span>
                 {% render_field form.status class="chzn-select w100" tabindex="6" %}
             </div>
         </div>
         <div class="control-group">
             <label class="control-label">{{ form.author.label }}<span class="red-brd"> *</span></label>
             <div class="controls">
+                <span class="red-brd">
+                    {{ form.author.errors }}
+                </span>
                 {% render_field form.author class="input-xlarge w130 author" id="input2" field="username" url=author_url %}
             </div>
         </div>
@@ -37,12 +52,18 @@
         <div class="control-group">
             <label class="control-label">{{ form.owner.label }}<span class="red-brd"> *</span></label>
             <div class="controls">
+                <span class="red-brd">
+                    {{ form.owner.errors }}
+                </span>
                 {% render_field form.owner class="chzn-select w100" tabindex="6" %}
             </div>
         </div>
         <div class="control-group">
             <label class="control-label">{{ form.parent.label }}</label>
             <div class="controls">
+                <span class="red-brd">
+                    {{ form.parent.errors }}
+                </span>
                 {% render_field form.parent_type class="chzn-select w100 disabled-toggle" tabindex="6" %}
                 {% render_field form.parent class="input-xlarge w130 disabled-toggle parent" id="input2" field="attachment_file" url=parent_url %}
             </div>
@@ -50,12 +71,18 @@
         <div class="control-group">
             <label class="control-label">{{ form.start_date.label }}</label>
             <div class="controls">
+                <span class="red-brd">
+                    {{ form.start_date.errors }}
+                </span>
                 {% render_field form.start_date class="datePicker" %}
             </div>
         </div>
         <div class="control-group">
             <label class="control-label">{{ form.target_date.label }}</label>
             <div class="controls">
+                <span class="red-brd">
+                    {{ form.target_date.errors }}
+                </span>
                 {% render_field form.target_date class="datePicker" %}
             </div>
         </div>

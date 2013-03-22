@@ -78,8 +78,17 @@ def requirement_add(request,
             data = template.render(request_context)
             context = { 'latest_added': data }
             return response.ajax_response(**context)
+
         else:
-            pass
+            template = loader.get_template(template_form)
+            data = template.render(Context({
+                'form': form,
+                'parent_url': add_search_url_for_model(Attachment),
+                'author_url': add_search_url_for_model(User),
+            }))
+            response.update_errors({'invalid_form_html': data })
+            return response.ajax_response()
+
 
     elif request.method == 'GET':
         form = RequirementForm()
@@ -127,8 +136,17 @@ def requirement_update(request,
             data = template.render(request_context)
             context = { 'latest_updated': data }
             return response.ajax_response(**context)
+
         else:
-            pass
+            template = loader.get_template(template_name)
+            data = template.render(Context({
+                'form': form,
+                'parent_url': add_search_url_for_model(Attachment),
+                'author_url': add_search_url_for_model(User),
+            }))
+            response.update_errors({'invalid_form_html': data })
+            return response.ajax_response()
+
     elif request.method == 'GET':
         requirement_obj = get_object_or_404(Requirement, pk=requirement_id)
         form = RequirementForm(initial=requirement_obj.get_form_initial())

@@ -160,12 +160,14 @@ HLEPM.bind = {
         },
     bindDisabledToggle:
         function() {
-            $('#id_type').change(function() {
+            $('.change-event').change(function() {
                 if($(this).val() == 1) {
                     HLEPM.ui.disableElement('.disabled-toggle');
+                    HLEPM.ui.hideModal('.product-label');
                 }
                 else {
                     HLEPM.ui.enbleElement('.disabled-toggle');
+                    HLEPM.ui.showModal('.product-label');
                 }
             });
         },

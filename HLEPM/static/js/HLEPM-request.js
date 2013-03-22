@@ -9,7 +9,11 @@ HLEPM.editRequest = {
                         HLEPM.ui.hideModal("#new");
                         $('tbody.container').prepend(response.data.latest_added);
                     } else {
-                        ;
+                        $('#add-requirement .container').html(response.msg.invalid_form_html);
+                        HLEPM.ui.autoComplete('.author');
+                        HLEPM.ui.autoComplete('.parent');
+                        HLEPM.bind.bindDatePicker();
+                        HLEPM.bind.bindDisabledToggle();
                     }
                 }
             });
@@ -116,7 +120,7 @@ HLEPM.editRequest = {
                     HLEPM.ui.autoComplete('.parent');
                     HLEPM.bind.bindDatePicker();
                     HLEPM.bind.bindDisabledToggle();
-                    $('#id_type').trigger('change');
+                    $('.change-event').trigger('change');
                 }
             });
         },
@@ -132,7 +136,12 @@ HLEPM.editRequest = {
                         var update_html = $(response.data.latest_updated).html();
                         $('tbody.container #'+id).html(update_html);
                     } else {
-                        ;
+                        $('#update-requirement .container').html(response.msg.invalid_form_html);
+                        HLEPM.ui.autoComplete('.author');
+                        HLEPM.ui.autoComplete('.parent');
+                        HLEPM.bind.bindDatePicker();
+                        HLEPM.bind.bindDisabledToggle();
+                        $('#id_type').trigger('change');
                     }
                 }
             });
