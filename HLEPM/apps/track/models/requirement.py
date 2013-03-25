@@ -60,6 +60,10 @@ class Requirement(models.Model):
     """ An model for requirements record save."""
 
     author = models.ForeignKey(User)
+    name = models.CharField(max_length=64,
+                            null=True,
+                            blank=True,
+                           unique=True)
     start_date = models.DateTimeField(null=True,
                                      blank=True)
     target_date = models.DateTimeField(null=True,
@@ -91,7 +95,7 @@ class Requirement(models.Model):
     __unicode__ = __str__
 
     def get_form_initial(self):
-        return {
+        result = {
             'type': self.type,
             'product': self.product,
             'version': self.version,
@@ -101,6 +105,15 @@ class Requirement(models.Model):
             'start_date': self.start_date,
             'target_date': self.target_date,
         }
+        parent = self.requirement.all()
+        if parent.exists():
+            parent_list = parent.values_list('name', flat=True)
+            parent_type = parent[0].type
+            result.update({
+                'parent_type': parent_type,
+                'parent': ','.join(parent_list),
+            })
+        return result
 
     class Meta:
         app_label = "track"
