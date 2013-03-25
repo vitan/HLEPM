@@ -105,7 +105,7 @@ class RiskForm(forms.Form):
     description = forms.CharField(
         widget=forms.Textarea(attrs={ "cols":"1", "rows":"1" }),
         label="Description",
-        required=False,
+        required=True,
     )
     impact = forms.ModelChoiceField(
         widget=forms.RadioSelect,
@@ -146,7 +146,6 @@ class IssueForm(forms.Form):
     description = forms.CharField(
         widget=forms.Textarea(attrs={ "cols":"1", "rows":"1" }),
         label="Description",
-        required=False,
     )
     impact = forms.ModelChoiceField(
         widget=forms.RadioSelect,

@@ -59,8 +59,8 @@ class Risk(models.Model):
     probability = models.ForeignKey(Probability)
     response = models.ForeignKey(Response)
     status = models.ForeignKey(RiskStatus)
-    start_date = models.DateTimeField()
-    target_date = models.DateTimeField()
+    start_date = models.DateTimeField(null=True, blank=True)
+    target_date = models.DateTimeField(null=True, blank=True)
     description = models.CharField(max_length=1024)
 
     def get_form_initial(self):

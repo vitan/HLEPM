@@ -29,7 +29,9 @@ HLEPM.editRequest = {
                      HLEPM.ui.hideModal("#new");
                      HLEPM.ui.displayNewRisk(response.data['new_risk']);
                 } else {
-                     ;
+                     $('#new').html(response.msg['error_new_risk'])
+                     HLEPM.ui.autoComplete('.reporter');
+                     HLEPM.ui.pickingDate(".datePicker");
                 }
             });
         },
@@ -43,7 +45,9 @@ HLEPM.editRequest = {
                     HLEPM.ui.hideModal("#new");
                     HLEPM.ui.displayNewIssue(response.data['new_issue']);
                } else {
-                   ;
+                    $('#new').html(response.msg['error_new_issue'])
+                    HLEPM.ui.autoComplete('.reporter');
+                    HLEPM.ui.pickingDate(".datePicker");
                }
             });
         },

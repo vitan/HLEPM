@@ -60,8 +60,8 @@ class Issue(models.Model):
     mitigation = models.ForeignKey(Mitigation)
     priority = models.ForeignKey(Priority)
     status = models.ForeignKey(IssueStatus)
-    start_date = models.DateTimeField()
-    target_date = models.DateTimeField()
+    start_date = models.DateTimeField(null=True, blank=True)
+    target_date = models.DateTimeField(null=True, blank=True)
     description = models.CharField(max_length=1024)
 
     def __str__(self):

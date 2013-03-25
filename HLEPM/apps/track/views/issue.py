@@ -37,7 +37,6 @@ def issue(request, app_label, module_name, pk, template_name='track/issue/issue.
     context_data = {
         'subtitle': 'Issue',
         'Impacts': Impact.objects.all(),
-        'Responses': Response.objects.all(),
         'Priorities': Priority.objects.all(),
         'Mitigations': Mitigation.objects.all(),
         'statuss': IssueStatus.objects.all(),
@@ -67,7 +66,20 @@ def issue_add(request, app_label, module_name, pk, template_name='track/issue/on
             new_issue_data = {'new_issue': new_issue_html}
             return response.ajax_response(new_issue_data)
         else:
-            pass
+            template_name='track/issue/new-issue.html'
+            error_new_issue_html = render_to_string(template_name,
+                                                    {'form': form,
+                                                     'Impacts': Impact.objects.all(),
+                                                     'Priorities': Priority.objects.all(),
+                                                     'Mitigations': Mitigation.objects.all(),
+                                                     'statuss': IssueStatus.objects.all(),
+                                                     'reporter_url': add_search_url_for_model(User),
+                                                     'app_label': app_label,
+                                                     'module_name': module_name,
+                                                     'pk': pk}, context_instance=RequestContext(request))
+            error_new_issue_data = {'error_new_issue': error_new_issue_html}
+            response.update_errors(error_new_issue_data)
+            return response.ajax_response()
 
 
 @require_http_methods(['GET', 'POST'])

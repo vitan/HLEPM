@@ -62,7 +62,20 @@ def risk_add(request, app_label, module_name, pk, template_name='track/risk/one-
             new_risk_data = {'new_risk': new_risk_html}
             return response.ajax_response(new_risk_data)
         else:
-            pass
+            template_name='track/risk/new-risk.html'
+            error_new_risk_html = render_to_string(template_name,
+                                                   {'form': form,
+                                                    'Impacts': Impact.objects.all(),
+                                                    'Responses': Response.objects.all(),
+                                                    'Probabilities': Probability.objects.all(),
+                                                    'statuss': RiskStatus.objects.all(),
+                                                    'reporter_url': add_search_url_for_model(User),
+                                                    'app_label': app_label,
+                                                    'module_name': module_name,
+                                                    'pk': pk}, context_instance=RequestContext(request))
+            error_new_risk_data = {'error_new_risk': error_new_risk_html}
+            response.update_errors(error_new_risk_data)
+            return response.ajax_response()
 
 
 @require_http_methods(['GET', 'POST'])
