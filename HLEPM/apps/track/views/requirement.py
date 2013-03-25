@@ -37,9 +37,8 @@ def requirement(request, template_name='track/requirement/requirement.html'):
         'statuss': RequirementStatus.objects.all(),
         'owners': RequirementOwner.objects.all(),
         'form': form,
-        'search_url': add_search_url_for_model(Requirement),
-        'parent_url': add_search_url_for_model(Attachment),
-        'author_url': add_search_url_for_model(User),
+        'search_url': add_search_url_for_model(Requirement,
+                                               'track/requirement/requirement-table.html'),
     }
 
     return render_to_response(template_name, context_data, context_instance=RequestContext(request))
@@ -83,7 +82,7 @@ def requirement_add(request,
             template = loader.get_template(template_form)
             data = template.render(Context({
                 'form': form,
-                'parent_url': add_search_url_for_model(Attachment),
+                'parent_url': add_search_url_for_model(Requirement),
                 'author_url': add_search_url_for_model(User),
             }))
             response.update_errors({'invalid_form_html': data })
@@ -95,7 +94,7 @@ def requirement_add(request,
         template = loader.get_template(template_form)
         data = template.render(Context({
             'form': form,
-            'parent_url': add_search_url_for_model(Attachment),
+            'parent_url': add_search_url_for_model(Requirement),
             'author_url': add_search_url_for_model(User),
         }))
         context = {'add_form_html': data }
@@ -141,7 +140,7 @@ def requirement_update(request,
             template = loader.get_template(template_name)
             data = template.render(Context({
                 'form': form,
-                'parent_url': add_search_url_for_model(Attachment),
+                'parent_url': add_search_url_for_model(Requirement),
                 'author_url': add_search_url_for_model(User),
             }))
             response.update_errors({'invalid_form_html': data })
@@ -153,7 +152,7 @@ def requirement_update(request,
         template = loader.get_template(template_name)
         data = template.render(Context({
             'form': form,
-            'parent_url': add_search_url_for_model(Attachment),
+            'parent_url': add_search_url_for_model(Requirement),
             'author_url': add_search_url_for_model(User),
         }))
         context = { 'update_form_html': data }

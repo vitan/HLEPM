@@ -32,16 +32,18 @@ class QueryKeywordsMap:
     }
 
 
-def add_search_url_for_model(model):
-    return reverse('search', kwargs={
-        'app_label': model._meta.app_label,
-        'module_name': model._meta.module_name,
-    })
+def add_search_url_for_model(model, template_name=''):
+    kwargs = {
+            'app_label': model._meta.app_label,
+            'module_name': model._meta.module_name,
+            'template_name': template_name
+    }
+    return reverse('search', kwargs = kwargs)
 
 
 @require_GET
 @login_required
-def search(request, app_label, module_name, template_name=''):
+def search(request, app_label, module_name, template_name):
     """Return a JSON data or a piece of HTML-wrapper data of that for frontend ajax search."""
 
     response = AjaxResponseMixin()
