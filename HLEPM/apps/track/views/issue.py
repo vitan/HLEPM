@@ -13,16 +13,12 @@ from django.contrib.auth.models import User
 
 from HLEPM.apps.common.views import AjaxResponseMixin
 from HLEPM.apps.search.views import add_search_url_for_model
+from HLEPM.apps.track.models import Requirement
 from HLEPM.apps.track.models import Impact
-from HLEPM.apps.track.models import Probability
 from HLEPM.apps.track.models import Priority
-from HLEPM.apps.track.models import Risk
 from HLEPM.apps.track.models import Issue
-from HLEPM.apps.track.forms import RiskForm
 from HLEPM.apps.track.forms import IssueForm
 from HLEPM.apps.track.models import Mitigation
-from HLEPM.apps.track.models import Response
-from HLEPM.apps.track.models import RiskStatus
 from HLEPM.apps.track.models import IssueStatus
 
 __all__ = (
@@ -36,6 +32,7 @@ def issue(request, app_label, module_name, pk, template_name='track/issue/issue.
     content_type = ContentType.objects.get(app_label=app_label, model=module_name)
     context_data = {
         'subtitle': 'Issue',
+        'requirement': Requirement.objects.get(pk=pk),
         'Impacts': Impact.objects.all(),
         'Priorities': Priority.objects.all(),
         'Mitigations': Mitigation.objects.all(),

@@ -16,6 +16,7 @@ from HLEPM.apps.search.views import add_search_url_for_model
 from HLEPM.apps.track.models import Impact
 from HLEPM.apps.track.models import Probability
 from HLEPM.apps.track.models import Risk
+from HLEPM.apps.track.models import Requirement
 from HLEPM.apps.track.forms import RiskForm
 from HLEPM.apps.track.models import Response
 from HLEPM.apps.track.models import RiskStatus
@@ -31,6 +32,7 @@ def risk(request, app_label, module_name, pk, template_name='track/risk/risk.htm
     content_type = ContentType.objects.get(app_label=app_label, model=module_name)
     context_data = {
         'subtitle': 'Risk',
+        'requirement': Requirement.objects.get(pk=pk),
         'Impacts': Impact.objects.all(),
         'Responses': Response.objects.all(),
         'Probabilities': Probability.objects.all(),
