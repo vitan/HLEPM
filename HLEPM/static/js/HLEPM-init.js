@@ -45,6 +45,8 @@ HLEPM.init = {
             HLEPM.bind.bindAutoComplete();
             HLEPM.bind.submitNewIssue();
             HLEPM.bind.updateIssue();
+            comments_initial();
+            HLEPM.bind.bindCommentButton();
         },
 
 };
