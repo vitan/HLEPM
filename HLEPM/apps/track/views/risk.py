@@ -38,7 +38,7 @@ def risk(request, app_label, module_name, pk, template_name='track/risk/risk.htm
         'Probabilities': Probability.objects.all(),
         'statuss': RiskStatus.objects.all(),
         'reporter_url': add_search_url_for_model(User),
-        'risks':Risk.objects.filter(content_type=content_type, object_id=pk),
+        'reports':Risk.objects.filter(content_type=content_type, object_id=pk),
         'app_label': app_label,
         'module_name': module_name,
         'pk': pk,
@@ -61,7 +61,7 @@ def risk_add(request, app_label, module_name, pk, template_name='track/risk/one-
             risk_obj = Risk(**data)
             risk_obj.save()
             new_risk_html = render_to_string(template_name,
-                                             {'risk': risk_obj},
+                                             {'report': risk_obj},
                                             context_instance=RequestContext(request))
             new_risk_data = {'new_risk': new_risk_html}
             return response.ajax_response(new_risk_data)
@@ -89,7 +89,7 @@ def risk_update(request, risk_id, template_name='track/risk/update-risk.html'):
         response = AjaxResponseMixin()
         risk_obj = get_object_or_404(Risk, pk=risk_id)
         form = RiskForm(initial=risk_obj.get_form_initial())
-        old_risk_html = render_to_string(template_name,{'risk': risk_obj,
+        old_risk_html = render_to_string(template_name,{'report': risk_obj,
                                          'form': form,
                                          'statuss': RiskStatus.objects.all(),
                                          'Impacts': Impact.objects.all(),
@@ -113,7 +113,7 @@ def risk_update(request, risk_id, template_name='track/risk/update-risk.html'):
             risk_obj.save()
             new_template_name = 'track/risk/one-risk.html'
             new_risk_html = render_to_string(new_template_name,
-                                             {'risk': risk_obj},
+                                             {'report': risk_obj},
                                             context_instance=RequestContext(request))
             new_risk_data = {'update_risk': new_risk_html}
         return response.ajax_response(new_risk_data)

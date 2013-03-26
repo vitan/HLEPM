@@ -1,17 +1,17 @@
-<div class="line" id="{{ issue.pk }}">
-    <span>Reporter:</span> {{ issue.reporter }}
-    <span>Start Date:</span> {{ issue.start_date|date:"m/d/Y" }}
-    <span>Target Date:</span> {{ issue.target_date|date:"m/d/Y" }}
-    <span>impact:</span> {{ issue.impact }}
-    <span>Priority:</span> {{ issue.priority }}
-    <span>Mitigation:</span> {{ issue.mitigation }}
-    <span>Status:</span> {{ issue.status }}
+<div class="line" id="{{ report.pk }}">
+    <span>Reporter:</span> {{ report.reporter }}
+    <span>Start Date:</span> {{ report.start_date|date:"m/d/Y" }}
+    <span>Target Date:</span> {{ report.target_date|date:"m/d/Y" }}
+    <span>impact:</span> {{ report.impact }}
+    <span>Priority:</span> {{ report.priority }}
+    <span>Mitigation:</span> {{ report.mitigation }}
+    <span>Status:</span> {{ report.status }}
     <a href="#" class="ico-show-all comments-btn" title="Show all" id="on">Comment</a>
     <a href="#" class="ico-show-all comments-btn display-none" title="Show all" id="off">Comment</a>
-    <a id="edit-issue-{{ issue.pk }}" data-toggle="modal" class="btn btn-mini btn-success fl-right edit-issue" url ="{% url issue_update issue.pk%}">Edit</a>
-    <p>{{ issue.description }}</p>
+    <a id="edit-issue-{{ report.pk }}" data-toggle="modal" class="btn btn-mini btn-success fl-right edit-issue" url ="{% url issue_update report.pk%}">Edit</a>
+    <p>{{ report.description }}</p>
     <table class="eso-table product-status-report">
-        <td class="display-none update-risk" id="update-{{ issue.pk }}">
+        <td class="display-none update-risk" id="update-{{ report.pk }}">
             {% include "track/issue/update-issue.html" %}
         </td>
     </table>

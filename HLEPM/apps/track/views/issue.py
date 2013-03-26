@@ -38,7 +38,7 @@ def issue(request, app_label, module_name, pk, template_name='track/issue/issue.
         'Mitigations': Mitigation.objects.all(),
         'statuss': IssueStatus.objects.all(),
         'reporter_url': add_search_url_for_model(User),
-        'issues':Issue.objects.filter(content_type=content_type, object_id=pk),
+        'reports':Issue.objects.filter(content_type=content_type, object_id=pk),
         'app_label': app_label,
         'module_name': module_name,
         'pk': pk,
@@ -60,7 +60,7 @@ def issue_add(request, app_label, module_name, pk, template_name='track/issue/on
             issue_obj = Issue(**data)
             issue_obj.save()
             new_issue_html = render_to_string(template_name,
-                                              {'issue': issue_obj},
+                                              {'report': issue_obj},
                                               context_instance=RequestContext(request))
             new_issue_data = {'new_issue': new_issue_html}
             return response.ajax_response(new_issue_data)
@@ -88,7 +88,7 @@ def issue_update(request, issue_id, template_name='track/issue/update-issue.html
         response = AjaxResponseMixin()
         issue_obj = get_object_or_404(Issue, pk=issue_id)
         form = IssueForm(initial=issue_obj.get_form_initial())
-        old_issue_html = render_to_string(template_name,{'issue': issue_obj,
+        old_issue_html = render_to_string(template_name,{'report': issue_obj,
                                          'form': form,
                                          'statuss': IssueStatus.objects.all(),
                                          'Impacts': Impact.objects.all(),
@@ -111,7 +111,7 @@ def issue_update(request, issue_id, template_name='track/issue/update-issue.html
             issue_obj.save()
             new_template_name = 'track/issue/one-issue.html'
             new_issue_html = render_to_string(new_template_name,
-                                              {'issue': issue_obj},
+                                              {'report': issue_obj},
                                               context_instance=RequestContext(request))
             new_issue_data = {'update_issue': new_issue_html}
         return response.ajax_response(new_issue_data)

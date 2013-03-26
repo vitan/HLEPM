@@ -4,7 +4,7 @@
         <h3>Update</h3>
     </div>
     <div class="modal-body max-height450">
-        <form class="form-horizontal" id="update-issue-{{ issue.pk }}" action="{% url issue_update issue.pk %}" method="POST" enctype="multipart/form-data">
+        <form class="form-horizontal" id="update-issue-{{ report.pk }}" action="{% url issue_update report.pk %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="control-group">
                 <label class="control-label" for="input01">Reporter<h class="risk-issue-red"> *</h></label>
@@ -73,7 +73,7 @@
         </form>
     </div>
     <div class="modal-footer">
-        <a class="btn btn-primary update-one-issue" id="update-issue-{{ issue.pk }}">Save</a>
-        <a data-dismiss="modal" class="btn close2" id="close2-{{ issue.pk }}">Close</a>
+        <a class="btn btn-primary update-one-issue" id="update-issue-{{ report.pk }}">Save</a>
+        <a data-dismiss="modal" class="btn close2" id="close2-{{ report.pk }}">Close</a>
     </div>
 </div>

@@ -1,18 +1,18 @@
 {% load threadedcomments_tags %}
 
-<div class="line" id="{{ risk.pk }}">
-    <span>Reporter:</span> {{risk.reporter}}
-    <span>Start Date:</span> {{ risk.start_date|date:"m/d/Y" }}
-    <span>Target Date:</span> {{ risk.target_date|date:"m/d/Y" }}
-    <span>impact:</span> {{ risk.impact }}
-    <span>probability:</span> {{ risk.probability }}
-    <span>Response:</span> {{ risk.response }}
-    <span>Status:</span> {{ risk.status }}
+<div class="line" id="{{ report.pk }}">
+    <span>Reporter:</span> {{report.reporter}}
+    <span>Start Date:</span> {{ report.start_date|date:"m/d/Y" }}
+    <span>Target Date:</span> {{ report.target_date|date:"m/d/Y" }}
+    <span>impact:</span> {{ report.impact }}
+    <span>probability:</span> {{ report.probability }}
+    <span>Response:</span> {{ report.response }}
+    <span>Status:</span> {{ report.status }}
     <a href="#c0" class="ico-show-all comments-btn" title="Show all" id="on">Comment</a>
-    <a id="edit-risk-{{ risk.pk }}" data-toggle="modal" class="btn btn-mini btn-success fl-right edit-risk" url ="{% url risk_update risk.pk%}">Edit</a>
-    <p>{{ risk.description }}</p>
+    <a id="edit-risk-{{ report.pk }}" data-toggle="modal" class="btn btn-mini btn-success fl-right edit-risk" url ="{% url risk_update report.pk%}">Edit</a>
+    <p>{{ report.description }}</p>
     <table class="eso-table product-status-report">
-        <td class="display-none update-risk" id="update-{{ risk.pk }}">
+        <td class="display-none update-risk" id="update-{{ report.pk }}">
             {% include "track/risk/update-risk.html" %}
         </td>
     </table>
@@ -20,8 +20,8 @@
         <fieldset class="fieldset-vault wrap_comments">
             <legend class="legend-vault img1 display-none turn-off">Turn Off Comments</legend>
             <legend class="legend-vault img2 turn-on">Turn On Comments</legend>
-            {% render_comment_list for risk %}
+            {% render_comment_list for report %}
         </fieldset>
-        {% render_comment_form for risk %}
+        {% render_comment_form for report %}
     </section>
 </div>
