@@ -1,0 +1,17 @@
+<ul class="comments_list">
+    <li class="comment_li" id="c{{ comment.id }}">
+    <div class="comment">
+        <strong>{{ comment.user_name }}:</strong>
+        <span class="time">
+            {{ comment.submit_date|date:"Y-M-d H:i" }}
+        </span>
+        <span class="blu">
+            <a href="#c{{ comment.id }}" data-comment-id="{{ comment.id }}" class="comment_reply_link">Reply</a>
+        </span>
+        <div>
+            {{ comment.comment }}
+        </div>
+    </div>
+    <div class="comments_line"></div>
+    </li>
+</ul>

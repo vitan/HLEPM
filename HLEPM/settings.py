@@ -143,6 +143,7 @@ INSTALLED_APPS = (
     'HLEPM.apps.search',
     'HLEPM.apps.remind',
     'HLEPM.apps.attachments',
+    'HLEPM.apps.comments',
     'threadedcomments',
     'django.contrib.comments',
     'south',

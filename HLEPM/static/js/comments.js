@@ -34,13 +34,25 @@ function ajaxSubmitComment(selector) {
     var url = $(selector).attr('action');
     var data = $(selector).serialize();
 
-    //TODO (weizhou) How to solve that successful posted event lead to redirect page.
-    ////So I can't get the response, and I can't get the posted failed info.
     HLEPM.ajax.post(url, data, function(response){
-        ;
+        if ( HLEPM.ajax.isSuccessful(response.rc) ) {
+            var li = $(selector).closest('li.comment_li');
+            var section = $(selector).closest('section#comments-all');
+            if(li.length) {
+                //Insert nth-depth comment.
+                li.append(response.data.latest_added);
+            }
+            else {
+                //Insert one root_level comment.
+                var root_comment = section.find('.comments');
+                root_comment.append(response.data.latest_added);
+            }
+            //comments count + 1.
+            var count = parseInt(section.find('span.comments_count').text());
+            section.find('span.comments_count').text(count+1);
+            $('.cancel_reply').trigger('click');
+        }
     });
-
-    $('.cancel_reply').trigger('click');
 };
 
 function comments_initial() {
