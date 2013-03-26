@@ -1,5 +1,3 @@
-{% load object_fields %}
-
 <tr id="{{ report.id }}">
     <td>
         <a class="requirement_number" url="{% url requirement_update report.id %}">{{ report }}</a>
@@ -11,15 +9,15 @@
     </td>
     <td>{{ report.author.username }}</td>
     <td>
-        <a href="{% url risk report|app_label report|module_name report.pk %}" title="{{ report.status }}">{{ report.status.name }}</a>
+        <a href="{% url requirement_detail report.pk %}" title="{{ report.status }}">{{ report.status.name }}</a>
     </td>
     <td class="risk">
-        <a href="{% url risk report|app_label report|module_name report.pk %}">
+        <a href="{% url requirement_detail report.pk %}">
             {{ report.risk.count }}({{ report.high_probability_risk.0.probability }}{{ report.high_probability_risk.count }})
         </a>
     </td>
     <td class="issue">
-        <a href="{% url issue report|app_label report|module_name report.pk %}">
+        <a href="{% url requirement_detail report.pk %}">
             {{ report.issue.count }}({{ report.high_impact_issue.0.impact }}{{ report.high_impact_issue.count }})
         </a>
     </td>

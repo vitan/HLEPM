@@ -23,6 +23,7 @@ __all__ = (
     'requirement',
     'requirement_add',
     'requirement_update',
+    'requirement_detail',
 )
 
 
@@ -39,6 +40,18 @@ def requirement(request, template_name='track/requirement/requirement.html'):
         'form': form,
         'search_url': add_search_url_for_model(Requirement,
                                                'track/requirement/requirement-table.html'),
+    }
+
+    return render_to_response(template_name, context_data, context_instance=RequestContext(request))
+
+
+@login_required
+def requirement_detail(request, pk,
+                       template_name='track/requirement/requirement-detail.html'):
+
+    context_data = {
+        'subtitle': 'BRD/MRD/PRD',
+        'report': Requirement.objects.get(pk=pk),
     }
 
     return render_to_response(template_name, context_data, context_instance=RequestContext(request))

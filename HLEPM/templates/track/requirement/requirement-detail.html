@@ -1,19 +1,49 @@
-<div class="breadcrumb">
+{% extends "base.html" %}
+{% load object_fields %}
+
+{% block title %} Detail of {{ report.name }} {% endblock %}
+
+{%block content %}
+<div class="breadcrumb requirementDetail">
     <ul class="pull-left">
         <li>
-        <a href="#">BRD/MRD/PRD</a> <span class="divider">/</span>BRD Detail</li>
+        <a href="{% url requirement %}">{{ subtitle }}</a> <span class="divider">/</span>{{ report }}
+        </li>
     </ul>
     <div class="clear"></div>
 </div>
 <div class="pd10">
     <section>
         <ul class="nav nav-tabs" id="myTab" data-tabs="tabs">
-            <li class="active"><a href="#BRD">Risk ({{}})<span class="small-text">（Op {{}} High {{}}）</span></a></li>
-            <li class=""><a href="#issue"> Issue ({{}}) <span class="small-text">（Ope{{}} High {{}}）</span></a></li>
+            <li class="active">
+            <a href="{% url risk report|app_label report|module_name report.pk %}">
+                Risk({{ report.risk.count }})
+                <span class="small-text">(
+                    {{ report.open_status_risk.0.status }}
+                    {{ report.open_status_risk.count }}
+                    {{ report.high_probability_risk.0.probability }}
+                    {{ report.high_probability_risk.count }}
+                    )
+                </span>
+            </a>
+            </li>
+            <li class="">
+            <a href="{% url issue report|app_label report|module_name report.pk %}">
+                Issue({{ report.issue.count }})
+                <span class="small-text">(
+                    {{ report.open_status_issue.0.status }}
+                    {{ report.open_status_issue.count }}
+                    {{ report.high_impact_issue.0.impact }}
+                    {{ report.high_impact_issue.count }}
+                    )
+                </span>
+            </a>
+            </li>
             <li class=""><a href="#history"> History</a></li>
-            <li class=""><a href="#product"> Related Document ({{}})</a></li>
+            <li class=""><a href="#product"> Related Document ()</a></li>
         </ul>
-        <div class="tab-content">
+        <div class="tab-content container">
         </div>
     </section>
 </div>
+{% endblock %}

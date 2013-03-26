@@ -3,6 +3,8 @@ from django.conf.urls.defaults import patterns, include, url
 
 urlpatterns = patterns('HLEPM.apps.track.views',
     url(r'^requirement/$', 'requirement.requirement', name="requirement"),
+    url(r'^requirement/detail/(?P<pk>\d+)$', 'requirement.requirement_detail',
+        name="requirement_detail"),
     url(r'^requirement/add/$', 'requirement.requirement_add', name="requirement_add"),
     url(r'^requirement/update/(?P<requirement_id>[\d]+)$',
         'requirement.requirement_update', name="requirement_update"),

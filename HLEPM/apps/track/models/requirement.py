@@ -83,6 +83,14 @@ class Requirement(models.Model):
     issue = generic.GenericRelation('Issue')
 
     @property
+    def open_status_risk(self):
+        return self.risk.filter(status__order=1)
+
+    @property
+    def open_status_issue(self):
+        return self.issue.filter(status__order=1)
+
+    @property
     def high_probability_risk(self):
         return self.risk.filter(probability__order=1)
 
