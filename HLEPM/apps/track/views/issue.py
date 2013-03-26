@@ -59,7 +59,9 @@ def issue_add(request, app_label, module_name, pk, template_name='track/issue/on
             data.update(bind_object_data)
             issue_obj = Issue(**data)
             issue_obj.save()
-            new_issue_html = render_to_string(template_name, {'issue': issue_obj})
+            new_issue_html = render_to_string(template_name,
+                                              {'issue': issue_obj},
+                                              context_instance=RequestContext(request))
             new_issue_data = {'new_issue': new_issue_html}
             return response.ajax_response(new_issue_data)
         else:
@@ -108,6 +110,8 @@ def issue_update(request, issue_id, template_name='track/issue/update-issue.html
             issue_obj = Issue(pk=issue_id, **data)
             issue_obj.save()
             new_template_name = 'track/issue/one-issue.html'
-            new_issue_html = render_to_string(new_template_name, {'issue': issue_obj})
+            new_issue_html = render_to_string(new_template_name,
+                                              {'issue': issue_obj},
+                                              context_instance=RequestContext(request))
             new_issue_data = {'update_issue': new_issue_html}
         return response.ajax_response(new_issue_data)

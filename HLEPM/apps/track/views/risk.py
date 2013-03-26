@@ -60,7 +60,9 @@ def risk_add(request, app_label, module_name, pk, template_name='track/risk/one-
             data.update(bind_object_data)
             risk_obj = Risk(**data)
             risk_obj.save()
-            new_risk_html = render_to_string(template_name, {'risk': risk_obj})
+            new_risk_html = render_to_string(template_name,
+                                             {'risk': risk_obj},
+                                            context_instance=RequestContext(request))
             new_risk_data = {'new_risk': new_risk_html}
             return response.ajax_response(new_risk_data)
         else:
@@ -110,6 +112,8 @@ def risk_update(request, risk_id, template_name='track/risk/update-risk.html'):
             risk_obj = Risk(pk=risk_id, **data)
             risk_obj.save()
             new_template_name = 'track/risk/one-risk.html'
-            new_risk_html = render_to_string(new_template_name, {'risk': risk_obj})
+            new_risk_html = render_to_string(new_template_name,
+                                             {'risk': risk_obj},
+                                            context_instance=RequestContext(request))
             new_risk_data = {'update_risk': new_risk_html}
         return response.ajax_response(new_risk_data)

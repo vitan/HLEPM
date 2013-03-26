@@ -133,7 +133,9 @@ def comment_add(request, next=None, using=None,
         request = request
     )
 
-    data = render_to_string(template_name, {"comment": comment})
+    data = render_to_string(template_name,
+                            {"comment": comment},
+                            context_instance=RequestContext(request))
     context = {'latest_added': data }
     response = AjaxResponseMixin()
     return response.ajax_response(**context)
