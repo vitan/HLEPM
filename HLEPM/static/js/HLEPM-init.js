@@ -23,7 +23,6 @@ HLEPM.init = {
             HLEPM.bind.bindDatePicker();
             HLEPM.bind.bindRequirementFilter();
             HLEPM.bind.bindRequirementOrder();
-            HLEPM.bind.bindParentListener();
             HLEPM.bind.bindNumPerPageSetting();
             HLEPM.editRequest.addOneRequirement();
             HLEPM.editRequest.updateOneRequirement();
@@ -141,15 +140,11 @@ HLEPM.bind = {
                 HLEPM.editRequest.dataTableRequest();
             });
         },
-    bindParentListener:
+    bindParentTypeChange:
         function() {
-            $(".parent").focus(function() {
+            $(".parent-type").live('change', function() {
                 var value = $('.parent-type option:selected').val();
-                //TODO (weizhou) Here still have no good solution about type filter.
-                //Once solved, you can uncomment the following 2 lines.
-
-                //value = 'type#fpk=#' + value;
-                //$(this).attr('extra_filter', value);
+                $('.parent').attr('extra_filter', 'type__id#=#'+value);
             });
         },
     bindCommentButton:

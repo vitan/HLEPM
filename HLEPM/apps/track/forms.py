@@ -57,6 +57,7 @@ class RequirementForm(forms.Form):
     parent = forms.CharField(
         label="Parent",
         required=False,
+        help_text = 'Separate your parents by commas, please.',
     )
     start_date = StartDateField
     target_date = TargetDateField
@@ -67,9 +68,7 @@ class RequirementForm(forms.Form):
         return obj
 
     def clean_parent(self):
-        data = self.cleaned_data['parent']
-        #TODO (weizhou) which model should be used for query."
-        pass
+        return [p for p in self.cleaned_data['parent'].split(u',') if p]
 
     def clean(self):
         cleaned_data = super(RequirementForm, self).clean()
@@ -82,6 +81,18 @@ class RequirementForm(forms.Form):
 
             del cleaned_data['product']
 
+        parent_type = cleaned_data.get("parent_type")
+        parent_list = set()
+        for parent in cleaned_data.get("parent"):
+            try:
+                req_obj = Requirement.objects.get(name=parent.strip(),
+                                                  type=parent_type)
+                parent_list.add(req_obj)
+            except Requirement.DoesNotExist:
+                self._errors["parent"] = self.error_class(['Cannot find %s %s' %
+                                                           (parent_type, parent)])
+
+        cleaned_data['parent'] = parent_list
         return cleaned_data
 
 

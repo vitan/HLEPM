@@ -64,8 +64,9 @@
                 <span class="red-brd">
                     {{ form.parent.errors }}
                 </span>
-                {% render_field form.parent_type class="chzn-select w100 disabled-toggle" tabindex="6" %}
-                {% render_field form.parent class="input-xlarge w130 disabled-toggle parent" id="input2" field="name" url=parent_url %}
+                {% render_field form.parent_type class="chzn-select w100 disabled-toggle parent-type" tabindex="6" %}
+                {% render_field form.parent class="input-xlarge w230 disabled-toggle parent" id="input2" field="name" url=parent_url %}
+                {{ form.parent.help_text }}
             </div>
         </div>
         <div class="control-group">

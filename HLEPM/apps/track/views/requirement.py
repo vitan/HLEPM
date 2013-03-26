@@ -56,11 +56,12 @@ def requirement_add(request,
         form = RequirementForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            #TODO (weizhou) How to save the parent?
             data.pop('parent_type')
-            data.pop('parent')
+            parent_set = data.pop('parent')
             requirement_obj = Requirement(**data)
             requirement_obj.save()
+            for parent in parent_set:
+                requirement_obj.requirement.add(parent)
 
             #Save attachment
             if request.FILES:
@@ -114,11 +115,12 @@ def requirement_update(request,
         form = RequirementForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            #TODO (weizhou) How to update the parent?
             data.pop('parent_type')
-            data.pop('parent')
+            parent_set = data.pop('parent')
             requirement_obj = Requirement(pk=requirement_id, **data)
             requirement_obj.save()
+            for parent in parent_set:
+                requirement_obj.requirement.add(parent)
 
             #Update attachment
             if request.FILES:

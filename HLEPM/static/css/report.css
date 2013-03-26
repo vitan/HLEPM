@@ -448,6 +448,7 @@ ul.comment li ul{ margin-left:20px;}
 
 
 .display-none{ display:none;}
+.input-xlarge{ margin-bottom:0px;}
 
 .delete{background:url(../images/btn-delete.png) no-repeat 0px 2px; width:16px!important; line-height:18px; height:18px; display: inline-block; float:left; margin-left:5px;}
 .download{background:url(../images/downloads.png) no-repeat 0px 2px; width:16px!important; line-height:18px; height:18px; display: inline-block; float:left; margin-left:5px;}

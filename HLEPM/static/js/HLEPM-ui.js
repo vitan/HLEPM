@@ -67,7 +67,12 @@ HLEPM.ui = {
             $(selector).autocomplete({
                 source: function(request, response){
                             var field = $(selector).attr('field');
-                            var filter = field + '#like#' + request.term;
+                            var array = request.term.split(',');
+                            var term = array[array.length-1];
+                            if( term == '' ) {
+                                return;
+                            }
+                            var filter = field + '#like#' + term;
                             var extra_filter = $(selector).attr('extra_filter');
                             filter = (extra_filter? extra_filter+"," : "") + filter;
                             //data format:
@@ -90,7 +95,19 @@ HLEPM.ui = {
                                     }));
                                 }
                             });
-                        }
+                        },
+                focus: function(event, ui) {
+                            event.preventDefault();
+                            var array = $(selector).val().split(',');
+                            array[array.length-1] = ui.item.value;
+                            $(selector).val(array.join(','));
+                        },
+                select: function(event, ui) {
+                            event.preventDefault();
+                            var array = $(selector).val().split(',');
+                            array[array.length-1] = ui.item.value;
+                            $(selector).val(array.join(','));
+                        },
             });
         }
 }
