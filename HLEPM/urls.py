@@ -18,5 +18,5 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^comments/', include('django.contrib.comments.urls')),
+    url(r'^comments/', include('HLEPM.apps.comments.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
