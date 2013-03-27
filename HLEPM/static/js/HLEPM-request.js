@@ -46,8 +46,8 @@ HLEPM.editRequest = {
                     HLEPM.ui.displayNewIssue(response.data['new_issue']);
                } else {
                     $('#new').html(response.msg['error_new_issue'])
-                    HLEPM.ui.autoComplete('.reporter');
-                    HLEPM.ui.pickingDate(".datePicker");
+                    HLEPM.ui.autoComplete('.reporter2');
+                    HLEPM.ui.pickingDate(".datePicker2");
                }
             });
         },
@@ -76,6 +76,10 @@ HLEPM.editRequest = {
                 if ( HLEPM.ajax.isSuccessful(response.rc)){
                      HLEPM.ui.hideModal("#update-"+id_num);
                      HLEPM.ui.displayUpdateIssue(id_num, response.data['update_issue'])
+                } else {
+                    $('#update-'+id_num).html(response.msg['error_issue']);
+                    HLEPM.ui.autoComplete('.reporter2');
+                    HLEPM.ui.pickingDate(".datePicker2");
                 }
             });
         },
@@ -98,6 +102,18 @@ HLEPM.editRequest = {
             HLEPM.ajax.get(url, '', function(response){
                 if ( HLEPM.ajax.isSuccessful(response.rc)){
                     $('#new').html(response.data['new_risk_form']);
+                    HLEPM.ui.showModal('#new');
+                    HLEPM.ui.autoComplete('.reporter2');
+                    HLEPM.ui.pickingDate(".datePicker2");
+                }
+            });
+        },
+    newIssueFormRequest:
+        function(selector){
+            var url = selector.attr('url');
+            HLEPM.ajax.get(url, '', function(response){
+                if ( HLEPM.ajax.isSuccessful(response.rc)){
+                    $('#new').html(response.data['new_issue_form']);
                     HLEPM.ui.showModal('#new');
                     HLEPM.ui.autoComplete('.reporter2');
                     HLEPM.ui.pickingDate(".datePicker2");

@@ -39,7 +39,6 @@ HLEPM.init = {
         },
     issueHome:
         function(){
-            HLEPM.bind.bindAddModal();
             HLEPM.bind.bindDatePicker();
             HLEPM.bind.bindAutoComplete();
             HLEPM.bind.submitNewIssue();
@@ -184,6 +183,15 @@ HLEPM.bind = {
         },
     submitNewIssue:
         function() {
+            $("#add").live('click', function() {
+                HLEPM.editRequest.newIssueFormRequest($(this));
+            });
+            $(".close").live('click', function() {
+                HLEPM.ui.hideModal("#new");
+            });
+            $(".close2").live('click', function() {
+                HLEPM.ui.hideModal("#new");
+            });
             $('#submit-new-issue').live('click', function(){
                 HLEPM.editRequest.addOneIssue();
             });

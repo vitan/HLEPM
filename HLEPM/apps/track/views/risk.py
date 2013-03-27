@@ -13,13 +13,10 @@ from django.contrib.auth.models import User
 
 from HLEPM.apps.common.views import AjaxResponseMixin
 from HLEPM.apps.search.views import add_search_url_for_model
-from HLEPM.apps.track.models import Impact
-from HLEPM.apps.track.models import Probability
 from HLEPM.apps.track.models import Risk
 from HLEPM.apps.track.models import Requirement
 from HLEPM.apps.track.forms import RiskForm
-from HLEPM.apps.track.models import Response
-from HLEPM.apps.track.models import RiskStatus
+
 
 __all__ = (
     'risk',
@@ -33,10 +30,6 @@ def risk(request, app_label, module_name, pk, template_name='track/risk/risk.htm
     context_data = {
         'subtitle': 'Risk',
         'requirement': Requirement.objects.get(pk=pk),
-        'Impacts': Impact.objects.all(),
-        'Responses': Response.objects.all(),
-        'Probabilities': Probability.objects.all(),
-        'statuss': RiskStatus.objects.all(),
         'reporter_url': add_search_url_for_model(User),
         'reports':Risk.objects.filter(content_type=content_type, object_id=pk),
         'app_label': app_label,
@@ -69,10 +62,6 @@ def risk_add(request, app_label, module_name, pk, template_name='track/risk/one-
             template_name = 'track/risk/new-risk.html'
             error_new_risk_html = render_to_string(template_name,
                                                    {'form': form,
-                                                    'Impacts': Impact.objects.all(),
-                                                    'Responses': Response.objects.all(),
-                                                    'Probabilities': Probability.objects.all(),
-                                                    'statuss': RiskStatus.objects.all(),
                                                     'reporter_url': add_search_url_for_model(User),
                                                     'app_label': app_label,
                                                     'module_name': module_name,
@@ -85,10 +74,6 @@ def risk_add(request, app_label, module_name, pk, template_name='track/risk/one-
         form = RiskForm()
         new_risk_form_html = render_to_string(template_name,
                                               {'form': form,
-                                               'Impacts': Impact.objects.all(),
-                                               'Responses': Response.objects.all(),
-                                               'Probabilities': Probability.objects.all(),
-                                               'statuss': RiskStatus.objects.all(),
                                                'reporter_url': add_search_url_for_model(User),
                                                'app_label': app_label,
                                                'module_name': module_name,
@@ -106,10 +91,6 @@ def risk_update(request, risk_id, template_name='track/risk/update-risk.html'):
         form = RiskForm(initial=risk_obj.get_form_initial())
         old_risk_html = render_to_string(template_name,{'report': risk_obj,
                                          'form': form,
-                                         'statuss': RiskStatus.objects.all(),
-                                         'Impacts': Impact.objects.all(),
-                                         'Responses': Response.objects.all(),
-                                         'Probabilities': Probability.objects.all(),
                                          'reporter_url': add_search_url_for_model(User),
                                          },context_instance=RequestContext(request))
 
@@ -135,10 +116,6 @@ def risk_update(request, risk_id, template_name='track/risk/update-risk.html'):
         else:
             error_risk_html = render_to_string(template_name,{'report': risk_obj,
                                                'form': form,
-                                               'statuss': RiskStatus.objects.all(),
-                                               'Impacts': Impact.objects.all(),
-                                               'Responses': Response.objects.all(),
-                                               'Probabilities': Probability.objects.all(),
                                                'reporter_url': add_search_url_for_model(User),
                                                },context_instance=RequestContext(request))
             error_risk_data = {'error_risk': error_risk_html}

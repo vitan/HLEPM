@@ -23,9 +23,8 @@
                 <div class="tab-pane active" id="issue">
                     <div class="clear">
                         <table class="eso-table product-status-report">
-                            <a class=" btn fl-right" href="#" id="add">+ Create</a>
+                            <a class=" btn fl-right" id="add" url="{% url issue_add app_label module_name pk %}">+ Create</a>
                             <td class="display-none" id="new">
-                                {% include "track/issue/new-issue.html" %}
                             </td>
                         </table>
                         <td>

@@ -14,12 +14,9 @@ from django.contrib.auth.models import User
 from HLEPM.apps.common.views import AjaxResponseMixin
 from HLEPM.apps.search.views import add_search_url_for_model
 from HLEPM.apps.track.models import Requirement
-from HLEPM.apps.track.models import Impact
-from HLEPM.apps.track.models import Priority
 from HLEPM.apps.track.models import Issue
 from HLEPM.apps.track.forms import IssueForm
-from HLEPM.apps.track.models import Mitigation
-from HLEPM.apps.track.models import IssueStatus
+
 
 __all__ = (
     'issue',
@@ -33,10 +30,6 @@ def issue(request, app_label, module_name, pk, template_name='track/issue/issue.
     context_data = {
         'subtitle': 'Issue',
         'requirement': Requirement.objects.get(pk=pk),
-        'Impacts': Impact.objects.all(),
-        'Priorities': Priority.objects.all(),
-        'Mitigations': Mitigation.objects.all(),
-        'statuss': IssueStatus.objects.all(),
         'reporter_url': add_search_url_for_model(User),
         'reports':Issue.objects.filter(content_type=content_type, object_id=pk),
         'app_label': app_label,
@@ -46,7 +39,7 @@ def issue(request, app_label, module_name, pk, template_name='track/issue/issue.
     return render_to_response(template_name, context_data, context_instance=RequestContext(request))
 
 
-@require_POST
+@require_http_methods(['GET', 'POST'])
 @login_required
 def issue_add(request, app_label, module_name, pk, template_name='track/issue/one-issue.html'):
     content_type = ContentType.objects.get(app_label=app_label, model=module_name)
@@ -68,10 +61,6 @@ def issue_add(request, app_label, module_name, pk, template_name='track/issue/on
             template_name='track/issue/new-issue.html'
             error_new_issue_html = render_to_string(template_name,
                                                     {'form': form,
-                                                     'Impacts': Impact.objects.all(),
-                                                     'Priorities': Priority.objects.all(),
-                                                     'Mitigations': Mitigation.objects.all(),
-                                                     'statuss': IssueStatus.objects.all(),
                                                      'reporter_url': add_search_url_for_model(User),
                                                      'app_label': app_label,
                                                      'module_name': module_name,
@@ -79,6 +68,17 @@ def issue_add(request, app_label, module_name, pk, template_name='track/issue/on
             error_new_issue_data = {'error_new_issue': error_new_issue_html}
             response.update_errors(error_new_issue_data)
             return response.ajax_response()
+    elif request.method == 'GET':
+        template_name = 'track/issue/new-issue.html'
+        form = IssueForm()
+        new_issue_form_html = render_to_string(template_name,
+                                               {'form': form,
+                                                'reporter_url': add_search_url_for_model(User),
+                                                'app_label': app_label,
+                                                'module_name': module_name,
+                                                'pk': pk}, context_instance=RequestContext(request))
+        new_issue_form_data = {'new_issue_form': new_issue_form_html}
+        return response.ajax_response(new_issue_form_data)
 
 
 @require_http_methods(['GET', 'POST'])
@@ -90,9 +90,6 @@ def issue_update(request, issue_id, template_name='track/issue/update-issue.html
         form = IssueForm(initial=issue_obj.get_form_initial())
         old_issue_html = render_to_string(template_name,{'report': issue_obj,
                                          'form': form,
-                                         'statuss': IssueStatus.objects.all(),
-                                         'Impacts': Impact.objects.all(),
-                                         'Priority': Priority.objects.all(),
                                          'reporter_url': add_search_url_for_model(User),
                                         },context_instance=RequestContext(request))
 
@@ -114,4 +111,12 @@ def issue_update(request, issue_id, template_name='track/issue/update-issue.html
                                               {'report': issue_obj},
                                               context_instance=RequestContext(request))
             new_issue_data = {'update_issue': new_issue_html}
-        return response.ajax_response(new_issue_data)
+            return response.ajax_response(new_issue_data)
+        else:
+            error_issue_html = render_to_string(template_name,{'report': issue_obj,
+                                                'form': form,
+                                                'reporter_url': add_search_url_for_model(User),
+                                                },context_instance=RequestContext(request))
+            error_issue_data = {'error_issue': error_issue_html}
+            response.update_errors(error_issue_data)
+            return response.ajax_response()
