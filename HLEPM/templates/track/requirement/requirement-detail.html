@@ -4,7 +4,7 @@
 {% block title %} Detail of {{ report.name }} {% endblock %}
 
 {%block content %}
-<div class="breadcrumb requirementDetail">
+<div class="breadcrumb requirementDetailHome">
     <ul class="pull-left">
         <li>
         <a href="{% url requirement %}">{{ subtitle }}</a> <span class="divider">/</span>{{ report }}
@@ -16,7 +16,7 @@
     <section>
         <ul class="nav nav-tabs" id="myTab" data-tabs="tabs">
             <li class="active">
-            <a href="{% url risk report|app_label report|module_name report.pk %}">
+            <a class="click-trigger" href="{% url risk report|app_label report|module_name report.pk %}">
                 Risk({{ report.risk.count }})
                 <span class="small-text">(
                     {{ report.open_status_risk.0.status }}
@@ -40,9 +40,10 @@
             </a>
             </li>
             <li class=""><a href="#history"> History</a></li>
-            <li class=""><a href="#product"> Related Document ()</a></li>
+            <li class=""><a id="relatedDocumentRequest" href="#relatedDocument"> Related Document ()</a></li>
         </ul>
-        <div class="tab-content container">
+        <div class="tab-content">
+            {% include "track/requirement/requirement-related-document.html" %}
         </div>
     </section>
 </div>

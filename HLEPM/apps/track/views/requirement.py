@@ -51,6 +51,9 @@ def requirement_detail(request, pk,
 
     context_data = {
         'subtitle': 'BRD/MRD/PRD',
+        'search_url': add_search_url_for_model(Requirement,
+                                               'track/requirement/requirement-table.html'),
+        'filter': 'requirement__id#has#'+pk,
         'report': Requirement.objects.get(pk=pk),
     }
 

@@ -1,10 +1,8 @@
 {% load threadedcomments_tags %}
 
-<section class="mg-bottom display-none" id="comments-all">
-    <fieldset class="fieldset-vault wrap_comments">
-        <legend class="legend-vault img1 display-none turn-off">Turn Off Comments</legend>
-        <legend class="legend-vault img2 turn-on">Turn On Comments</legend>
-        {% render_comment_list for report %}
-    </fieldset>
-    {% render_comment_form for report %}
-</section>
+<fieldset class="fieldset-vault wrap_comments">
+    <legend class="legend-vault img1 display-none turn-off">Turn Off Comments</legend>
+    <legend class="legend-vault img2 turn-on">Turn On Comments</legend>
+    {% render_comment_list for report %}
+</fieldset>
+{% render_comment_form for report %}

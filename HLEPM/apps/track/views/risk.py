@@ -28,7 +28,6 @@ __all__ = (
 def risk(request, app_label, module_name, pk, template_name='track/risk/risk.html'):
     content_type = ContentType.objects.get(app_label=app_label, model=module_name)
     context_data = {
-        'subtitle': 'Risk',
         'requirement': Requirement.objects.get(pk=pk),
         'reporter_url': add_search_url_for_model(User),
         'reports':Risk.objects.filter(content_type=content_type, object_id=pk),

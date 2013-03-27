@@ -6,7 +6,7 @@
     <span>probability:</span> {{ report.probability }}
     <span>Response:</span> {{ report.response }}
     <span>Status:</span> {{ report.status }}
-    <a href="#c0" class="ico-show-all comments-btn" title="Show all" id="on">Comment</a>
+    <a href="#" class="ico-show-all comments-btn" title="Show all" id="on">Comment</a>
     <a id="edit-risk-{{ report.pk }}" data-toggle="modal" class="btn btn-mini btn-success fl-right edit-risk" url ="{% url risk_update report.pk%}">Edit</a>
     <p>{{ report.description }}</p>
     <table class="eso-table product-status-report">
@@ -14,5 +14,7 @@
             {% include "track/risk/update-risk.html" %}
         </td>
     </table>
-    {% include "comments/comment.html" %}
+    <section class="mg-bottom display-none" id="comments-all">
+        {% include "comments/comment.html" %}
+    </section>
 </div>

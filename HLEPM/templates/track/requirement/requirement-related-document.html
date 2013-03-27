@@ -1,33 +1,25 @@
-<div class="tab-pane fade" id="RelatedDocument">
+<div class="tab-pane fade" id="relatedDocument">
+    <input class="display-none search_url" value="{{ search_url }}"/>
+    <input class="display-none current_filter" value="{{ filter }}"/>
+    <input class="display-none current_order" value=""/>
     <table class="eso-table product-status-report">
-        <tr>
-            <td><a href="#comments-alls" class="btn fl-right">Comment</a></td>
-        </tr>
+        <thead>
+            <tr>
+                <td><a href="#comments-all" class="btn fl-right">Comment</a></td>
+            </tr>
+        </thead>
         <tbody>
         <tr>
+            {% include 'track/requirement/requirement-table-tr-page-select.html' %}
+        </tr>
+        <tr>
             <td colspan="10" class="pd0">
-                <table id="example" class="eso-table table-striped datatable brd-table">
-                    <thead>
-                        <tr>
-                            {% for %}
-                            <th>{{}}</th>
-                            {% endfor %}
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for %}
-                    <tr>
-                        {% for %}
-                        <td>
-                            {{}}
-                        </td>
-                        {% endfor %}
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                {% include 'track/requirement/requirement-table-head.html' %}
             </td>
         </tr>
         </tbody>
     </table>
+    <section class="mg-bottom" id="comments-all">
+        {% include "comments/comment.html" %}
+    </section>
 </div>

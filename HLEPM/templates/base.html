@@ -18,13 +18,16 @@
     <div class="navbar">
         {% include "navigation.html" %}
     </div>
-    {% block content %}{% endblock %}
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
     {% include "footer.html" %}
 </div>
 
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.10.1.custom.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/modal.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/tabs.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/dropdown.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/comments.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.iframe-post-form.js"></script>

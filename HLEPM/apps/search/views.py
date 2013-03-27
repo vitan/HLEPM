@@ -29,6 +29,7 @@ class QueryKeywordsMap:
     Map = {
         'like': '__icontains',
         '=': '',
+        'has': '__in',
     }
 
 

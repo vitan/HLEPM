@@ -5,6 +5,10 @@ HLEPM.init = {
                 this.requirementHome();
             }
 
+            if( HLEPM.ui.exists('.requirementDetailHome')) {
+                this.requirementDetailHome();
+            }
+
             if( HLEPM.ui.exists('.projectHome')) {
                 this.projectHome();
             }
@@ -27,6 +31,14 @@ HLEPM.init = {
             HLEPM.editRequest.addOneRequirement();
             HLEPM.editRequest.updateOneRequirement();
             HLEPM.bind.initialTrigger();
+        },
+    requirementDetailHome:
+        function() {
+            HLEPM.bind.bindRequirementRelated();
+            HLEPM.bind.bindRequirementOrder();
+            HLEPM.bind.bindNumPerPageSetting();
+            HLEPM.bind.initialTrigger();
+            comments_initial();
         },
     riskHome:
         function(){
@@ -145,6 +157,12 @@ HLEPM.bind = {
             $(".parent-type").live('change', function() {
                 var value = $('.parent-type option:selected').val();
                 $('.parent').attr('extra_filter', 'type__id#=#'+value);
+            });
+        },
+    bindRequirementRelated:
+        function() {
+            $("#relatedDocumentRequest").live('click', function() {
+                HLEPM.editRequest.dataTableRequest();
             });
         },
     bindCommentButton:

@@ -35,7 +35,7 @@ HLEPM.ui = {
         function(selector) {
         $(selector).closest('p').find(".filter").removeClass('classify-active');
         $(selector).addClass('classify-active');
-    },
+        },
     displayNewRisk:
         function(new_risk){
             var id = $('.line:first').attr('id');
