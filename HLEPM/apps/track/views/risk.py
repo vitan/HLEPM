@@ -47,7 +47,7 @@ def risk(request, app_label, module_name, pk, template_name='track/risk/risk.htm
     return render_to_response(template_name, context_data, context_instance=RequestContext(request))
 
 
-@require_POST
+@require_http_methods(['GET', 'POST'])
 @login_required
 def risk_add(request, app_label, module_name, pk, template_name='track/risk/one-risk.html'):
     content_type = ContentType.objects.get(app_label=app_label, model=module_name)
@@ -66,7 +66,7 @@ def risk_add(request, app_label, module_name, pk, template_name='track/risk/one-
             new_risk_data = {'new_risk': new_risk_html}
             return response.ajax_response(new_risk_data)
         else:
-            template_name='track/risk/new-risk.html'
+            template_name = 'track/risk/new-risk.html'
             error_new_risk_html = render_to_string(template_name,
                                                    {'form': form,
                                                     'Impacts': Impact.objects.all(),
@@ -80,6 +80,21 @@ def risk_add(request, app_label, module_name, pk, template_name='track/risk/one-
             error_new_risk_data = {'error_new_risk': error_new_risk_html}
             response.update_errors(error_new_risk_data)
             return response.ajax_response()
+    elif request.method == 'GET':
+        template_name = 'track/risk/new-risk.html'
+        form = RiskForm()
+        new_risk_form_html = render_to_string(template_name,
+                                              {'form': form,
+                                               'Impacts': Impact.objects.all(),
+                                               'Responses': Response.objects.all(),
+                                               'Probabilities': Probability.objects.all(),
+                                               'statuss': RiskStatus.objects.all(),
+                                               'reporter_url': add_search_url_for_model(User),
+                                               'app_label': app_label,
+                                               'module_name': module_name,
+                                               'pk': pk}, context_instance=RequestContext(request))
+        new_risk_form_data = {'new_risk_form': new_risk_form_html}
+        return response.ajax_response(new_risk_form_data)
 
 
 @require_http_methods(['GET', 'POST'])
@@ -96,7 +111,7 @@ def risk_update(request, risk_id, template_name='track/risk/update-risk.html'):
                                          'Responses': Response.objects.all(),
                                          'Probabilities': Probability.objects.all(),
                                          'reporter_url': add_search_url_for_model(User),
-                                        },context_instance=RequestContext(request))
+                                         },context_instance=RequestContext(request))
 
         old_risk_data = {'old_risk': old_risk_html}
         return response.ajax_response(old_risk_data)
@@ -116,4 +131,16 @@ def risk_update(request, risk_id, template_name='track/risk/update-risk.html'):
                                              {'report': risk_obj},
                                             context_instance=RequestContext(request))
             new_risk_data = {'update_risk': new_risk_html}
-        return response.ajax_response(new_risk_data)
+            return response.ajax_response(new_risk_data)
+        else:
+            error_risk_html = render_to_string(template_name,{'report': risk_obj,
+                                               'form': form,
+                                               'statuss': RiskStatus.objects.all(),
+                                               'Impacts': Impact.objects.all(),
+                                               'Responses': Response.objects.all(),
+                                               'Probabilities': Probability.objects.all(),
+                                               'reporter_url': add_search_url_for_model(User),
+                                               },context_instance=RequestContext(request))
+            error_risk_data = {'error_risk': error_risk_html}
+            response.update_errors(error_risk_data)
+            return response.ajax_response()

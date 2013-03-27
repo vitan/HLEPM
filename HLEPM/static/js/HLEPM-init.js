@@ -30,7 +30,6 @@ HLEPM.init = {
         },
     riskHome:
         function(){
-            HLEPM.bind.bindAddModal();
             HLEPM.bind.bindDatePicker();
             HLEPM.bind.bindAutoComplete();
             HLEPM.bind.submitNewRisk();
@@ -170,6 +169,15 @@ HLEPM.bind = {
         },
     submitNewRisk:
         function() {
+            $("#add").live('click', function() {
+                HLEPM.editRequest.newRiskFormRequest($(this));
+            });
+            $(".close").live('click', function() {
+                HLEPM.ui.hideModal("#new");
+            });
+            $(".close2").live('click', function() {
+                HLEPM.ui.hideModal("#new");
+            });
             $('#submit-new-risk').live('click', function(){
                 HLEPM.editRequest.addOneRisk();
             });

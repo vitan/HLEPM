@@ -6,70 +6,7 @@
     <div class="modal-body max-height450">
         <form class="form-horizontal" id="update-risk-{{ report.pk }}" action="{% url risk_update report.pk %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="control-group">
-                <label class="control-label" for="input01">Reporter<h class="risk-issue-red"> *</h></label>
-                <div class="controls">
-                    {% render_field form.reporter class="input-xlarge reporter2" url=reporter_url field="username" %}
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="input01" >Start Date</label>
-                <div class="controls">
-                    {% render_field form.start_date class="datePicker2" %}
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">Impact<h class="risk-issue-red"> *</h></label>
-                <div class="controls">
-                    {% for radio in form.impact %}
-                        <label class="radio inline">
-                            {{ radio.tag }}{{ radio.choice_label }}
-                        </label>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">Response<h class="risk-issue-red"> *</h></label>
-                <div class="controls">
-                    {% for radio in form.response %}
-                        <label class="radio inline">
-                            {{ radio.tag }}{{ radio.choice_label }}
-                        </label>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">Probability<h class="risk-issue-red"> *</h></label>
-                <div class="controls">
-                    {% for radio in form.probability %}
-                        <label class="radio inline">
-                            {{ radio.tag }}{{ radio.choice_label }}
-                        </label>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">Status<h class="risk-issue-red"> *</h></label>
-                <div class="controls">
-                    {% for radio in form.status %}
-                        <label class="radio inline">
-                            {{ radio.tag }}{{ radio.choice_label }}
-                        </label>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="input01">Target Date</label>
-                <div class="controls">
-                    {% render_field form.target_date class="datePicker2" %}
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="input01">Description<h class="risk-issue-red"> *</h></label>
-                <div class="controls">
-                    {% render_field form.description %}
-                </div>
-            </div>
+            {% include "track/risk/risk-form-field.html" %}
         </form>
     </div>
     <div class="modal-footer">
