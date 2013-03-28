@@ -102,6 +102,20 @@ class Requirement(models.Model):
         return u'%s - %s' % (self.type.name, self.pk)
     __unicode__ = __str__
 
+    def save(self, *args, **kwargs):
+        editor_name = kwargs.pop('editor')
+        before_owner = kwargs.pop('before_owner')
+        super(Requirement, self).save(*args, **kwargs)
+        editor = User.objects.get(username=editor_name)
+        data = {
+            'editor': editor,
+            'requirement': self,
+            'before_owner': before_owner,
+            'after_owner': self.owner,
+        }
+        history = RequirementHistory(**data)
+        history.save()
+
     def get_form_initial(self):
         result = {
             'type': self.type,
@@ -128,13 +142,15 @@ class Requirement(models.Model):
 
 
 class RequirementHistory(models.Model):
-    """Save the history of Reuqirement."""
+    """Save the history of Reqirement."""
 
     editor = models.ForeignKey(User)
     requirement = models.ForeignKey(Requirement)
-    owner = models.ForeignKey(RequirementOwner)
-    start_date = models.DateTimeField(auto_now=True)
-    end_date = models.DateTimeField()
+    before_owner = models.ForeignKey(RequirementOwner,
+                                     related_name="before_owner")
+    after_owner = models.ForeignKey(RequirementOwner,
+                                   related_name="after_owner")
+    add_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return u'%s' % truncate_words(self.name, 15)
@@ -142,3 +158,4 @@ class RequirementHistory(models.Model):
 
     class Meta:
         app_label = "track"
+        ordering = ['-add_date']

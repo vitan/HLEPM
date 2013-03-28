@@ -1,0 +1,10 @@
+{% for report in reports %}
+{% if forloop.first %}
+<p class="orange">
+{% else %}
+<p>
+{% endif %}
+Change the owner from {{ report.before_owner.name }} to {{ report.after_owner.name }} - updated by {{ report.editor.username }}
+{{ report.add_date|timesince }} ago.
+</p>
+{% endfor %}

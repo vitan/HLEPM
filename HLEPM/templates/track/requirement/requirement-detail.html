@@ -39,10 +39,12 @@
                 </span>
             </a>
             </li>
-            <li class=""><a href="#history"> History</a></li>
+            <li class=""><a id="historyRequest" href="#history" url="{% url requirement_history report.pk %}"> History({{ report.requirementhistory_set.count }})</a></li>
             <li class=""><a id="relatedDocumentRequest" href="#relatedDocument"> Related Document ()</a></li>
         </ul>
         <div class="tab-content">
+            <div class="tab-pane fade" id="history">
+            </div>
             {% include "track/requirement/requirement-related-document.html" %}
         </div>
     </section>

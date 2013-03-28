@@ -186,6 +186,15 @@ HLEPM.editRequest = {
                 }
             });
         },
+    requirementHistoryRequest:
+        function(selector) {
+            var url = $(selector).attr('url');
+            HLEPM.ajax.get(url, '', function(ajax_response){
+                if ( HLEPM.ajax.isSuccessful(ajax_response.rc) ){
+                    $('#history').html(ajax_response.data.history_list);
+                }
+            });
+        },
     dataTableRequest:
         function(extra_data) {
             var data = {

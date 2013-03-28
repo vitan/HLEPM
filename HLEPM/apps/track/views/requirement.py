@@ -13,7 +13,7 @@ from HLEPM.apps.attachments.views import add_attachment, update_attachment
 from HLEPM.apps.search.views import add_search_url_for_model
 from HLEPM.apps.attachments.models import Attachment
 from HLEPM.apps.common.views import AjaxResponseMixin
-from HLEPM.apps.track.models import Product
+from HLEPM.apps.track.models import Product, RequirementHistory
 from HLEPM.apps.track.models import Requirement, RequirementType
 from HLEPM.apps.track.models import RequirementStatus, RequirementOwner
 from HLEPM.apps.track.forms import RequirementForm
@@ -60,6 +60,23 @@ def requirement_detail(request, pk,
     return render_to_response(template_name, context_data, context_instance=RequestContext(request))
 
 
+@require_http_methods(['GET'])
+@login_required
+def requirement_history(request,
+                        pk,
+                        template_name='track/requirement/requirement-history.html'):
+    """Get the history of one requirement."""
+
+    response = AjaxResponseMixin()
+    if request.method == 'GET':
+        objs = RequirementHistory.objects.filter(requirement__pk=pk)
+        template = loader.get_template(template_name)
+        request_context = RequestContext(request, {'reports': objs })
+        data = template.render(request_context)
+        context = { 'history_list': data }
+        return response.ajax_response(**context)
+
+
 @require_http_methods(['GET', 'POST'])
 @login_required
 def requirement_add(request,
@@ -72,10 +89,13 @@ def requirement_add(request,
         form = RequirementForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
+            kwargs = {'editor': request.user,
+                      'before_owner': RequirementOwner.objects.get(pk=1)
+                     }
             data.pop('parent_type')
             parent_set = data.pop('parent')
             requirement_obj = Requirement(**data)
-            requirement_obj.save()
+            requirement_obj.save(**kwargs)
             for parent in parent_set:
                 requirement_obj.requirement.add(parent)
 
@@ -133,8 +153,13 @@ def requirement_update(request,
             data = form.cleaned_data
             data.pop('parent_type')
             parent_set = data.pop('parent')
+
+            requirement_obj = get_object_or_404(Requirement, pk=requirement_id)
+            kwargs = {'editor': request.user,
+                      'before_owner': requirement_obj.owner,
+                     }
             requirement_obj = Requirement(pk=requirement_id, **data)
-            requirement_obj.save()
+            requirement_obj.save(**kwargs)
             for parent in parent_set:
                 requirement_obj.requirement.add(parent)
 

@@ -37,6 +37,7 @@ HLEPM.init = {
             HLEPM.bind.bindRequirementRelated();
             HLEPM.bind.bindRequirementOrder();
             HLEPM.bind.bindNumPerPageSetting();
+            HLEPM.bind.bindTabHistory();
             HLEPM.bind.initialTrigger();
             comments_initial();
         },
@@ -107,6 +108,12 @@ HLEPM.bind = {
     bindDatePicker:
         function() {
             HLEPM.ui.pickingDate(".datePicker");
+        },
+    bindTabHistory:
+        function() {
+            $('#historyRequest').live('click', function() {
+                HLEPM.editRequest.requirementHistoryRequest($(this));
+            });
         },
     initialTrigger:
         function() {
