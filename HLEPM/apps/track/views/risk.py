@@ -35,8 +35,12 @@ def risk(request, app_label, module_name, pk, template_name='track/risk/risk.htm
         'module_name': module_name,
         'pk': pk,
         }
-
-    return render_to_response(template_name, context_data, context_instance=RequestContext(request))
+    response = AjaxResponseMixin()
+    risk_detail_html = render_to_string(template_name,
+                                        context_data,
+                                        context_instance=RequestContext(request))
+    risk_detail_data = {'detail': risk_detail_html}
+    return response.ajax_response(risk_detail_data)
 
 
 @require_http_methods(['GET', 'POST'])

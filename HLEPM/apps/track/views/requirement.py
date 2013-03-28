@@ -76,7 +76,7 @@ def requirement_history(request,
         template = loader.get_template(template_name)
         request_context = RequestContext(request, {'reports': objs })
         data = template.render(request_context)
-        context = { 'history_list': data }
+        context = { 'detail': data }
         return response.ajax_response(**context)
 
 

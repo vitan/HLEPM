@@ -186,12 +186,12 @@ HLEPM.editRequest = {
                 }
             });
         },
-    requirementHistoryRequest:
-        function(selector) {
+    detailRequest:
+        function(selector, container) {
             var url = $(selector).attr('url');
             HLEPM.ajax.get(url, '', function(ajax_response){
                 if ( HLEPM.ajax.isSuccessful(ajax_response.rc) ){
-                    $('#history').html(ajax_response.data.history_list);
+                    $(container).html(ajax_response.data.detail);
                 }
             });
         },

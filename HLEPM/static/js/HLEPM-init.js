@@ -13,12 +13,6 @@ HLEPM.init = {
                 this.projectHome();
             }
 
-            if (HLEPM.ui.exists('.riskHome')){
-                this.riskHome();
-            }
-            if (HLEPM.ui.exists('.issueHome')){
-                this.issueHome();
-            }
         },
     requirementHome:
         function() {
@@ -35,31 +29,9 @@ HLEPM.init = {
     requirementDetailHome:
         function() {
             HLEPM.bind.bindRequirementRelated();
-            HLEPM.bind.bindRequirementOrder();
-            HLEPM.bind.bindNumPerPageSetting();
-            HLEPM.bind.bindTabHistory();
+            HLEPM.bind.bindDetailTabs();
             HLEPM.bind.initialTrigger();
-            comments_initial();
         },
-    riskHome:
-        function(){
-            HLEPM.bind.bindDatePicker();
-            HLEPM.bind.bindAutoComplete();
-            HLEPM.bind.submitNewRisk();
-            HLEPM.bind.updateRisk();
-            comments_initial();
-            HLEPM.bind.bindCommentButton();
-        },
-    issueHome:
-        function(){
-            HLEPM.bind.bindDatePicker();
-            HLEPM.bind.bindAutoComplete();
-            HLEPM.bind.submitNewIssue();
-            HLEPM.bind.updateIssue();
-            comments_initial();
-            HLEPM.bind.bindCommentButton();
-        },
-
 };
 
 HLEPM.bind = {
@@ -109,10 +81,31 @@ HLEPM.bind = {
         function() {
             HLEPM.ui.pickingDate(".datePicker");
         },
-    bindTabHistory:
+    bindDetailTabs:
         function() {
+            $('#riskRequest').live('click', function() {
+                HLEPM.editRequest.detailRequest($(this), '#risk');
+                HLEPM.bind.bindDatePicker();
+                HLEPM.bind.bindAutoComplete();
+                HLEPM.bind.submitNewRisk();
+                HLEPM.bind.updateRisk();
+                comments_initial();
+                HLEPM.bind.bindCommentButton();
+            });
+            $('#issueRequest').live('click', function() {
+                HLEPM.editRequest.detailRequest($(this), '#issue');
+                HLEPM.bind.bindDatePicker();
+                HLEPM.bind.bindAutoComplete();
+                HLEPM.bind.submitNewIssue();
+                HLEPM.bind.updateIssue();
+                comments_initial();
+                HLEPM.bind.bindCommentButton();
+            });
             $('#historyRequest').live('click', function() {
-                HLEPM.editRequest.requirementHistoryRequest($(this));
+                HLEPM.editRequest.detailRequest($(this), '#history');
+                HLEPM.bind.bindRequirementOrder();
+                HLEPM.bind.bindNumPerPageSetting();
+                comments_initial();
             });
         },
     initialTrigger:
@@ -170,6 +163,9 @@ HLEPM.bind = {
         function() {
             $("#relatedDocumentRequest").live('click', function() {
                 HLEPM.editRequest.dataTableRequest();
+                HLEPM.bind.bindRequirementOrder();
+                HLEPM.bind.bindNumPerPageSetting();
+                comments_initial();
             });
         },
     bindCommentButton:

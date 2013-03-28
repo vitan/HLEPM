@@ -1,39 +1,22 @@
-{% extends "base.html" %}
-
-{% block title %} Risk {% endblock %}
-
 {% block content %}
-    <body>
+ <body>
     <div class="content">
-    <div class="breadcrumb riskHome">
-        <ul class="pull-left">
-            <li><a href="#">BRD/MRD/PRD</a> <span class="divider">/</span>{{ subtitle }} of {{ requirement.name }}</li>
-        </ul>
-        <div class="clear"></div>
-    </div>
-    <div class="pd10">
-
-    <section>
-    <ul class="nav nav-tabs" id="myTab" data-tabs="tabs">
-        <li class="active"><a href="#BRD">Risk<span class="small-text"></span></a></li>
-        <li class=""><a href="#issue"> Issue<span class="small-text"></span></a></li>
-        <li class=""><a href="#history"> History</a></li>
-        <li class=""><a href="#product"> Related Document</a></li>
-    </ul>
-    <div class="tab-pane active" id="risk">
-        <div class="clear">
-            <table class="eso-table product-status-report">
-                <a class=" btn fl-right" id="add" url="{% url risk_add app_label module_name pk %}">+ Create</a>
-                    <td class="display-none" id="new">
-                    </td>
-            </table>
-            <td>
-                {% include "track/risk/risk-list.html" %}
-            </td>
+        <div class="pd10">
+            <section>
+                <div class="tab-pane active" id="risk">
+                    <div class="clear">
+                        <table class="eso-table product-status-report">
+                            <a class=" btn fl-right" id="add" url="{% url risk_add app_label module_name pk %}">+ Create</a>
+                                <td class="display-none" id="new">
+                                </td>
+                        </table>
+                            <td>
+                                {% include "track/risk/risk-list.html" %}
+                            </td>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
-    </section>
-    </div>
-    </div>
-    </body>
+</body>
 {% endblock %}

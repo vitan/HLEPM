@@ -36,7 +36,12 @@ def issue(request, app_label, module_name, pk, template_name='track/issue/issue.
         'module_name': module_name,
         'pk': pk,
         }
-    return render_to_response(template_name, context_data, context_instance=RequestContext(request))
+    response = AjaxResponseMixin()
+    issue_detail_html = render_to_string(template_name,
+                                         context_data,
+                                         context_instance=RequestContext(request))
+    issue_detail_data = {'detail': issue_detail_html}
+    return response.ajax_response(issue_detail_data)
 
 
 @require_http_methods(['GET', 'POST'])

@@ -16,7 +16,7 @@
     <section>
         <ul class="nav nav-tabs" id="myTab" data-tabs="tabs">
             <li class="active">
-            <a class="click-trigger" href="{% url risk report|app_label report|module_name report.pk %}">
+            <a class="click-trigger" url="{% url risk report|app_label report|module_name report.pk %}" id="riskRequest" href="#risk">
                 Risk({{ report.risk.count }})
                 <span class="small-text">(
                     {{ report.open_status_risk.0.status }}
@@ -28,7 +28,7 @@
             </a>
             </li>
             <li class="">
-            <a href="{% url issue report|app_label report|module_name report.pk %}">
+            <a url="{% url issue report|app_label report|module_name report.pk %}" id="issueRequest" href="#issue">
                 Issue({{ report.issue.count }})
                 <span class="small-text">(
                     {{ report.open_status_issue.0.status }}
@@ -43,6 +43,10 @@
             <li class=""><a id="relatedDocumentRequest" href="#relatedDocument"> Related Document ({{ relate_docs.count }})</a></li>
         </ul>
         <div class="tab-content">
+            <div class="tab-pane active" id="risk">
+            </div>
+            <div class="tab-pane fade" id="issue">
+            </div>
             <div class="tab-pane fade" id="history">
             </div>
             {% include "track/requirement/requirement-related-document.html" %}
