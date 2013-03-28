@@ -153,7 +153,7 @@ class RequirementHistory(models.Model):
     add_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return u'%s' % truncate_words(self.name, 15)
+        return u'%s from %s to %s' % (self.requirement, self.before_owner, self.after_owner)
     __unicode__ = __str__
 
     class Meta:

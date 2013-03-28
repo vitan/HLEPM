@@ -40,7 +40,7 @@
             </a>
             </li>
             <li class=""><a id="historyRequest" href="#history" url="{% url requirement_history report.pk %}"> History({{ report.requirementhistory_set.count }})</a></li>
-            <li class=""><a id="relatedDocumentRequest" href="#relatedDocument"> Related Document ()</a></li>
+            <li class=""><a id="relatedDocumentRequest" href="#relatedDocument"> Related Document ({{ relate_docs.count }})</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane fade" id="history">

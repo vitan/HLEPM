@@ -55,6 +55,9 @@ def requirement_detail(request, pk,
                                                'track/requirement/requirement-table.html'),
         'filter': 'requirement__id#has#'+pk,
         'report': Requirement.objects.get(pk=pk),
+        #TODO (weizhou) Here I have to add another query for getting related
+        #documents count.
+        'relate_docs': Requirement.objects.filter(requirement__id__in=pk),
     }
 
     return render_to_response(template_name, context_data, context_instance=RequestContext(request))
