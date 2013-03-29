@@ -1,16 +1,16 @@
 <div class="new-issue">
     <div class="modal-header">
-        <button class="close" data-dismiss="modal">×</button>
+        <button class="close" data-dismiss="modal" id="close-issue-1">×</button>
         <h3>New Issue</h3>
     </div>
     <div class="modal-body max-height450">
-        <form class="form-horizontal" id="add-issue" action="{% url issue_add app_label module_name pk %}" method="POST" enctype="multipart/form-data">
+        <form class="form-horizontal" id="add-issue-form" action="{% url issue_add app_label module_name pk %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {% include "track/issue/issue-form-field.html" %}
         </form>
     </div>
     <div class="modal-footer">
-        <a href="#" class="btn btn-primary" id="submit-new-issue">Save</a>
-        <a href="#" class="btn close2" data-dismiss="modal">Close</a>
+        <a class="btn btn-primary" id="submit-new-issue">Save</a>
+        <a class="btn close2" data-dismiss="modal" id="close-issue-2">Close</a>
     </div>
 </div>

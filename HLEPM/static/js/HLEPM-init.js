@@ -189,31 +189,31 @@ HLEPM.bind = {
         },
     submitNewRisk:
         function() {
-            $("#add").live('click', function() {
+            $("#add-risk").die('click').live('click', function() {
                 HLEPM.editRequest.newRiskFormRequest($(this));
             });
-            $(".close").live('click', function() {
-                HLEPM.ui.hideModal("#new");
+            $("#close-risk-1").live('click', function() {
+                HLEPM.ui.hideModal("#new-risk");
             });
-            $(".close2").live('click', function() {
-                HLEPM.ui.hideModal("#new");
+            $("#close-risk-2").live('click', function() {
+                HLEPM.ui.hideModal("#new-risk");
             });
-            $('#submit-new-risk').live('click', function(){
+            $('#submit-new-risk').die('click').live('click', function(){
                 HLEPM.editRequest.addOneRisk();
             });
         },
     submitNewIssue:
         function() {
-            $("#add").live('click', function() {
+            $("#add-issue").die('click').live('click', function() {
                 HLEPM.editRequest.newIssueFormRequest($(this));
             });
-            $(".close").live('click', function() {
-                HLEPM.ui.hideModal("#new");
+            $("#close-issue-1").live('click', function() {
+                HLEPM.ui.hideModal("#new-issue");
             });
-            $(".close2").live('click', function() {
-                HLEPM.ui.hideModal("#new");
+            $("#close-issue-2").live('click', function() {
+                HLEPM.ui.hideModal("#new-issue");
             });
-            $('#submit-new-issue').live('click', function(){
+            $('#submit-new-issue').die('click').live('click', function(){
                 HLEPM.editRequest.addOneIssue();
             });
         },

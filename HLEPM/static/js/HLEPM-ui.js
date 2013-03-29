@@ -38,7 +38,7 @@ HLEPM.ui = {
         },
     displayNewRisk:
         function(new_risk){
-            var id = $('.line:first').attr('id');
+            var id = $('.risk-list-item:first').attr('id');
             if(!id) {
                 $('#risk-issue-list').html(new_risk);
             } else {
@@ -47,7 +47,7 @@ HLEPM.ui = {
         },
     displayNewIssue:
         function(new_issue){
-            var id = $('.line:first').attr('id');
+            var id = $('.issue-list-item:first').attr('id');
             if(!id) {
                 $('#issue-list').html(new_issue);
             } else {

@@ -78,6 +78,8 @@ def risk_add(request, app_label, module_name, pk, template_name='track/risk/one-
         new_risk_form_html = render_to_string(template_name,
                                               {'form': form,
                                                'reporter_url': add_search_url_for_model(User),
+                                               'start_date_id': 'risk_start_date',
+                                               'target_date_id': 'risk_target_date',
                                                'app_label': app_label,
                                                'module_name': module_name,
                                                'pk': pk}, context_instance=RequestContext(request))

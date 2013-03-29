@@ -21,15 +21,15 @@ HLEPM.editRequest = {
         },
     addOneRisk:
         function(){
-            var form = $("#add-risk");
+            var form = $("#add-risk-form");
             var url = form.attr('action');
             var data = form.serialize();
             HLEPM.ajax.post(url, data, function(response){
                 if ( HLEPM.ajax.isSuccessful(response.rc)){
-                     HLEPM.ui.hideModal("#new");
+                     HLEPM.ui.hideModal("#new-risk");
                      HLEPM.ui.displayNewRisk(response.data['new_risk']);
                 } else {
-                     $('#new').html(response.msg['error_new_risk'])
+                     $('#new-risk').html(response.msg['error_new_risk'])
                      HLEPM.ui.autoComplete('.reporter2');
                      HLEPM.ui.pickingDate(".datePicker2");
                 }
@@ -37,15 +37,15 @@ HLEPM.editRequest = {
         },
     addOneIssue:
         function(){
-            var form = $("#add-issue");
+            var form = $("#add-issue-form");
             var url = form.attr('action');
             var data = form.serialize();
             HLEPM.ajax.post(url, data, function(response){
                if ( HLEPM.ajax.isSuccessful(response.rc)){
-                    HLEPM.ui.hideModal("#new");
+                    HLEPM.ui.hideModal("#new-issue");
                     HLEPM.ui.displayNewIssue(response.data['new_issue']);
                } else {
-                    $('#new').html(response.msg['error_new_issue'])
+                    $('#new-issue').html(response.msg['error_new_issue'])
                     HLEPM.ui.autoComplete('.reporter2');
                     HLEPM.ui.pickingDate(".datePicker2");
                }
@@ -101,8 +101,8 @@ HLEPM.editRequest = {
             var url = selector.attr('url');
             HLEPM.ajax.get(url, '', function(response){
                 if ( HLEPM.ajax.isSuccessful(response.rc)){
-                    $('#new').html(response.data['new_risk_form']);
-                    HLEPM.ui.showModal('#new');
+                    $('#new-risk').html(response.data['new_risk_form']);
+                    HLEPM.ui.showModal('#new-risk');
                     HLEPM.ui.autoComplete('.reporter2');
                     HLEPM.ui.pickingDate(".datePicker2");
                 }
@@ -113,8 +113,8 @@ HLEPM.editRequest = {
             var url = selector.attr('url');
             HLEPM.ajax.get(url, '', function(response){
                 if ( HLEPM.ajax.isSuccessful(response.rc)){
-                    $('#new').html(response.data['new_issue_form']);
-                    HLEPM.ui.showModal('#new');
+                    $('#new-issue').html(response.data['new_issue_form']);
+                    HLEPM.ui.showModal('#new-issue');
                     HLEPM.ui.autoComplete('.reporter2');
                     HLEPM.ui.pickingDate(".datePicker2");
                 }

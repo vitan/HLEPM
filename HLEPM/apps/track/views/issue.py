@@ -79,6 +79,8 @@ def issue_add(request, app_label, module_name, pk, template_name='track/issue/on
         new_issue_form_html = render_to_string(template_name,
                                                {'form': form,
                                                 'reporter_url': add_search_url_for_model(User),
+                                                'start_date_id': 'issue_start_date',
+                                                'target_date_id': 'issue_target_date',
                                                 'app_label': app_label,
                                                 'module_name': module_name,
                                                 'pk': pk}, context_instance=RequestContext(request))
