@@ -75,7 +75,7 @@ class RequirementForm(forms.Form):
         type = cleaned_data.get("type")
         product = cleaned_data.get("product")
 
-        if type.order != 1 and product is None:
+        if type and type.order != 1 and product is None:
             msg = u"Invalid select(product must be required when type is not BRD."
             self._errors["product"] = self.error_class([msg])
 
