@@ -51,17 +51,17 @@
         <thead>
             <tr>
                 <th colspan="10">
-                    <a class="btn fl-right" id="add">+ Add</a>
+                    <a class="btn fl-right add-modal" id="add" url="{% url requirement_add %}" href="#new">+ Add</a>
                 </th>
             </tr>
         </thead>
         <tbody>
-        <tr class="display-none" id="new">
+        <tr class="display-none new-modal" id="new">
             <td colspan="10">
                 {% include "track/requirement/new-requirement.html" %}
             </td>
         </tr>
-        <tr class="display-none" id="update">
+        <tr class="display-none update-modal" id="update">
             <td colspan="10">
                 {% include "track/requirement/update-requirement.html" %}
             </td>

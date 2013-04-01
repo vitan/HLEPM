@@ -36,9 +36,9 @@ HLEPM.ui = {
         function(new_risk){
             var id = $('.risk-list-item:first').attr('id');
             if(!id) {
-                $('#risk-issue-list').html(new_risk);
+                $('#risk-list').html(new_risk);
             } else {
-                $(new_risk).insertBefore("#"+id);
+                $(new_risk).insertBefore($('#risk-list').find("#"+id));
             }
         },
     displayNewIssue:
@@ -47,7 +47,7 @@ HLEPM.ui = {
             if(!id) {
                 $('#issue-list').html(new_issue);
             } else {
-                $(new_issue).insertBefore("#"+id);
+                $(new_issue).insertBefore($('#issue-list').find("#"+id));
             }
         },
     displayUpdateRisk:

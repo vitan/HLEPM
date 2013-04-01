@@ -1,16 +1,15 @@
-<div class="new-risk">
+<div class="new-risk form-control">
     <div class="modal-header">
         <button data-dismiss="modal" class="close" id="close-risk-1">×</button>
-        <h3>Creat</h3>
+        <h3>New Risk</h3>
     </div>
-    <div class="modal-body max-height450">
-        <form class="form-horizontal" id="add-risk-form" action="{% url risk_add app_label module_name pk %}" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {% include "track/risk/risk-form-field.html" %}
-        </form>
-    </div>
-    <div class="modal-footer">
-        <a class="btn btn-primary" id="submit-new-risk">Save</a>
-        <a data-dismiss="modal" class="btn close2" id="close-risk-2">Close</a>
-    </div>
+    <form class="form-horizontal" id="add-risk-form" action="{% url risk_add app_label module_name report.pk %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div id='risk-form-container'>
+        </div>
+        <div class="modal-footer">
+            <a class="btn btn-primary" id="submit-new-risk">Save</a>
+            <a data-dismiss="modal" class="btn close2" id="close-risk-2">Close</a>
+        </div>
+    </form>
 </div>

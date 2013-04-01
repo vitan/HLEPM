@@ -60,28 +60,24 @@ def risk_add(request, app_label, module_name, pk, template_name='track/risk/one-
             new_risk_data = {'new_risk': new_risk_html}
             return response.ajax_response(new_risk_data)
         else:
-            template_name = 'track/risk/new-risk.html'
+            template_name = 'track/risk/risk-form-fields.html'
             error_new_risk_html = render_to_string(template_name,
                                                    {'form': form,
-                                                    'reporter_url': add_search_url_for_model(User),
-                                                    'app_label': app_label,
-                                                    'module_name': module_name,
-                                                    'pk': pk}, context_instance=RequestContext(request))
+                                                    'reporter_url': add_search_url_for_model(User)
+                                                   }, context_instance=RequestContext(request))
             error_new_risk_data = {'error_new_risk': error_new_risk_html}
             response.update_errors(error_new_risk_data)
             return response.ajax_response()
     elif request.method == 'GET':
-        template_name = 'track/risk/new-risk.html'
+        template_name = 'track/risk/risk-form-fields.html'
         form = RiskForm()
         new_risk_form_html = render_to_string(template_name,
                                               {'form': form,
                                                'reporter_url': add_search_url_for_model(User),
                                                'start_date_id': 'risk_start_date',
-                                               'target_date_id': 'risk_target_date',
-                                               'app_label': app_label,
-                                               'module_name': module_name,
-                                               'pk': pk}, context_instance=RequestContext(request))
-        new_risk_form_data = {'new_risk_form': new_risk_form_html}
+                                               'target_date_id': 'risk_target_date'
+                                              },context_instance=RequestContext(request))
+        new_risk_form_data = {'new_form': new_risk_form_html}
         return response.ajax_response(new_risk_form_data)
 
 

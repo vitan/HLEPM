@@ -1,14 +1,6 @@
-    <div class="content">
-        <div class="pd10">
-                <div class="risk-issue">
-                    <h3 class="clear">Risk </h3>
-                    <div class="risk-issue-list" id="risk-issue-list">
-                        {% for report in reports %}
-                            {% include "track/risk/one-risk.html" %}
-                        {% endfor %}
-                    </div>
-                </div>
-        </div>
-    </div>
-    <div class="tab-pane fade" id="product">
-    </div>
+<h3 class="clear">Risk </h3>
+<div class="risk-issue-list" id="risk-list">
+    {% for report in reports %}
+    {% include "track/risk/one-risk.html" %}
+    {% endfor %}
+</div>

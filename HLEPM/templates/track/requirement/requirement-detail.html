@@ -44,10 +44,24 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="risk">
-                {% include 'track/risk/risk.html' %}
+                <div class="clear">
+                    <a class="fl-right font-big" href="#new-risk" id="add-risk" url="{% url risk_add risk_label risk_module report.pk %}">+ Create</a>
+                    <div class="display-none" id="new-risk">
+                        {% include 'track/risk/new-risk.html' %}
+                    </div>
+                    <div id="risk-container">
+                    </div>
+                </div>
             </div>
             <div class="tab-pane fade" id="issue">
-                {% include 'track/issue/issue.html' %}
+                <div class="clear">
+                    <a class="fl-right font-big" href="#new-issue" id="add-issue" url="{% url issue_add issue_label issue_module report.pk %}">+ Create</a>
+                    <div class="display-none" id="new-issue">
+                        {% include 'track/issue/new-issue.html' %}
+                    </div>
+                    <div id="issue-container">
+                    </div>
+                </div>
             </div>
             <div class="tab-pane fade" id="history">
             </div>

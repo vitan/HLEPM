@@ -6,7 +6,7 @@
     <div class="modal-body max-height450">
         <form class="form-horizontal" id="update-issue-{{ report.pk }}" action="{% url issue_update report.pk %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {% include "track/issue/issue-form-field.html" %}
+            {% include "track/issue/issue-form-fields.html" %}
         </form>
     </div>
     <div class="modal-footer">

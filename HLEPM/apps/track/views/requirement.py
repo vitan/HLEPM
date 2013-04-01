@@ -53,6 +53,8 @@ def requirement_detail(request, pk,
     context_data = {
         'subtitle': 'BRD/MRD/PRD',
         'report': Requirement.objects.get(pk=pk),
+        'app_label': Requirement._meta.app_label,
+        'module_name': Requirement._meta.module_name,
         'risk_label': Risk._meta.app_label,
         'risk_module': Risk._meta.module_name,
         'issue_label': Issue._meta.app_label,

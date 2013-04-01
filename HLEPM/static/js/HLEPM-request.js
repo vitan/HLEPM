@@ -12,7 +12,7 @@ HLEPM.editRequest = {
                         $('#add-requirement .container').html(response.msg.invalid_form_html);
                         HLEPM.ui.autoComplete('.author');
                         HLEPM.ui.autoComplete('.parent');
-                        HLEPM.bind.bindDatePicker();
+                        HLEPM.ui.pickingDate(".datePicker");
                         HLEPM.bind.bindParentTypeChange();
                         HLEPM.bind.bindDisabledToggle();
                     }
@@ -26,12 +26,13 @@ HLEPM.editRequest = {
             var data = form.serialize();
             HLEPM.ajax.post(url, data, function(response){
                 if ( HLEPM.ajax.isSuccessful(response.rc)){
+                     HLEPM.ui.showModal("#add-risk");
                      HLEPM.ui.hideModal("#new-risk");
                      HLEPM.ui.displayNewRisk(response.data['new_risk']);
                 } else {
-                     $('#new-risk').html(response.msg['error_new_risk'])
-                     HLEPM.ui.autoComplete('.reporter2');
-                     HLEPM.ui.pickingDate(".datePicker2");
+                    $('#risk-form-container').html(response.msg['error_new_risk']);
+                    HLEPM.ui.autoComplete('.reporter2');
+                    HLEPM.ui.pickingDate(".datePicker");
                 }
             });
         },
@@ -42,12 +43,13 @@ HLEPM.editRequest = {
             var data = form.serialize();
             HLEPM.ajax.post(url, data, function(response){
                if ( HLEPM.ajax.isSuccessful(response.rc)){
+                     HLEPM.ui.showModal("#add-issue");
                     HLEPM.ui.hideModal("#new-issue");
                     HLEPM.ui.displayNewIssue(response.data['new_issue']);
                } else {
-                    $('#new-issue').html(response.msg['error_new_issue'])
+                    $('#issue-form-container').html(response.msg['error_new_issue'])
                     HLEPM.ui.autoComplete('.reporter2');
-                    HLEPM.ui.pickingDate(".datePicker2");
+                    HLEPM.ui.pickingDate(".datePicker");
                }
             });
         },
@@ -63,7 +65,7 @@ HLEPM.editRequest = {
                 } else {
                     $('#update-'+id_num).html(response.msg['error_risk']);
                     HLEPM.ui.autoComplete('.reporter2');
-                    HLEPM.ui.pickingDate(".datePicker2");
+                    HLEPM.ui.pickingDate(".datePicker");
                 }
             });
         },
@@ -79,7 +81,7 @@ HLEPM.editRequest = {
                 } else {
                     $('#update-'+id_num).html(response.msg['error_issue']);
                     HLEPM.ui.autoComplete('.reporter2');
-                    HLEPM.ui.pickingDate(".datePicker2");
+                    HLEPM.ui.pickingDate(".datePicker");
                 }
             });
         },
@@ -92,7 +94,7 @@ HLEPM.editRequest = {
                     $('#update-'+id_num).html(response.data['old_risk']);
                     HLEPM.ui.showModal('#update-'+id_num);
                     HLEPM.ui.autoComplete('.reporter2');
-                    HLEPM.ui.pickingDate(".datePicker2");
+                    HLEPM.ui.pickingDate(".datePicker");
                 }
             });
         },
@@ -101,10 +103,9 @@ HLEPM.editRequest = {
             var url = selector.attr('url');
             HLEPM.ajax.get(url, '', function(response){
                 if ( HLEPM.ajax.isSuccessful(response.rc)){
-                    $('#new-risk').html(response.data['new_risk_form']);
-                    HLEPM.ui.showModal('#new-risk');
+                    $('#risk-form-container').html(response.data['new_form']);
                     HLEPM.ui.autoComplete('.reporter2');
-                    HLEPM.ui.pickingDate(".datePicker2");
+                    HLEPM.ui.pickingDate(".datePicker");
                 }
             });
         },
@@ -113,10 +114,9 @@ HLEPM.editRequest = {
             var url = selector.attr('url');
             HLEPM.ajax.get(url, '', function(response){
                 if ( HLEPM.ajax.isSuccessful(response.rc)){
-                    $('#new-issue').html(response.data['new_issue_form']);
-                    HLEPM.ui.showModal('#new-issue');
+                    $('#issue-form-container').html(response.data['new_form']);
                     HLEPM.ui.autoComplete('.reporter2');
-                    HLEPM.ui.pickingDate(".datePicker2");
+                    HLEPM.ui.pickingDate(".datePicker");
                 }
             });
         },
@@ -129,19 +129,19 @@ HLEPM.editRequest = {
                     $('#update-'+id_num).html(response.data['old_issue']);
                     HLEPM.ui.showModal('#update-'+id_num);
                     HLEPM.ui.autoComplete('.reporter2');
-                    HLEPM.ui.pickingDate(".datePicker2");
+                    HLEPM.ui.pickingDate(".datePicker");
                 }
             });
         },
     requirementAddFormRequest:
         function(selector) {
-            var url = $('#add-requirement').attr('action');
+            var url = $(selector).attr('url');
             HLEPM.ajax.get(url, '', function(response){
                 if ( HLEPM.ajax.isSuccessful(response.rc)){
                     $('#add-requirement .container').html(response.data.add_form_html);
                     HLEPM.ui.autoComplete('.author');
                     HLEPM.ui.autoComplete('.parent');
-                    HLEPM.bind.bindDatePicker();
+                    HLEPM.ui.pickingDate(".datePicker");
                     HLEPM.bind.bindDisabledToggle();
                     HLEPM.bind.bindParentTypeChange();
                 }
@@ -156,7 +156,7 @@ HLEPM.editRequest = {
                     $('#update-requirement .container').html(response.data.update_form_html);
                     HLEPM.ui.autoComplete('.author');
                     HLEPM.ui.autoComplete('.parent');
-                    HLEPM.bind.bindDatePicker();
+                    HLEPM.ui.pickingDate(".datePicker");
                     HLEPM.bind.bindDisabledToggle();
                     HLEPM.bind.bindParentTypeChange();
                     $('.change-event').trigger('change');
@@ -178,7 +178,7 @@ HLEPM.editRequest = {
                         $('#update-requirement .container').html(response.msg.invalid_form_html);
                         HLEPM.ui.autoComplete('.author');
                         HLEPM.ui.autoComplete('.parent');
-                        HLEPM.bind.bindDatePicker();
+                        HLEPM.ui.pickingDate(".datePicker");
                         HLEPM.bind.bindDisabledToggle();
                         HLEPM.bind.bindParentTypeChange();
                         $('#id_type').trigger('change');

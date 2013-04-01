@@ -60,28 +60,24 @@ def issue_add(request, app_label, module_name, pk, template_name='track/issue/on
             new_issue_data = {'new_issue': new_issue_html}
             return response.ajax_response(new_issue_data)
         else:
-            template_name='track/issue/new-issue.html'
+            template_name='track/issue/issue-form-fields.html'
             error_new_issue_html = render_to_string(template_name,
                                                     {'form': form,
                                                      'reporter_url': add_search_url_for_model(User),
-                                                     'app_label': app_label,
-                                                     'module_name': module_name,
-                                                     'pk': pk}, context_instance=RequestContext(request))
+                                                    }, context_instance=RequestContext(request))
             error_new_issue_data = {'error_new_issue': error_new_issue_html}
             response.update_errors(error_new_issue_data)
             return response.ajax_response()
     elif request.method == 'GET':
-        template_name = 'track/issue/new-issue.html'
+        template_name = 'track/issue/issue-form-fields.html'
         form = IssueForm()
         new_issue_form_html = render_to_string(template_name,
                                                {'form': form,
                                                 'reporter_url': add_search_url_for_model(User),
                                                 'start_date_id': 'issue_start_date',
                                                 'target_date_id': 'issue_target_date',
-                                                'app_label': app_label,
-                                                'module_name': module_name,
-                                                'pk': pk}, context_instance=RequestContext(request))
-        new_issue_form_data = {'new_issue_form': new_issue_form_html}
+                                               }, context_instance=RequestContext(request))
+        new_issue_form_data = {'new_form': new_issue_form_html}
         return response.ajax_response(new_issue_form_data)
 
 

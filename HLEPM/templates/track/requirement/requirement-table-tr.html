@@ -1,6 +1,6 @@
 <tr id="{{ report.id }}">
     <td>
-        <a class="requirement_number" url="{% url requirement_update report.id %}">{{ report }}</a>
+        <a class="requirement_number" href="#update" url="{% url requirement_update report.id %}">{{ report }}</a>
     </td>
     <td>
         {% for attachment in report.attachment.all %}

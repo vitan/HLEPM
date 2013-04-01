@@ -16,8 +16,8 @@ HLEPM.init = {
         },
     requirementHome:
         function() {
-            HLEPM.bind.bindAddModal();
-            HLEPM.bind.bindUpdateModal();
+            HLEPM.bind.bindRequirementAddModal();
+            HLEPM.bind.bindRequirementUpdateModal();
             HLEPM.bind.bindRequirementFilter();
             HLEPM.bind.bindRequirementOrder();
             HLEPM.bind.bindNumPerPageSetting();
@@ -27,28 +27,68 @@ HLEPM.init = {
         },
     requirementDetailHome:
         function() {
-            HLEPM.bind.bindRequirementRelated();
+            HLEPM.bind.bindRiskAddModal();
+            HLEPM.bind.bindIssueAddModal();
             HLEPM.bind.bindDetailTabs();
+            HLEPM.bind.bindRequirementRelated();
             HLEPM.bind.initialTrigger();
         },
 };
 
 HLEPM.bind = {
-    bindAddModal:
+    bindRequirementAddModal:
         function() {
-            $("#add").live('click', function() {
-                HLEPM.ui.hideModal("#update");
-                HLEPM.ui.showModal("#new");
+            $(".add-modal").live('click', function() {
+                HLEPM.ui.hideModal(".update-modal");
+                HLEPM.ui.showModal(".new-modal");
                 HLEPM.editRequest.requirementAddFormRequest($(this));
             });
             $(".close").live('click', function() {
-                HLEPM.ui.hideModal("#new");
+                HLEPM.ui.hideModal(".new-modal");
             });
             $(".close2").live('click', function() {
-                HLEPM.ui.hideModal("#new");
+                HLEPM.ui.hideModal(".new-modal");
             });
         },
-    bindUpdateModal:
+    bindRiskAddModal:
+        function() {
+            $("#add-risk").live('click', function() {
+                HLEPM.ui.hideModal($(this));
+                HLEPM.ui.showModal("#new-risk");
+                HLEPM.editRequest.newRiskFormRequest($(this));
+            });
+            $("#close-risk-1").live('click', function() {
+                HLEPM.ui.showModal("#add-risk");
+                HLEPM.ui.hideModal("#new-risk");
+            });
+            $("#close-risk-2").live('click', function() {
+                HLEPM.ui.showModal("#add-risk");
+                HLEPM.ui.hideModal("#new-risk");
+            });
+            $('#submit-new-risk').live('click', function(){
+                HLEPM.editRequest.addOneRisk();
+            });
+        },
+    bindIssueAddModal:
+        function() {
+            $("#add-issue").live('click', function() {
+                HLEPM.ui.hideModal($(this));
+                HLEPM.ui.showModal("#new-issue");
+                HLEPM.editRequest.newIssueFormRequest($(this));
+            });
+            $("#close-issue-1").live('click', function() {
+                HLEPM.ui.showModal("#add-issue");
+                HLEPM.ui.hideModal("#new-issue");
+            });
+            $("#close-issue-2").live('click', function() {
+                HLEPM.ui.showModal("#add-issue");
+                HLEPM.ui.hideModal("#new-issue");
+            });
+            $('#submit-new-issue').live('click', function(){
+                HLEPM.editRequest.addOneIssue();
+            });
+        },
+    bindRequirementUpdateModal:
         function () {
             $(".close").live('click', function() {
                 HLEPM.ui.hideModal("#update");
@@ -74,26 +114,16 @@ HLEPM.bind = {
             HLEPM.ui.autoComplete('.project-manager');
             HLEPM.ui.autoComplete('.reporter');
         },
-    bindDatePicker:
-        function() {
-            HLEPM.ui.pickingDate(".datePicker");
-        },
     bindDetailTabs:
         function() {
             $('#riskRequest').live('click', function() {
                 HLEPM.editRequest.detailRequest($(this), '#risk-container');
-                HLEPM.bind.bindDatePicker();
-                HLEPM.bind.bindAutoComplete();
-                HLEPM.bind.submitNewRisk();
                 HLEPM.bind.updateRisk();
                 comments_initial();
                 HLEPM.bind.bindCommentButton();
             });
             $('#issueRequest').live('click', function() {
                 HLEPM.editRequest.detailRequest($(this), '#issue-container');
-                HLEPM.bind.bindDatePicker();
-                HLEPM.bind.bindAutoComplete();
-                HLEPM.bind.submitNewIssue();
                 HLEPM.bind.updateIssue();
                 comments_initial();
                 HLEPM.bind.bindCommentButton();
@@ -182,36 +212,6 @@ HLEPM.bind = {
                     HLEPM.ui.enbleElement('.disabled-toggle');
                     HLEPM.ui.showModal('.product-label');
                 }
-            });
-        },
-    submitNewRisk:
-        function() {
-            $("#add-risk").die('click').live('click', function() {
-                HLEPM.editRequest.newRiskFormRequest($(this));
-            });
-            $("#close-risk-1").live('click', function() {
-                HLEPM.ui.hideModal("#new-risk");
-            });
-            $("#close-risk-2").live('click', function() {
-                HLEPM.ui.hideModal("#new-risk");
-            });
-            $('#submit-new-risk').die('click').live('click', function(){
-                HLEPM.editRequest.addOneRisk();
-            });
-        },
-    submitNewIssue:
-        function() {
-            $("#add-issue").die('click').live('click', function() {
-                HLEPM.editRequest.newIssueFormRequest($(this));
-            });
-            $("#close-issue-1").live('click', function() {
-                HLEPM.ui.hideModal("#new-issue");
-            });
-            $("#close-issue-2").live('click', function() {
-                HLEPM.ui.hideModal("#new-issue");
-            });
-            $('#submit-new-issue').die('click').live('click', function(){
-                HLEPM.editRequest.addOneIssue();
             });
         },
     updateRisk:
