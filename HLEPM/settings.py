@@ -180,3 +180,7 @@ LOGGING = {
         },
     }
 }
+
+EMAIL_SUBJECT_PREFIX = '[HLEPM] '
+EMAIL_FROM = 'noreply@redhat.com'
+ALIVE_ON_PRODUCTION = False

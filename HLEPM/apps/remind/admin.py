@@ -4,8 +4,8 @@ from HLEPM.apps.remind.models import EmailTemplates
 from HLEPM.apps.remind.models import EmailPurpose
 
 class EmailTemplatesAdmin(admin.ModelAdmin):
-    list_display = ('subject', 'mail_to', 'message',
-                    'purpose', 'created_on', 'updated_on')
+    list_display = ('subject', 'mail_to', 'message','purpose',
+                    'created_on', 'updated_on', 'enabled')
 admin.site.register(EmailTemplates, EmailTemplatesAdmin)
 
 class EmailPurposeAdmin(admin.ModelAdmin):
