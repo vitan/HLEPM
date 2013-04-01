@@ -1,22 +1,7 @@
-{% block content %}
- <body>
-    <div class="content">
-        <div class="pd10">
-            <section>
-                <div class="tab-pane active" id="risk">
-                    <div class="clear">
-                        <table class="eso-table product-status-report">
-                            <a class=" btn fl-right" id="add-risk" url="{% url risk_add app_label module_name pk %}">+ Create</a>
-                                <td class="display-none" id="new-risk">
-                                </td>
-                        </table>
-                            <td>
-                                {% include "track/risk/risk-list.html" %}
-                            </td>
-                    </div>
-                </div>
-            </section>
-        </div>
+<div class="clear">
+    <a class="fl-right font-big" href="#new-risk" id="add-risk" url="{% url risk_add risk_label risk_module report.pk %}">+ Create</a>
+    <div class="display-none" id="new-risk">
     </div>
-</body>
-{% endblock %}
+    <div id="risk-container">
+    </div>
+</div>

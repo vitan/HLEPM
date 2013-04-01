@@ -18,7 +18,6 @@ HLEPM.init = {
         function() {
             HLEPM.bind.bindAddModal();
             HLEPM.bind.bindUpdateModal();
-            HLEPM.bind.bindDatePicker();
             HLEPM.bind.bindRequirementFilter();
             HLEPM.bind.bindRequirementOrder();
             HLEPM.bind.bindNumPerPageSetting();
@@ -84,7 +83,7 @@ HLEPM.bind = {
     bindDetailTabs:
         function() {
             $('#riskRequest').live('click', function() {
-                HLEPM.editRequest.detailRequest($(this), '#risk');
+                HLEPM.editRequest.detailRequest($(this), '#risk-container');
                 HLEPM.bind.bindDatePicker();
                 HLEPM.bind.bindAutoComplete();
                 HLEPM.bind.submitNewRisk();
@@ -93,7 +92,7 @@ HLEPM.bind = {
                 HLEPM.bind.bindCommentButton();
             });
             $('#issueRequest').live('click', function() {
-                HLEPM.editRequest.detailRequest($(this), '#issue');
+                HLEPM.editRequest.detailRequest($(this), '#issue-container');
                 HLEPM.bind.bindDatePicker();
                 HLEPM.bind.bindAutoComplete();
                 HLEPM.bind.submitNewIssue();

@@ -44,12 +44,16 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="risk">
+                {% include 'track/risk/risk.html' %}
             </div>
             <div class="tab-pane fade" id="issue">
+                {% include 'track/issue/issue.html' %}
             </div>
             <div class="tab-pane fade" id="history">
             </div>
-            {% include "track/requirement/requirement-related-document.html" %}
+            <div class="tab-pane fade" id="relatedDocument">
+                {% include "track/requirement/requirement-related-document.html" %}
+            </div>
         </div>
     </section>
 </div>

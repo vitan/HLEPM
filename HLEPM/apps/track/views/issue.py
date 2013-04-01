@@ -25,16 +25,13 @@ __all__ = (
 )
 #The following is a test function now, will improve it later.
 @login_required
-def issue(request, app_label, module_name, pk, template_name='track/issue/issue.html'):
+def issue(request, app_label, module_name, pk,
+          template_name='track/issue/issue-list.html'):
     content_type = ContentType.objects.get(app_label=app_label, model=module_name)
     context_data = {
-        'subtitle': 'Issue',
         'requirement': Requirement.objects.get(pk=pk),
         'reporter_url': add_search_url_for_model(User),
         'reports':Issue.objects.filter(content_type=content_type, object_id=pk),
-        'app_label': app_label,
-        'module_name': module_name,
-        'pk': pk,
         }
     response = AjaxResponseMixin()
     issue_detail_html = render_to_string(template_name,

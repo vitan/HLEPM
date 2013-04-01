@@ -1,25 +1,23 @@
-<div class="tab-pane fade" id="relatedDocument">
-    <input class="display-none search_url" value="{{ search_url }}"/>
-    <input class="display-none current_filter" value="{{ filter }}"/>
-    <input class="display-none current_order" value=""/>
-    <table class="eso-table product-status-report">
-        <thead>
-            <tr>
-                <td><a href="#comments-all" class="btn fl-right">Comment</a></td>
-            </tr>
-        </thead>
-        <tbody>
+<input class="display-none search_url" value="{{ search_url }}"/>
+<input class="display-none current_filter" value="{{ filter }}"/>
+<input class="display-none current_order" value=""/>
+<table class="eso-table product-status-report">
+    <thead>
         <tr>
-            {% include 'track/requirement/requirement-table-tr-page-select.html' %}
+            <td><a href="#comments-all" class="btn fl-right">Comment</a></td>
         </tr>
-        <tr>
-            <td colspan="10" class="pd0">
-                {% include 'track/requirement/requirement-table-head.html' %}
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <section class="mg-bottom" id="comments-all">
-        {% include "comments/comment.html" %}
-    </section>
-</div>
+    </thead>
+    <tbody>
+    <tr>
+        {% include 'track/requirement/requirement-table-tr-page-select.html' %}
+    </tr>
+    <tr>
+        <td colspan="10" class="pd0">
+            {% include 'track/requirement/requirement-table-head.html' %}
+        </td>
+    </tr>
+    </tbody>
+</table>
+<section class="mg-bottom" id="comments-all">
+    {% include "comments/comment.html" %}
+</section>

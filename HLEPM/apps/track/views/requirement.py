@@ -16,6 +16,7 @@ from HLEPM.apps.common.views import AjaxResponseMixin
 from HLEPM.apps.track.models import Product, RequirementHistory
 from HLEPM.apps.track.models import Requirement, RequirementType
 from HLEPM.apps.track.models import RequirementStatus, RequirementOwner
+from HLEPM.apps.track.models import Risk, Issue
 from HLEPM.apps.track.forms import RequirementForm
 from HLEPM.apps.track.models import Version
 
@@ -51,10 +52,14 @@ def requirement_detail(request, pk,
 
     context_data = {
         'subtitle': 'BRD/MRD/PRD',
+        'report': Requirement.objects.get(pk=pk),
+        'risk_label': Risk._meta.app_label,
+        'risk_module': Risk._meta.module_name,
+        'issue_label': Issue._meta.app_label,
+        'issue_module': Issue._meta.module_name,
         'search_url': add_search_url_for_model(Requirement,
                                                'track/requirement/requirement-table.html'),
         'filter': 'requirement__id#has#'+pk,
-        'report': Requirement.objects.get(pk=pk),
         #TODO (weizhou) Here I have to add another query for getting related
         #documents count.
         'relate_docs': Requirement.objects.filter(requirement__id__in=pk),
