@@ -13,12 +13,12 @@
     </td>
     <td class="risk">
         <a href="{% url requirement_detail report.pk %}">
-            {{ report.risk.count }}({{ report.high_probability_risk.0.probability }}{{ report.high_probability_risk.count }})
+            {{ report.risk.count }}(high {{ report.high_probability_risk.count }})
         </a>
     </td>
     <td class="issue">
         <a href="{% url requirement_detail report.pk %}">
-            {{ report.issue.count }}({{ report.high_impact_issue.0.impact }}{{ report.high_impact_issue.count }})
+            {{ report.issue.count }}(high {{ report.high_impact_issue.count }})
         </a>
     </td>
     <td>{{ report.owner.name }}</td>

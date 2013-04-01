@@ -19,9 +19,9 @@
             <a class="click-trigger" url="{% url risk report|app_label report|module_name report.pk %}" id="riskRequest" href="#risk">
                 Risk({{ report.risk.count }})
                 <span class="small-text">(
-                    {{ report.open_status_risk.0.status }}
+                    Open
                     {{ report.open_status_risk.count }}
-                    {{ report.high_probability_risk.0.probability }}
+                    High
                     {{ report.high_probability_risk.count }}
                     )
                 </span>
@@ -31,9 +31,9 @@
             <a url="{% url issue report|app_label report|module_name report.pk %}" id="issueRequest" href="#issue">
                 Issue({{ report.issue.count }})
                 <span class="small-text">(
-                    {{ report.open_status_issue.0.status }}
+                    Open
                     {{ report.open_status_issue.count }}
-                    {{ report.high_impact_issue.0.impact }}
+                    High
                     {{ report.high_impact_issue.count }}
                     )
                 </span>
