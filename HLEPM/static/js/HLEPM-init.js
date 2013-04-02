@@ -43,7 +43,6 @@ HLEPM.bind = {
             });
             $(".close").live('click', function() {
                 HLEPM.ui.hideModal("#new");
-                HLEPM.ui.resetForm("#add-requirement");
             });
             $(".close2").live('click', function() {
                 HLEPM.ui.hideModal("#new");
@@ -52,7 +51,6 @@ HLEPM.bind = {
     bindUpdateModal:
         function () {
             $(".close").live('click', function() {
-                HLEPM.ui.resetForm("#update-requirement");
                 HLEPM.ui.hideModal("#update");
             });
             $(".close2").live('click', function() {
