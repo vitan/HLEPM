@@ -109,6 +109,36 @@ HLEPM.bind = {
                 HLEPM.editRequest.requirementUpdateFormRequest($(this));
             });
         },
+    updateRisk:
+        function() {
+            $(".close").live('click', function() {
+                HLEPM.ui.hideModal($(this).closest('.risk-li'));
+            });
+            $(".close2").live('click', function() {
+                HLEPM.ui.hideModal($(this).closest('.risk-li'));
+            });
+            $('.edit-risk').live('click', function(){
+                HLEPM.editRequest.updateRiskFormRequest($(this));
+            });
+            $('.update-one-risk').live('click', function(){
+                HLEPM.editRequest.updateOneRisk($(this));
+            });
+        },
+    updateIssue:
+        function() {
+            $(".close").live('click', function() {
+                HLEPM.ui.hideModal($(this).closest('.issue-li'));
+            });
+            $(".close2").live('click', function() {
+                HLEPM.ui.hideModal($(this).closest('.issue-li'));
+            });
+            $('.edit-issue').live('click', function(){
+                HLEPM.editRequest.updateIssueFormRequest($(this));
+            });
+            $('.update-one-issue').live('click', function(){
+                HLEPM.editRequest.updateOneIssue($(this));
+            });
+        },
     bindAutoComplete:
         function() {
             HLEPM.ui.autoComplete('.project-manager');
@@ -214,38 +244,6 @@ HLEPM.bind = {
                 }
             });
         },
-    updateRisk:
-        function() {
-            $('.edit-risk').live('click', function(){
-                HLEPM.editRequest.updateRiskFormRequest($(this));
-            });
-            $(".close2").live('click', function() {
-                var id = $(this).attr('id');
-                var id_num = id.split('-')[1];
-                HLEPM.ui.hideModal("#update-"+id_num);
-            });
-            $('.update-one-risk').live('click', function(){
-                var id = $(this).attr('id');
-                var id_num = id.split('-')[2];
-                HLEPM.editRequest.updateOneRisk(id_num);
-            });
-        },
-    updateIssue:
-        function() {
-            $('.edit-issue').live('click', function(){
-                HLEPM.editRequest.updateIssueFormRequest($(this));
-            });
-            $(".close2").live('click', function() {
-                var id = $(this).attr('id');
-                var id_num = id.split('-')[1];
-                HLEPM.ui.hideModal("#update-"+id_num);
-            });
-            $('.update-one-issue').live('click', function(){
-                var id = $(this).attr('id');
-                var id_num = id.split('-')[2];
-                HLEPM.editRequest.updateOneIssue(id_num);
-            });
-        }
 };
 
 $(document).ready(function() {

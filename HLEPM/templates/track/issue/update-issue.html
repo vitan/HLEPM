@@ -1,16 +1,14 @@
-{% load widget_tweaks %}
-<div class="update-issue">
+<div class="update-issue form-control">
     <div class="modal-header">
-        <h3>Update</h3>
+        <button data-dismiss="modal" class="close" id="close-issue-1">×</button>
+        <h3>Update Issue</h3>
     </div>
-    <div class="modal-body max-height450">
-        <form class="form-horizontal" id="update-issue-{{ report.pk }}" action="{% url issue_update report.pk %}" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {% include "track/issue/issue-form-fields.html" %}
-        </form>
-    </div>
-    <div class="modal-footer">
-        <a class="btn btn-primary update-one-issue" id="update-issue-{{ report.pk }}">Save</a>
-        <a data-dismiss="modal" class="btn close2" id="close2-{{ report.pk }}">Close</a>
-    </div>
+    <form class="form-horizontal" id="update-issue-form" action="{% url issue_update report.pk %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% include 'track/issue/issue-form-fields.html' %}
+        <div class="modal-footer">
+            <a class="btn btn-primary update-one-issue">Update</a>
+            <a data-dismiss="modal" class="btn close2">Close</a>
+        </div>
+    </form>
 </div>

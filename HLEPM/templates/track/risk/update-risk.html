@@ -1,16 +1,14 @@
-{% load widget_tweaks %}
-<div class="update-risk">
+<div class="update-risk form-control">
     <div class="modal-header">
-        <h3>Update</h3>
+        <button data-dismiss="modal" class="close" id="close-risk-1">×</button>
+        <h3>Update Risk</h3>
     </div>
-    <div class="modal-body max-height450">
-        <form class="form-horizontal" id="update-risk-{{ report.pk }}" action="{% url risk_update report.pk %}" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {% include "track/risk/risk-form-fields.html" %}
-        </form>
-    </div>
-    <div class="modal-footer">
-        <a class="btn btn-primary update-one-risk" id="update-risk-{{ report.pk }}">Save</a>
-        <a data-dismiss="modal" class="btn close2" id="close2-{{ report.pk }}">Close</a>
-    </div>
+    <form class="form-horizontal" id="update-risk-form" action="{% url risk_update report.pk %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% include 'track/risk/risk-form-fields.html' %}
+        <div class="modal-footer">
+            <a class="btn btn-primary update-one-risk">Update</a>
+            <a data-dismiss="modal" class="btn close2">Close</a>
+        </div>
+    </form>
 </div>

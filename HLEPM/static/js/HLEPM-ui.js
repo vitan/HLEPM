@@ -51,12 +51,12 @@ HLEPM.ui = {
             }
         },
     displayUpdateRisk:
-        function(id_num, update_risk){
-            $('#'+id_num).replaceWith(update_risk);
+        function(selector, update_risk){
+            $(selector).closest('.risk-list-item').replaceWith(update_risk);
         },
     displayUpdateIssue:
-        function(id_num, update_issue){
-            $('#'+id_num).replaceWith(update_issue);
+        function(selector, update_issue){
+            $(selector).closest('.issue-list-item').replaceWith(update_issue);
         },
     autoComplete:
         function(selector) {

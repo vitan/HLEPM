@@ -1,6 +1,6 @@
 <h3 class="clear">Risk </h3>
+{% for report in reports %}
 <div class="risk-issue-list" id="risk-list">
-    {% for report in reports %}
     {% include "track/risk/one-risk.html" %}
-    {% endfor %}
 </div>
+{% endfor %}

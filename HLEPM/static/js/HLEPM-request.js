@@ -53,51 +53,6 @@ HLEPM.editRequest = {
                }
             });
         },
-    updateOneRisk:
-        function(id_num){
-            var form = $("#update-risk-"+id_num);
-            var url = form.attr('action');
-            var data = form.serialize();
-            HLEPM.ajax.post(url, data, function(response){
-                if ( HLEPM.ajax.isSuccessful(response.rc)){
-                     HLEPM.ui.hideModal("#update-"+id_num);
-                     HLEPM.ui.displayUpdateRisk(id_num, response.data['update_risk'])
-                } else {
-                    $('#update-'+id_num).html(response.msg['error_risk']);
-                    HLEPM.ui.autoComplete('.reporter2');
-                    HLEPM.ui.pickingDate(".datePicker");
-                }
-            });
-        },
-    updateOneIssue:
-        function(id_num){
-            var form = $("#update-issue-"+id_num);
-            var url = form.attr('action');
-            var data = form.serialize();
-            HLEPM.ajax.post(url, data, function(response){
-                if ( HLEPM.ajax.isSuccessful(response.rc)){
-                     HLEPM.ui.hideModal("#update-"+id_num);
-                     HLEPM.ui.displayUpdateIssue(id_num, response.data['update_issue'])
-                } else {
-                    $('#update-'+id_num).html(response.msg['error_issue']);
-                    HLEPM.ui.autoComplete('.reporter2');
-                    HLEPM.ui.pickingDate(".datePicker");
-                }
-            });
-        },
-    updateRiskFormRequest:
-        function(selector){
-            var url = selector.attr('url');
-            var id_num = selector.attr('id').split('-')[2]
-            HLEPM.ajax.get(url, '', function(response){
-                if ( HLEPM.ajax.isSuccessful(response.rc)){
-                    $('#update-'+id_num).html(response.data['old_risk']);
-                    HLEPM.ui.showModal('#update-'+id_num);
-                    HLEPM.ui.autoComplete('.reporter2');
-                    HLEPM.ui.pickingDate(".datePicker");
-                }
-            });
-        },
     newRiskFormRequest:
         function(selector){
             var url = selector.attr('url');
@@ -120,14 +75,61 @@ HLEPM.editRequest = {
                 }
             });
         },
+    updateOneRisk:
+        function(selector){
+            var form = $(selector).closest('form');
+            var id_num = $(selector).closest('.risk-list-item').attr('id');
+            var url = form.attr('action');
+            var data = form.serialize();
+            HLEPM.ajax.post(url, data, function(response){
+                if ( HLEPM.ajax.isSuccessful(response.rc)){
+                     HLEPM.ui.hideModal("#update-risk-"+id_num);
+                     HLEPM.ui.displayUpdateRisk(selector, response.data['update_risk'])
+                } else {
+                    $('#update-risk-'+id_num).html(response.msg['error_risk']);
+                    HLEPM.ui.autoComplete('.reporter2');
+                    HLEPM.ui.pickingDate(".datePicker");
+                }
+            });
+        },
+    updateOneIssue:
+        function(selector){
+            var form = $(selector).closest('form');
+            var id_num = $(selector).closest('.issue-list-item').attr('id');
+            var url = form.attr('action');
+            var data = form.serialize();
+            HLEPM.ajax.post(url, data, function(response){
+                if ( HLEPM.ajax.isSuccessful(response.rc)){
+                     HLEPM.ui.hideModal("#update-issue-"+id_num);
+                     HLEPM.ui.displayUpdateIssue(selector, response.data['update_issue'])
+                } else {
+                    $('#update-issue-'+id_num).html(response.msg['error_issue']);
+                    HLEPM.ui.autoComplete('.reporter2');
+                    HLEPM.ui.pickingDate(".datePicker");
+                }
+            });
+        },
+    updateRiskFormRequest:
+        function(selector){
+            var url = selector.attr('url');
+            var id_num = $(selector).closest('.risk-list-item').attr('id');
+            HLEPM.ajax.get(url, '', function(response){
+                if ( HLEPM.ajax.isSuccessful(response.rc)){
+                    $('#update-risk-'+id_num).html(response.data['old_risk']);
+                    HLEPM.ui.showModal('#update-risk-'+id_num);
+                    HLEPM.ui.autoComplete('.reporter2');
+                    HLEPM.ui.pickingDate(".datePicker");
+                }
+            });
+        },
     updateIssueFormRequest:
         function(selector){
             var url=selector.attr('url');
-            var id_num = selector.attr('id').split('-')[2]
+            var id_num = $(selector).closest('.issue-list-item').attr('id');
             HLEPM.ajax.get(url, '', function(response){
                 if ( HLEPM.ajax.isSuccessful(response.rc)){
-                    $('#update-'+id_num).html(response.data['old_issue']);
-                    HLEPM.ui.showModal('#update-'+id_num);
+                    $('#update-issue-'+id_num).html(response.data['old_issue']);
+                    HLEPM.ui.showModal('#update-issue-'+id_num);
                     HLEPM.ui.autoComplete('.reporter2');
                     HLEPM.ui.pickingDate(".datePicker");
                 }

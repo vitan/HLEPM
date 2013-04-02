@@ -7,13 +7,11 @@
     <span>Response:</span> {{ report.response }}
     <span>Status:</span> {{ report.status }}
     <a href="#" class="ico-show-all comments-btn" title="Show all" id="on">Comment</a>
+    <a href="#" class="ico-show-all comments-btn display-none" title="Show all" id="off">Comment</a>
     <a id="edit-risk-{{ report.pk }}" data-toggle="modal" class="btn btn-mini btn-success fl-right edit-risk" url ="{% url risk_update report.pk%}">Edit</a>
     <p>{{ report.description }}</p>
-    <table class="eso-table product-status-report">
-        <td class="display-none update-risk" id="update-{{ report.pk }}">
-            {% include "track/risk/update-risk.html" %}
-        </td>
-    </table>
+    <div class="display-none risk-li" id="update-risk-{{ report.pk }}">
+    </div>
     <section class="mg-bottom display-none" id="comments-all">
         {% include "comments/comment.html" %}
     </section>

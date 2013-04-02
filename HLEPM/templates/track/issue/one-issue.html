@@ -10,11 +10,8 @@
     <a href="#" class="ico-show-all comments-btn display-none" title="Show all" id="off">Comment</a>
     <a id="edit-issue-{{ report.pk }}" data-toggle="modal" class="btn btn-mini btn-success fl-right edit-issue" url ="{% url issue_update report.pk%}">Edit</a>
     <p>{{ report.description }}</p>
-    <table class="eso-table product-status-report">
-        <td class="display-none update-risk" id="update-{{ report.pk }}">
-            {% include "track/issue/update-issue.html" %}
-        </td>
-    </table>
+    <div class="display-none issue-li" id="update-issue-{{ report.pk }}">
+    </div>
     <section class="mg-bottom display-none" id="comments-all">
         {% include "comments/comment.html" %}
     </section>
