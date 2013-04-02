@@ -29,9 +29,11 @@ HLEPM.init = {
         function() {
             HLEPM.bind.bindRiskAddModal();
             HLEPM.bind.bindIssueAddModal();
+            HLEPM.bind.bindCommentButton();
             HLEPM.bind.bindDetailTabs();
             HLEPM.bind.bindRequirementRelated();
             HLEPM.bind.initialTrigger();
+            comments_initial();
         },
 };
 
@@ -149,20 +151,15 @@ HLEPM.bind = {
             $('#riskRequest').live('click', function() {
                 HLEPM.editRequest.detailRequest($(this), '#risk-container');
                 HLEPM.bind.updateRisk();
-                comments_initial();
-                HLEPM.bind.bindCommentButton();
             });
             $('#issueRequest').live('click', function() {
                 HLEPM.editRequest.detailRequest($(this), '#issue-container');
                 HLEPM.bind.updateIssue();
-                comments_initial();
-                HLEPM.bind.bindCommentButton();
             });
             $('#historyRequest').live('click', function() {
                 HLEPM.editRequest.detailRequest($(this), '#history');
                 HLEPM.bind.bindRequirementOrder();
                 HLEPM.bind.bindNumPerPageSetting();
-                comments_initial();
             });
         },
     initialTrigger:
@@ -222,7 +219,6 @@ HLEPM.bind = {
                 HLEPM.editRequest.dataTableRequest();
                 HLEPM.bind.bindRequirementOrder();
                 HLEPM.bind.bindNumPerPageSetting();
-                comments_initial();
             });
         },
     bindCommentButton:

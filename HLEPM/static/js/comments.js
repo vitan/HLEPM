@@ -56,11 +56,11 @@ function ajaxSubmitComment(selector) {
 };
 
 function comments_initial() {
-    $('.comment_reply_link').click(show_reply_form);
-    $('.cancel_reply').click(cancel_reply_form);
-    $('.turn-on').click(show_comments);
-    $('.turn-off').click(hide_comments);
-    $('.comment-form').submit(function() {
+    $('.comment_reply_link').live('click', show_reply_form);
+    $('.cancel_reply').live('click', cancel_reply_form);
+    $('.turn-on').live('click', show_comments);
+    $('.turn-off').live('click', hide_comments);
+    $('.comment-form').live('submit', function() {
         ajaxSubmitComment($(this));
         return false;
     });

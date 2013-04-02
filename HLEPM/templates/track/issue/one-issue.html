@@ -6,8 +6,7 @@
     <span>Priority:</span> {{ report.priority }}
     <span>Mitigation:</span> {{ report.mitigation }}
     <span>Status:</span> {{ report.status }}
-    <a href="#" class="ico-show-all comments-btn" title="Show all" id="on">Comment</a>
-    <a href="#" class="ico-show-all comments-btn display-none" title="Show all" id="off">Comment</a>
+    <a class="ico-show-all comments-btn" title="Show all" id="on">Comment</a>
     <a id="edit-issue-{{ report.pk }}" data-toggle="modal" class="btn btn-mini btn-success fl-right edit-issue" url ="{% url issue_update report.pk%}">Edit</a>
     <p>{{ report.description }}</p>
     <div class="display-none issue-li" id="update-issue-{{ report.pk }}">
