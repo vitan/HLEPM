@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from HLEPM.apps.remind.models import EmailTemplates
-from HLEPM.apps.remind.models import EmailPurpose
+from HLEPM.apps.remind.models import EmailTemplate
 
-class EmailTemplatesAdmin(admin.ModelAdmin):
-    list_display = ('subject', 'mail_to', 'message','purpose',
-                    'created_on', 'updated_on', 'enabled')
-admin.site.register(EmailTemplates, EmailTemplatesAdmin)
+class EmailTemplateAdmin(admin.ModelAdmin):
 
-class EmailPurposeAdmin(admin.ModelAdmin):
-    list_display = ('purpose',)
-admin.site.register(EmailPurpose, EmailPurposeAdmin)
+    list_display = ('content_type',
+                    'subject',
+                    'from_email',
+                    'is_with_attachment',
+                    'is_enable')
+    ordering = ['-update']
+admin.site.register(EmailTemplate, EmailTemplateAdmin)

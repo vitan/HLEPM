@@ -1,64 +1,48 @@
 # -*- coding: utf-8 -*-
 
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django.template import Context
-from django.template import Template
+from django.conf import settings
+from django.contrib.auth.models import User, Group
 
 from HLEPM.apps.utils.constants import MSG
 
-__all__ = ('EmailPurpose', 'EmailTemplates',)
+__all__ = (
+    'EmailTemplate',
+)
 
-class NoEmailTemplateUsable(Exception):
-    pass
+class EmailTemplate(models.Model):
+    """ Save the message template."""
 
-class EmailPurpose(models.Model):
-    purpose = models.CharField(max_length=100, help_text=MSG.remind.purpose_helptext)
+    content_type = models.ForeignKey(ContentType)
+    subject = models.CharField(max_length=100,
+                               default=MSG.remind.email_subject_prefix,
+                               help_text=MSG.remind.email_subject_helptext)
+    body = models.TextField(default = MSG.remind.email_body_example,
+                               help_text=MSG.remind.email_body_helptext)
+    from_email = models.CharField(max_length=100,
+                                 default = settings.DEFAULT_FROM_EMAIL,
+                                 null=True,
+                                 blank=True)
+    to = models.ManyToManyField(User,
+                               related_name="mail_to")
+    cc_users = models.ManyToManyField(User,
+                                      null=True,
+                                      blank=True,
+                                     related_name="mail_cc_users")
+    cc_groups = models.ManyToManyField(Group,
+                                       null=True,
+                                       blank=True,
+                                     related_name="mail_cc_groups")
+    is_with_attachment = models.BooleanField(default=False,
+                                    help_text=MSG.remind.email_is_with_attachment_helptext)
+    is_enable = models.BooleanField(default=True,
+                                    help_text=MSG.remind.email_is_enable_helptext)
+    update = models.DateTimeField(auto_now=True, auto_now_add=True)
 
-    def __unicode__(self):
-        return self.purpose
+    def __str__(self):
+        return u'%s' % self.subject
+    __unicode__ = __str__
 
     class Meta:
-        db_table = 'HLEPM_email_purpose'
-
-class EmailTemplates(models.Model):
-
-    subject = models.CharField(max_length=100, help_text=MSG.remind.subject_helptext)
-    mail_to = models.CharField(max_length=100, help_text=MSG.remind.mail_to_helptext)
-    message = models.TextField(help_text=MSG.remind.message_helptext)
-    purpose = models.ForeignKey(EmailPurpose)
-    created_on = models.DateTimeField(auto_now_add=True)
-    updated_on = models.DateTimeField(auto_now=True)
-    enabled = models.BooleanField(default=False,help_text=MSG.remind.enabled_helptext)
-    template = None
-
-    def __unicode__(self):
-        return self.subject
-
-    class Meta:
-        db_table = 'HLEPM_email_config'
-
-    def render(self, data):
-        ''' Render template with data to real string content
-
-        - data: an instance of dict, which contains all necessary data
-                to render template
-        '''
-
-        context = Context(data)
-        return self.template.render(context)
-
-    @classmethod
-    def get_template(cls, purpose):
-        """get latest email template
-
-        - purpose: the purpose of the template which define in the EmailPurpose model
-        """
-
-        purpose = EmailPurpose.objects.get(purpose=purpose)
-        latest_enabled_templs = cls.objects.filter(purpose=purpose).order_by('-updated_on')
-        templates = [templ for templ in latest_enabled_templs]
-        if not templates:
-            raise NoEmailTemplateUsable()
-        template = templates[0]
-        template.template = Template(template.message)
-        return template
+        ordering = ['-update']

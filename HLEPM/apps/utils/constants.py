@@ -4,8 +4,15 @@
 class MSG:
 
     class remind:
-        subject_helptext = u'This is email subject.'
-        mail_to_helptext = u'Recipient addresses, If there are multiple recipients,make sure separated by comma.'
-        message_helptext = u'Mail content'
-        purpose_helptext = u'The purpose of this mail template'
-        enabled_helptext = u'Using this template to render mail body. Only one can be enabled.'
+        email_subject_prefix = '[HLEPM] '
+        email_subject_helptext = u'This is email subject.'
+        email_body_helptext = u'This is email body.'
+        email_is_with_attachment_helptext = u'Check me if you would like to  \
+                send email with related attachments.'
+        email_is_enable_helptext = u'Check me to make this template dis-/enable.'
+        email_body_example = u"""
+        <strong>{{ report }} updated</strong>
+        <br>
+        <a href="{{ report.url }}">{{ report }}</a>'s owner has updated to {{ report.owner }}
+        <br>
+        """

@@ -151,6 +151,8 @@ INSTALLED_APPS = (
 
 COMMENTS_APP = 'threadedcomments'
 
+DEFAULT_FROM_EMAIL = 'host-no-reply@redhat.com'
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
@@ -180,6 +182,4 @@ LOGGING = {
     }
 }
 
-EMAIL_SUBJECT_PREFIX = '[HLEPM] '
-EMAIL_FROM = 'noreply@redhat.com'
 ALIVE_ON_PRODUCTION = False

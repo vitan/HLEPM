@@ -1,28 +1,14 @@
 # -*- coding: utf-8 -*-
 
 '''
-Signals listeners for apps.
+Signals listeners for current app.
 Using signal to trigger email.
 '''
 
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+from django.contrib.contenttypes.models import ContentType
 
-from HLEPM.apps.track.models import Requirement, Risk
-from HLEPM.apps.remind.sendmail import send
+from HLEPM.apps.remind.sendmail import send_email
 
-#This is an example for sending email when requirement owner have changed.
-#Will be improved based on the  business logic in the future.
-@receiver(post_save, sender=Requirement)
-def sendEmailToRequirementOwner(sender, **kwargs):
-    instance = kwargs['instance']
-    purpose = instance.owner
-    send(purpose=purpose, render_data={'data': 'requirement'})
-
-
-#This is an example for sending email when add/update requirement risk.
-#Will be improved based on the  business logic in the future.
-@receiver(post_save, sender=Risk)
-def sendEmailWhenUpdateRisk(sender, **kwargs):
-    purpose = 'risk'
-    send(purpose=purpose)
+def sendEmailWhenObjectSave(sender, **kwargs):
+    send_email(content_type = ContentType.objects.get_for_model(sender),
+               updated_obj =  kwargs['instance'])
