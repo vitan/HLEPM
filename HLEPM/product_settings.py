@@ -15,6 +15,9 @@ AUTHENTICATION_BACKENDS = (
     'HLEPM.apps.utils.backends.ModAuthKerbBackend',
 )
 
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/home/media/media.lawrence.com/media/"
+MEDIA_ROOT = "/var/lib/HLEPM/"
 
 # optional settings
 ENGINEERING_SERVICES_URL = "https://engineering.redhat.com/hss-portal/products/"

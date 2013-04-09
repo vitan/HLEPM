@@ -4,8 +4,6 @@ import os
 
 PROJECT_DIR = os.path.dirname(os.path.realpath(__file__))
 
-UPLOAD_TO = 'documents/%Y/%m/%d'
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
