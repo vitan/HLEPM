@@ -6,15 +6,19 @@ Signals listeners for current app.
 
 from django.dispatch import receiver
 
-from HLEPM.apps.track.models import RequirementHistory
 from HLEPM.apps.track.signals import requirement_history_save_trigger
+
+__all__ =(
+    'requirement_history_save',
+)
 
 @receiver(requirement_history_save_trigger)
 def requirement_history_save(sender, **kwargs):
-    obj = RequirementHistory(**{
-        'editor': kwargs['editor'],
+    module = kwargs.pop('module')
+    kwargs.pop('signal')
+    kwargs.update({
         'requirement': sender,
-        'before_owner': kwargs['before_owner'],
         'after_owner': sender.owner,
     })
+    obj = module(**kwargs)
     obj.save()

@@ -117,7 +117,7 @@ def requirement_add(request,
                     response
                 )
 
-            requirement_obj.post_save(editor=request.user)
+            requirement_obj.save_history(editor=request.user)
 
             template = loader.get_template(template_tr)
             request_context = RequestContext(request, {'report': requirement_obj })
@@ -181,9 +181,9 @@ def requirement_update(request,
                     response
                 )
 
-            requirement_obj.post_save(editor=request.user,
-                                      before=before_owner,
-                                     )
+            requirement_obj.save_history(editor=request.user,
+                                     before=before_owner
+                                    )
 
             template = loader.get_template(template_tr)
             request_context = RequestContext(request, {'report': requirement_obj })

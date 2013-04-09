@@ -6,6 +6,6 @@ __all__ = (
     'requirement_history_save_trigger'
 )
 
-providing_args = ['editor', 'before_owner']
+providing_args = ['module', 'editor', 'before_owner']
 
 requirement_history_save_trigger = django.dispatch.Signal(providing_args=providing_args)

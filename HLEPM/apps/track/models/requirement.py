@@ -104,8 +104,12 @@ class Requirement(models.Model):
         return u'%s - %s' % (self.type.name, self.pk)
     __unicode__ = __str__
 
-    def post_save(self, editor, before=RequirementOwner.objects.get(order=1)):
+    def save_history(self, editor, before=None):
+        if not before:
+            before = RequirementOwner.objects.get(order=1)
+
         kwargs = {
+            'module': RequirementHistory,
             'editor': User.objects.get(username=editor),
             'before_owner': before,
         }
