@@ -8,8 +8,7 @@ Using signal to trigger email.
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from HLEPM.apps.track.models.requirement import Requirement
-from HLEPM.apps.track.models.risk import Risk
+from HLEPM.apps.track.models import Requirement, Risk
 from HLEPM.apps.remind.sendmail import send
 
 #This is an example for sending email when requirement owner have changed.
