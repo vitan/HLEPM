@@ -16,8 +16,7 @@ class AttachmentForm(forms.ModelForm):
         self.instance.object_id = obj.id
         super(AttachmentForm, self).save(*args, **kwargs)
         obj.name = self.instance.filename
-        kwargs = {'editor': request.user }
-        obj.save(**kwargs)
+        obj.save()
 
     def update(self, request, obj, *args, **kwargs):
         type = ContentType.objects.get_for_model(obj)
@@ -31,5 +30,4 @@ class AttachmentForm(forms.ModelForm):
         self.instance.object_id = id
         super(AttachmentForm, self).save(*args, **kwargs)
         obj.name = self.instance.filename
-        kwargs = {'editor': request.user }
-        obj.save(**kwargs)
+        obj.save()

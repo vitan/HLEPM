@@ -9,6 +9,8 @@ from HLEPM.apps.attachments.models import Attachment
 from HLEPM.apps.common.models import DictBase
 from HLEPM.apps.track.models import Risk, Issue, Product, Version
 
+from HLEPM.apps.track.signals import requirement_history_save_trigger
+
 
 __all__ = (
     'Requirement',
@@ -102,19 +104,12 @@ class Requirement(models.Model):
         return u'%s - %s' % (self.type.name, self.pk)
     __unicode__ = __str__
 
-    def save(self, *args, **kwargs):
-        editor_name = kwargs.pop('editor')
-        before_owner = kwargs.pop('before_owner')
-        super(Requirement, self).save(*args, **kwargs)
-        editor = User.objects.get(username=editor_name)
-        data = {
-            'editor': editor,
-            'requirement': self,
-            'before_owner': before_owner,
-            'after_owner': self.owner,
+    def post_save(self, editor, before=RequirementOwner.objects.get(order=1)):
+        kwargs = {
+            'editor': User.objects.get(username=editor),
+            'before_owner': before,
         }
-        history = RequirementHistory(**data)
-        history.save()
+        requirement_history_save_trigger.send(sender=self, **kwargs)
 
     def get_form_initial(self):
         result = {

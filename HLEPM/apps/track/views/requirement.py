@@ -20,6 +20,7 @@ from HLEPM.apps.track.models import Risk, Issue
 from HLEPM.apps.track.forms import RequirementForm
 from HLEPM.apps.track.models import Version
 
+
 __all__ = (
     'requirement',
     'requirement_add',
@@ -99,13 +100,10 @@ def requirement_add(request,
         form = RequirementForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            kwargs = {'editor': request.user,
-                      'before_owner': RequirementOwner.objects.get(pk=1)
-                     }
             data.pop('parent_type')
             parent_set = data.pop('parent')
             requirement_obj = Requirement(**data)
-            requirement_obj.save(**kwargs)
+            requirement_obj.save()
             for parent in parent_set:
                 requirement_obj.requirement.add(parent)
 
@@ -118,6 +116,8 @@ def requirement_add(request,
                     requirement_obj.pk,
                     response
                 )
+
+            requirement_obj.post_save(editor=request.user)
 
             template = loader.get_template(template_tr)
             request_context = RequestContext(request, {'report': requirement_obj })
@@ -165,11 +165,9 @@ def requirement_update(request,
             parent_set = data.pop('parent')
 
             requirement_obj = get_object_or_404(Requirement, pk=requirement_id)
-            kwargs = {'editor': request.user,
-                      'before_owner': requirement_obj.owner,
-                     }
+            before_owner=requirement_obj.owner
             requirement_obj = Requirement(pk=requirement_id, **data)
-            requirement_obj.save(**kwargs)
+            requirement_obj.save()
             for parent in parent_set:
                 requirement_obj.requirement.add(parent)
 
@@ -182,6 +180,10 @@ def requirement_update(request,
                     requirement_obj.pk,
                     response
                 )
+
+            requirement_obj.post_save(editor=request.user,
+                                      before=before_owner,
+                                     )
 
             template = loader.get_template(template_tr)
             request_context = RequestContext(request, {'report': requirement_obj })
