@@ -52,7 +52,8 @@ class ModAuthKerbBackend(RemoteUserBackend):
         # instead we use get_or_create when creating unknown users since it has
         # built-in safeguards for multiple threads.
         if self.create_unknown_user:
-            user, created = User.objects.get_or_create(username=username)
+            user, created = User.objects.get_or_create(username=username,
+                                                       email=remote_user)
             if created:
                 user = self.configure_user(user)
         else:
