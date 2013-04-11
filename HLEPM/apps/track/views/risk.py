@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
@@ -53,7 +54,12 @@ def risk_add(request, app_label, module_name, pk, template_name='track/risk/one-
             data = form.cleaned_data
             data.update(bind_object_data)
             risk_obj = Risk(**data)
-            risk_obj.save()
+            try:
+                risk_obj.save()
+            except Http404, err:
+                response.update_errors({'DBerror': err.message })
+                return response.ajax_response()
+
             new_risk_html = render_to_string(template_name,
                                              {'report': risk_obj},
                                             context_instance=RequestContext(request))
@@ -105,7 +111,11 @@ def risk_update(request, risk_id, template_name='track/risk/update-risk.html'):
             data = form.cleaned_data
             data.update(bind_object_data)
             risk_obj = Risk(pk=risk_id, **data)
-            risk_obj.save()
+            try:
+                risk_obj.save()
+            except Http404, err:
+                response.update_errors({'DBerror': err.message })
+                return response.ajax_response()
             new_template_name = 'track/risk/one-risk.html'
             new_risk_html = render_to_string(new_template_name,
                                              {'report': risk_obj},

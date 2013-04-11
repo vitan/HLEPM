@@ -3,12 +3,14 @@
 from django.db import models
 from django.utils.text import truncate_words
 from django.contrib.contenttypes import generic
+from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
 from HLEPM.apps.attachments.models import Attachment
 from HLEPM.apps.common.models import DictBase
 from HLEPM.apps.track.models import Risk, Issue, Product, Version
 
+from HLEPM.apps.remind.listeners import sendEmailWhenObjectSave
 from HLEPM.apps.track.signals import requirement_history_save_trigger
 
 
@@ -105,9 +107,9 @@ class Requirement(models.Model):
     __unicode__ = __str__
 
     def save_history(self, editor, before=None):
-        if not before:
-            before = RequirementOwner.objects.get(order=1)
 
+        if before is None:
+            before = RequirementOwner.objects.get(order=1)
         kwargs = {
             'module': RequirementHistory,
             'editor': User.objects.get(username=editor),
@@ -138,6 +140,7 @@ class Requirement(models.Model):
 
     class Meta:
         app_label = "track"
+post_save.connect(sendEmailWhenObjectSave, sender=Requirement)
 
 
 class RequirementHistory(models.Model):

@@ -53,7 +53,12 @@ def issue_add(request, app_label, module_name, pk, template_name='track/issue/on
             data = form.cleaned_data
             data.update(bind_object_data)
             issue_obj = Issue(**data)
-            issue_obj.save()
+            try:
+                issue_obj.save()
+            except Http404, err:
+                response.update_errors({'DBerror': err.message })
+                return response.ajax_response()
+
             new_issue_html = render_to_string(template_name,
                                               {'report': issue_obj},
                                               context_instance=RequestContext(request))
@@ -105,7 +110,12 @@ def issue_update(request, issue_id, template_name='track/issue/update-issue.html
             data = form.cleaned_data
             data.update(bind_object_data)
             issue_obj = Issue(pk=issue_id, **data)
-            issue_obj.save()
+            try:
+                issue_obj.save()
+            except Http404, err:
+                response.update_errors({'DBerror': err.message })
+                return response.ajax_response()
+
             new_template_name = 'track/issue/one-issue.html'
             new_issue_html = render_to_string(new_template_name,
                                               {'report': issue_obj},
