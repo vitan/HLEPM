@@ -13,6 +13,6 @@ class MSG:
         email_body_example = u"""
         <strong>{{ report }} updated</strong>
         <br>
-        <a href="{{ report.url }}">{{ report }}</a>'s owner has updated to {{ report.owner }}
+        <a href="">{{ report }}</a>'s owner has updated to {{ report.owner }}
         <br>
         """

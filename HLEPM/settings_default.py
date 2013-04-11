@@ -145,7 +145,6 @@ INSTALLED_APPS = (
     'HLEPM.apps.comments',
     'threadedcomments',
     'django.contrib.comments',
-    'south',
     'widget_tweaks',
 )
 
