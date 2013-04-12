@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
