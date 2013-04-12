@@ -11,7 +11,7 @@ class AttachmentManager(models.Manager):
     def attachments_for_object(self, obj):
         object_type = ContentType.objects.get_for_model(obj)
         return self.filter(content_type__pk=object_type.id,
-                           object_id=obj.id)
+                           object_id=obj.id, is_removed=True)
 
 class Attachment(models.Model):
     def attachment_upload(instance, filename):
@@ -31,6 +31,7 @@ class Attachment(models.Model):
     attachment_file = models.FileField(_('attachment'), upload_to=attachment_upload)
     created = models.DateTimeField(_('created'), auto_now_add=True)
     modified = models.DateTimeField(_('modified'), auto_now=True)
+    is_removed = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created']
@@ -40,6 +41,11 @@ class Attachment(models.Model):
 
     def __unicode__(self):
         return '%s attached %s' % (self.creator.username, self.attachment_file.name)
+
+    def save(self, *args, **kwargs):
+        Attachment.objects.filter(content_type=self.content_type,
+                                  object_id=self.object_id).update(is_removed=True)
+        super(Attachment, self).save(*args, **kwargs)
 
     @property
     def filename(self):

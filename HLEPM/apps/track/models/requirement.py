@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.utils.text import truncate_words
+from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
@@ -105,6 +106,22 @@ class Requirement(models.Model):
     def __str__(self):
         return u'%s - %s' % (self.type.name, self.pk)
     __unicode__ = __str__
+
+    def save(self, creator, file, *args, **kwargs):
+        """Override for saving attachment file"""
+        if file:
+            self.name = file.name
+            super(Requirement, self).save(*args, **kwargs)
+            data = {
+                'content_type': ContentType.objects.get_for_model(self),
+                'object_id': self.pk,
+                'creator': creator,
+                'attachment_file': file
+            }
+            attachment_obj = Attachment(**data)
+            attachment_obj.save()
+        else:
+            super(Requirement, self).save(*args, **kwargs)
 
     def save_history(self, editor, before=None):
 

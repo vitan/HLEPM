@@ -10,9 +10,7 @@ from django.views.decorators.http import require_POST, require_http_methods
 from django.conf import settings
 from django.contrib.auth.models import User
 
-from HLEPM.apps.attachments.views import add_attachment, update_attachment
 from HLEPM.apps.search.views import add_search_url_for_model
-from HLEPM.apps.attachments.models import Attachment
 from HLEPM.apps.common.views import AjaxResponseMixin
 from HLEPM.apps.track.models import Product, RequirementHistory
 from HLEPM.apps.track.models import Requirement, RequirementType
@@ -105,27 +103,17 @@ def requirement_add(request,
             parent_set = data.pop('parent')
             requirement_obj = Requirement(**data)
             try:
-                requirement_obj.save()
+                requirement_obj.save(creator=request.user,
+                                     file=request.FILES['attachment_file'])
             except Http404, err:
                 response.update_errors({'DBerror': err.message })
+                return response.ajax_response()
+            except IntegrityError as err:
+                response.update_errors({'DBerror': err.args[1] })
                 return response.ajax_response()
 
             for parent in parent_set:
                 requirement_obj.requirement.add(parent)
-
-            #Save attachment
-            if request.FILES:
-                try:
-                    add_attachment(
-                        request,
-                        requirement_obj._meta.app_label,
-                        requirement_obj._meta.module_name,
-                        requirement_obj.pk,
-                        response
-                    )
-                except IntegrityError as err:
-                    response.update_errors({'DBerror': err.args[1] })
-                    return response.ajax_response()
 
             requirement_obj.save_history(editor=request.user)
 
@@ -173,38 +161,23 @@ def requirement_update(request,
             data = form.cleaned_data
             data.pop('parent_type')
             parent_set = data.pop('parent')
-
-            requirement_obj = get_object_or_404(Requirement, pk=requirement_id)
-            before_owner=requirement_obj.owner
-            requirement_obj = Requirement(pk=requirement_id, **data)
-
             try:
-                requirement_obj.save()
+                requirement_obj = get_object_or_404(Requirement, pk=requirement_id)
+                before_owner=requirement_obj.owner
+                requirement_obj = Requirement(pk=requirement_id, **data)
+                requirement_obj.save(creator=request.user,
+                                     file=request.FILES['attachment_file'])
             except Http404, err:
                 response.update_errors({'DBerror': err.message })
                 return response.ajax_response()
-
+            except IntegrityError as err:
+                response.update_errors({'DBerror': err.args[1] })
+                return response.ajax_response()
 
             for parent in parent_set:
                 requirement_obj.requirement.add(parent)
 
-            #Update attachment
-            if request.FILES:
-                try:
-                    update_attachment(
-                        request,
-                        requirement_obj._meta.app_label,
-                        requirement_obj._meta.module_name,
-                        requirement_obj.pk,
-                        response
-                    )
-                except IntegrityError as err:
-                    response.update_errors({'DBerror': err.args[1] })
-                    return response.ajax_response()
-
-            requirement_obj.save_history(editor=request.user,
-                                     before=before_owner
-                                    )
+            requirement_obj.save_history(editor=request.user, before=before_owner)
 
             template = loader.get_template(template_tr)
             request_context = RequestContext(request, {'report': requirement_obj })

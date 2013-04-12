@@ -39,6 +39,7 @@ def send_email(content_type, updated_obj):
 
     if obj.is_with_attachment:
         for attachment in updated_obj.attachment.all():
-            mail.attach_file(attachment.attachment_file.path)
+            if not attachment.is_removed:
+                mail.attach_file(attachment.attachment_file.path)
 
     mail.send(fail_silently=False)

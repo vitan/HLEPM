@@ -17,17 +17,3 @@ class AttachmentForm(forms.ModelForm):
         super(AttachmentForm, self).save(*args, **kwargs)
         obj.name = self.instance.filename
         obj.save()
-
-    def update(self, request, obj, *args, **kwargs):
-        type = ContentType.objects.get_for_model(obj)
-        id = obj.id
-
-        query_set = Attachment.objects.filter(content_type=type, object_id=id)
-        query_set.delete()
-
-        self.instance.creator = request.user
-        self.instance.content_type = type
-        self.instance.object_id = id
-        super(AttachmentForm, self).save(*args, **kwargs)
-        obj.name = self.instance.filename
-        obj.save()

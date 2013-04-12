@@ -4,7 +4,9 @@
     </td>
     <td>
         {% for attachment in report.attachment.all %}
+        {% if  not attachment.is_removed %}
         <a href="{{ attachment.attachment_file.url }}" class="{{ report.type.name|lower }}">{{ attachment.filename }}</a>
+        {% endif %}
         {% endfor %}
     </td>
     <td>{{ report.author.username }}</td>
