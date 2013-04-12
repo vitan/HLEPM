@@ -17,8 +17,6 @@ HLEPM.editRequest = {
                         HLEPM.ui.autoComplete('.author');
                         HLEPM.ui.autoComplete('.parent');
                         HLEPM.ui.pickingDate(".datePicker");
-                        HLEPM.bind.bindParentTypeChange();
-                        HLEPM.bind.bindDisabledToggle();
                     }
                 }
             });
@@ -164,8 +162,6 @@ HLEPM.editRequest = {
                     HLEPM.ui.autoComplete('.author');
                     HLEPM.ui.autoComplete('.parent');
                     HLEPM.ui.pickingDate(".datePicker");
-                    HLEPM.bind.bindDisabledToggle();
-                    HLEPM.bind.bindParentTypeChange();
                 }
             });
         },
@@ -179,8 +175,6 @@ HLEPM.editRequest = {
                     HLEPM.ui.autoComplete('.author');
                     HLEPM.ui.autoComplete('.parent');
                     HLEPM.ui.pickingDate(".datePicker");
-                    HLEPM.bind.bindDisabledToggle();
-                    HLEPM.bind.bindParentTypeChange();
                     $('.change-event').trigger('change');
                 }
             });
@@ -205,8 +199,6 @@ HLEPM.editRequest = {
                         HLEPM.ui.autoComplete('.author');
                         HLEPM.ui.autoComplete('.parent');
                         HLEPM.ui.pickingDate(".datePicker");
-                        HLEPM.bind.bindDisabledToggle();
-                        HLEPM.bind.bindParentTypeChange();
                         $('#id_type').trigger('change');
                     }
                 }

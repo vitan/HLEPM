@@ -21,6 +21,8 @@ HLEPM.init = {
             HLEPM.bind.bindRequirementFilter();
             HLEPM.bind.bindRequirementOrder();
             HLEPM.bind.bindNumPerPageSetting();
+            HLEPM.bind.bindDisabledToggle();
+            HLEPM.bind.bindParentTypeChange();
             HLEPM.editRequest.addOneRequirement();
             HLEPM.editRequest.updateOneRequirement();
             HLEPM.bind.initialTrigger();
@@ -227,7 +229,7 @@ HLEPM.bind = {
         },
     bindDisabledToggle:
         function() {
-            $('.change-event').change(function() {
+            $('.change-event').live('change', function() {
                 if($(this).val() == 1) {
                     HLEPM.ui.disableElement('.disabled-toggle');
                     HLEPM.ui.hideModal('.product-label');
