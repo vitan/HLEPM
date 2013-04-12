@@ -25,6 +25,7 @@ __all__ = (
     'requirement_add',
     'requirement_update',
     'requirement_detail',
+    'requirement_history',
 )
 
 
