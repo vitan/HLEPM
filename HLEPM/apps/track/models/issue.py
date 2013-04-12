@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from HLEPM.apps.common.models import DictBase
 from HLEPM.apps.track.models import Impact
 
-from HLEPM.apps.remind.listeners import sendEmailWhenObjectSave
+from HLEPM.apps.remind.listeners import send_email_post_save
 
 
 __all__ = (
@@ -85,4 +85,4 @@ class Issue(models.Model):
 
     class Meta:
         app_label = "track"
-post_save.connect(sendEmailWhenObjectSave, sender=Issue)
+post_save.connect(send_email_post_save, sender=Issue)

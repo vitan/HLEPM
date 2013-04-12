@@ -11,8 +11,8 @@ from HLEPM.apps.attachments.models import Attachment
 from HLEPM.apps.common.models import DictBase
 from HLEPM.apps.track.models import Risk, Issue, Product, Version
 
-from HLEPM.apps.remind.listeners import sendEmailWhenObjectSave
-from HLEPM.apps.track.signals import requirement_history_save_trigger
+from HLEPM.apps.remind.listeners import send_email_post_save
+from HLEPM.apps.track.signals import *
 
 
 __all__ = (
@@ -107,9 +107,12 @@ class Requirement(models.Model):
         return u'%s - %s' % (self.type.name, self.pk)
     __unicode__ = __str__
 
-    def save(self, creator, file, *args, **kwargs):
+    def save(self, *args, **kwargs):
         """Override for saving attachment file"""
+        creator = kwargs.pop('creator')
+        file = kwargs.pop('file', None)
         if file:
+            file = file['attachment_file']
             self.name = file.name
             super(Requirement, self).save(*args, **kwargs)
             data = {
@@ -123,7 +126,7 @@ class Requirement(models.Model):
         else:
             super(Requirement, self).save(*args, **kwargs)
 
-    def save_history(self, editor, before=None):
+    def post_save(self, editor, before=None):
 
         if before is None:
             before = RequirementOwner.objects.get(order=1)
@@ -133,6 +136,9 @@ class Requirement(models.Model):
             'before_owner': before,
         }
         requirement_history_save_trigger.send(sender=self, **kwargs)
+
+        requirement_post_save_trigger.send(sender=Requirement,
+                                           **{'instance': self})
 
     def get_form_initial(self):
         result = {
@@ -157,7 +163,7 @@ class Requirement(models.Model):
 
     class Meta:
         app_label = "track"
-post_save.connect(sendEmailWhenObjectSave, sender=Requirement)
+requirement_post_save_trigger.connect(send_email_post_save, sender=Requirement)
 
 
 class RequirementHistory(models.Model):

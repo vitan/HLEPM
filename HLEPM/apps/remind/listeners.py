@@ -9,6 +9,6 @@ from django.contrib.contenttypes.models import ContentType
 
 from HLEPM.apps.remind.sendmail import send_email
 
-def sendEmailWhenObjectSave(sender, **kwargs):
+def send_email_post_save(sender, **kwargs):
     send_email(content_type = ContentType.objects.get_for_model(sender),
                updated_obj =  kwargs['instance'])

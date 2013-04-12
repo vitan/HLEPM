@@ -103,8 +103,9 @@ def requirement_add(request,
             parent_set = data.pop('parent')
             requirement_obj = Requirement(**data)
             try:
-                requirement_obj.save(creator=request.user,
-                                     file=request.FILES['attachment_file'])
+                requirement_obj.save(**{
+                    'creator': request.user,
+                    'file': request.FILES})
             except Http404, err:
                 response.update_errors({'DBerror': err.message })
                 return response.ajax_response()
@@ -115,7 +116,7 @@ def requirement_add(request,
             for parent in parent_set:
                 requirement_obj.requirement.add(parent)
 
-            requirement_obj.save_history(editor=request.user)
+            requirement_obj.post_save(editor=request.user)
 
             template = loader.get_template(template_tr)
             request_context = RequestContext(request, {'report': requirement_obj })
@@ -165,8 +166,9 @@ def requirement_update(request,
                 requirement_obj = get_object_or_404(Requirement, pk=requirement_id)
                 before_owner=requirement_obj.owner
                 requirement_obj = Requirement(pk=requirement_id, **data)
-                requirement_obj.save(creator=request.user,
-                                     file=request.FILES['attachment_file'])
+                requirement_obj.save(**{
+                    'creator': request.user,
+                    'file': request.FILES})
             except Http404, err:
                 response.update_errors({'DBerror': err.message })
                 return response.ajax_response()
@@ -177,7 +179,7 @@ def requirement_update(request,
             for parent in parent_set:
                 requirement_obj.requirement.add(parent)
 
-            requirement_obj.save_history(editor=request.user, before=before_owner)
+            requirement_obj.post_save(editor=request.user, before=before_owner)
 
             template = loader.get_template(template_tr)
             request_context = RequestContext(request, {'report': requirement_obj })
