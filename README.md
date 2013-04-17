@@ -1,7 +1,7 @@
-HLEPM
+LWEPM
 =====
 
-highlight enterprise management
+light-weight enterprise management
 
 
 requirements
