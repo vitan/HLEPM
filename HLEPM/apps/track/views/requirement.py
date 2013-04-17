@@ -107,17 +107,17 @@ def requirement_add(request,
                 requirement_obj.save(**{
                     'creator': request.user,
                     'file': request.FILES})
+
+                for parent in parent_set:
+                    requirement_obj.requirement.add(parent)
+
+                requirement_obj.post_save(editor=request.user)
             except Http404, err:
                 response.update_errors({'DBerror': err.message })
                 return response.ajax_response()
             except IntegrityError as err:
                 response.update_errors({'DBerror': err.args[1] })
                 return response.ajax_response()
-
-            for parent in parent_set:
-                requirement_obj.requirement.add(parent)
-
-            requirement_obj.post_save(editor=request.user)
 
             template = loader.get_template(template_tr)
             request_context = RequestContext(request, {'report': requirement_obj })
@@ -170,17 +170,17 @@ def requirement_update(request,
                 requirement_obj.save(**{
                     'creator': request.user,
                     'file': request.FILES})
+
+                for parent in parent_set:
+                    requirement_obj.requirement.add(parent)
+
+                requirement_obj.post_save(editor=request.user, before=before_owner)
             except Http404, err:
                 response.update_errors({'DBerror': err.message })
                 return response.ajax_response()
             except IntegrityError as err:
                 response.update_errors({'DBerror': err.args[1] })
                 return response.ajax_response()
-
-            for parent in parent_set:
-                requirement_obj.requirement.add(parent)
-
-            requirement_obj.post_save(editor=request.user, before=before_owner)
 
             template = loader.get_template(template_tr)
             request_context = RequestContext(request, {'report': requirement_obj })
