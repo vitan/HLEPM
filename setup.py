@@ -20,6 +20,7 @@ def get_install_requires():
 
 setup(
     name='LWEPM',
+    license='GPLv3',
     description='LWEPM is a light-weight enterprise project management system.\
     author_email: weizhou@redhat.com, docai@redhat.com',
     author='weizhou, docai',
@@ -27,7 +28,7 @@ setup(
     #url='https://engineering.redhat.com/trac/LWEPM',
     version=get_version(),
     classifiers=[
-        'Programming Language :: Python :: 2.6.8',
+        'Programming Language :: Python :: 2.6',
     ],
 
     packages = find_packages(),
