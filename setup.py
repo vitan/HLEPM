@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''Setup for LWEPM project
+'''Setup for lwepm project
 '''
 
 import os
@@ -19,13 +19,13 @@ def get_install_requires():
     return [line.strip() for line in open('requirements.txt', 'r')]
 
 setup(
-    name='LWEPM',
+    name='lwepm',
     license='GPLv3',
-    description='LWEPM is a light-weight enterprise project management system.\
+    description='lwepm is a light-weight enterprise project management system.\
     author_email: weizhou@redhat.com, docai@redhat.com',
     author='weizhou, docai',
     author_email='weizhou@redhat.com',
-    #url='https://engineering.redhat.com/trac/LWEPM',
+    #url='https://engineering.redhat.com/trac/lwepm',
     version=get_version(),
     classifiers=[
         'Programming Language :: Python :: 2.6',
