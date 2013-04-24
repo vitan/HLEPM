@@ -3,3 +3,5 @@ include requirements.txt
 include README.md
 recursive-include conf *
 recursive-include lwepm/fixtures *
+recursive-include lwepm/static *
+recursive-include lwepm/templates *

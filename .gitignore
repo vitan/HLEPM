@@ -1,0 +1,4 @@
+*.pyc
+build/
+dist/
+lwepm.egg-info/
